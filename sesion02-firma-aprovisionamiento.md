@@ -75,6 +75,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Práctica: configuración de la cuenta de desarrollador (1)
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Crea un Apple ID en [este enlace](https://appleid.apple.com/account?localang=es_es).
 - Date de alta como desarrollador Apple introduciendo el Apple ID recién creado en [este enlace](https://developer.apple.com/register/). Es gratuito, y permite acceder a las herramientas de desarrollo, la documentación y versiones beta.
@@ -86,6 +87,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Práctica: configuración de la cuenta de desarrollador (2)
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Para poder ejecutar apps en dispositivos es necesario darse de alta de forma individual en el [programa de desarrollo de iOS](https://developer.apple.com/programs/ios/) o apuntarse a un equipo de desarrollo. En la Universidad tenemos dado de alta un equipo [_iOS Developer University Program_](https://developer.apple.com/programs/ios/university/).
 - Escribe tus datos en [este fichero Google Docs](https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing) y te añadiré al equipo. En el correo electrónico recibirás una invitación con un enlace. Pincha en el enlace e introduce allí tu Apple ID. 
@@ -98,6 +100,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Cuenta de desarrollador 
+<!-- .slide: data-background="#cbe0fc"-->
 
 - La cuenta de desarrollo de la universidad está limitada al desarrollo y prueba de apps. No tiene las funcionalidades de distribución de apps que tienen las cuentas de pago:
 
@@ -108,6 +111,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Instalación de la identidad de firma (1)
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Xcode facilita el proceso de generación de nuestra identidad de firma y de nuestro certificado de desarrollador.
 - Escoge Xcode > Preferences y pincha en el signo + para añadir un Apple ID.
@@ -120,6 +124,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Instalación de la identidad de firma (2)
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Pulsa View Details para crear la identidad de firma.
 - Pulsa el botón de recargar en la esquina inferior izquierda para que Xcode solicite una identidad de firma, que debe autorizar el administrador del equipo.
@@ -132,6 +137,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Comprobación de la identidad de firma en Acceso a Llaveros
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Abre la aplicación Acceso a Llaveros y comprueba que se ha instalado el certificado junto con la clave privada en Mis certificados e Inicio de sesión.
 
@@ -142,6 +148,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Comprobación del certificado en el _Member Center_
+<!-- .slide: data-background="#cbe0fc"-->
 
 - En el _Member Center_ puedes comprobar que se ha añadido tu certificado al del resto de miembros del equipo.
 - El certificado en el _Member Center_ contiene tu clave pública. Tu clave privada está protegida en tu llavero.
@@ -324,6 +331,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Práctica: instalar la app Calculadora en un dispositivo
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Una vez instalado el certificado de desarrollador en Xcode debes configurar la aplicación para que sea compatible con el perfil de aprovisionamiento recién creado y poder instalarla y ejecutarla en un dispositivo.
 - Tendrás que:
@@ -338,6 +346,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Definición del _Bundle identifier_
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/xcode-bundle-identifier.png" width=700px/>
 
@@ -348,6 +357,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Activación del permiso de _Game Center_
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/xcode-capabilities.png" width=700px/>
 
@@ -359,6 +369,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 ### Perfiles de aprovisionamiento
+<!-- .slide: data-background="#cbe0fc"-->
 
 <!-- .slide: class="image-right"-->
 
@@ -379,6 +390,7 @@ security cms -D -i <perfil>.mobileprovision
 
 
 ### Instalar y ejecutar la aplicación en un dispositivo
+<!-- .slide: data-background="#cbe0fc"-->
 
 <!-- .slide: class="image-right"-->
 
@@ -391,6 +403,7 @@ security cms -D -i <perfil>.mobileprovision
 
 
 ### Inspeccionar el dispositivo
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/xcode-device.png" width=700px/>
 
@@ -403,6 +416,7 @@ security cms -D -i <perfil>.mobileprovision
 
 
 ### Perfil de aprovisionamiento copiado
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/xcode-provisioning-profile-device.png"/>
 
@@ -414,6 +428,7 @@ security cms -D -i <perfil>.mobileprovision
 
 
 ### Ejecutar la aplicación Calculadora en el dispositivo
+<!-- .slide: data-background="#cbe0fc"-->
 
 <!-- .slide: class="image-right"-->
 
