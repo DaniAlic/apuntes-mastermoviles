@@ -190,9 +190,14 @@ if i {
 
 
 
-### _Optionals_
+## _Optionals_
 
-- Los _opcionales_ permiten expresar situaciones en las que un valor puede estar ausente.
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Definición
+
 - En Swift todos los tipos deben tener valor:
 
 ```swift
@@ -200,14 +205,17 @@ var saludo = "Hola"
 saludo = nil
 // error: una variable de tipo no puede tener el valor nil
 ```
+- Los _opcionales_ permiten expresar situaciones en las que un valor puede estar ausente. 
 
-- El tipo `String?` representa un `String` _opcional_. Una variable de ese tipo puede contener un `String` o `nil`:
+- <!-- .element: class="fragment" data-fragment-index="1" --> El tipo `String?` representa un `String` _opcional_. Una variable de ese tipo puede contener un `String` o `nil`: 
 
 ```swift
 var saludo: String? = "Hola"
 saludo = nil
 println("Mi saludo es \(saludo)")
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 
 ---
 
@@ -249,20 +257,22 @@ let numeroConvertidoConError = numeroConError.toInt()
 numeroConvertido + 100
 \\ error: value of optional type 'Int?' not unwrapped;
 ```
-
-- El valor de un _optional_ se puede _desenvolver_ usando la exclamación (`!`):
+- <!-- .element: class="fragment" data-fragment-index="1" --> El valor de un _optional_ se puede _desenvolver_ usando la exclamación (`!`):
 
 ```swift
 numeroConvertido! + 100
 ⇒ Int = 223
 ```
+<!-- .element: class="fragment" data-fragment-index="1" --> 
 
-- Si desenvolvemos `nil` se obtiene un error en tiempo de ejecución:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Si desenvolvemos `nil` se obtiene un error en tiempo de ejecución:
 
 ```swift
 numeroConvertidoConError! + 100
 ⇒ fatal error: unexpectedly found nil unwrapping an Optional
 ```
+<!-- .element: class="fragment" data-fragment-index="2" --> 
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -277,7 +287,7 @@ if numeroConvertido != nil {
 }
 ```
 
-- Se puede usar _optional binding_:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Se puede usar _optional binding_:
 
 ```swift
 if let numeroVerdadero = posibleNumero.toInt() {
@@ -286,6 +296,9 @@ if let numeroVerdadero = posibleNumero.toInt() {
     println("\(posibleNumero) no se pudo convertir a entero")
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" --> 
+
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -445,19 +458,21 @@ listaCompra.append("Harina")
 listaCompra += ["Queso", "Mantequilla", "Chocolate"]
 ```
 
-- Iteración sobre arrays:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Iteración sobre arrays:
 
 ```swift
 for item in listaCompra {
     println(item)
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ```swift
 for (index, value) in enumerate(listaCompra) {
     println("Item \(index + 1): \(value)")
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -472,7 +487,7 @@ var aeropuertos: [String: String] = ["YYZ": "Toronto Pearson",
                                      "DUB": "Dublin"]
 ```
 
-- El acceso devuelve un valor opcional y devuelve `nil` si la clave no existe:
+- <!-- .element: class="fragment" data-fragment-index="1" --> El acceso devuelve un valor opcional y devuelve `nil` si la clave no existe:
 
 ```swift
 if let nombreAeropuerto = aeropuertos["YYZ"] {
@@ -481,6 +496,7 @@ if let nombreAeropuerto = aeropuertos["YYZ"] {
    println("El aeropuerto no está en el diccionario")
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -497,7 +513,7 @@ aeropuertos["LHR"] = "London Heathrow"
 // cambiamos un ítem
 ```
 
-- Actualizar y recuperar el valor antiguo:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Actualizar y recuperar el valor antiguo:
 
 ```swift
 if let antiguo = aeropuertos.updateValue("Dublin Airport",
@@ -505,6 +521,8 @@ if let antiguo = aeropuertos.updateValue("Dublin Airport",
    println("El valor antiguo de DUB era \(antiguo)")
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -519,22 +537,23 @@ for (codigoAeropuerto, nombreAeropuerto) in aeropuertos {
 }
 ```
 
-- Iteración por las claves:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Iteración por las claves:
 
 ```swift
 for codigoAeropuerto in aeropuertos.keys {
     println("Código aeropuerto: \(codigoAeropuerto)")
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Iteración por los valores:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Iteración por los valores:
 
 ```swift
 for nombreAeropuerto in aeropuertos.values {
     println("Nombre aeropuerto: \(nombreAeropuerto)")
 }
 ```
-
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -609,7 +628,7 @@ func diHola(nombrePersona: String) -> String {
 }
 ```
 
-- Llamada a una función:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Llamada a una función:
 
 ```swift
 println(diHola("Ana"))
@@ -617,8 +636,9 @@ println(diHola("Ana"))
 println(diHola("Jordi"))
 ⇒ ¡Hola, Jordi!
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Podemos simplificar la definición de la función a una única línea:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Podemos simplificar la definición de la función a una única línea:
 
 ```swift
 func diHolaOtraVez(nombrePersona: String) -> String {
@@ -627,6 +647,7 @@ func diHolaOtraVez(nombrePersona: String) -> String {
 println(diHola("Ana"))
 ⇒ ¡Hola otra vez, Ana!
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -645,7 +666,7 @@ join(string: "Hola", toString: "mundo", withJoiner: ", ")
 ⇒ Hola, mundo
 ```
 
-- Los mismos nombres externos e internos:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Los mismos nombres externos e internos:
 
 ```swift
 func containsCharacter(#string: String, #characterToFind: Character)
@@ -660,6 +681,7 @@ func containsCharacter(#string: String, #characterToFind: Character)
 containsCharacter(string: "cerdo hormiguero", characterToFind: "u")
 ⇒ true
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -740,20 +762,23 @@ var funcionMatematica: (Int, Int) -> Int = sumaDosInts
 ```
 
 - Se puede entender así: "Define una variable llamada `funcionMatematica`, que tiene el tipo de una función que coge dos valores `Int` y devuelve un valor Int. Actualiza esta variable para que se refiera a la función llamada `sumaDosInts`".
-- Podemos llamar a `funcionMatematica` de la misma forma que se llama a cualquier otra función:
+
+- <!-- .element: class="fragment" data-fragment-index="1" --> Podemos llamar a `funcionMatematica` de la misma forma que se llama a cualquier otra función:
 
 ```swift
 println(funcionMatematica(10, 20))
 ⇒ 30
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Al ser una variable, podemos asignar otro valor a `funcionMatematica`:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Al ser una variable, podemos asignar otro valor a `funcionMatematica`:
 
 ```swift
 funcionMatematica = multiplicaDosInts
 println(funcionMatematica(10, 20))
 ⇒ 200
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 ---
 
@@ -860,7 +885,7 @@ sorted(nombres)
 (String, String) -> Bool
 ```
 
-- Una forma de especificar la clausura es escribiendo la función de ordenación de forma normal y pasándola como parámetro:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Una forma de especificar la clausura es escribiendo la función de ordenación de forma normal y pasándola como parámetro:
 
 ```swift
 func haciaAtras(s1: String, s2: String) -> Bool {
@@ -875,6 +900,8 @@ var inverso = sorted(nombres, haciaAtras)
   [4] = "Alex"
 }
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -889,23 +916,26 @@ inverso = sorted(nombres, { (s1: String, s2: String) -> Bool in
 })
 ```
 
-- El compilador de Swift infiere los tipos a partir del contexto de la definición:
+- <!-- .element: class="fragment" data-fragment-index="1" --> El compilador de Swift infiere los tipos a partir del contexto de la definición:
 
 ```swift
 inverso = sorted(nombres, {s1, s2 in return s1 > s2} )
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Es posible eliminar la palabra `return`:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Es posible eliminar la palabra `return`:
 
 ```swift
 inverso = sorted(nombres, {s1, s2 in s1 > s2} )
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
-- Y utilizar abreviaturas en los nombres de los argumentos y eliminar `in`:
+- <!-- .element: class="fragment" data-fragment-index="3" --> Y utilizar abreviaturas en los nombres de los argumentos y eliminar `in`:
 
 ```swift
 inverso = sorted(nombres, { $0 > $1 } )
 ```
+<!-- .element: class="fragment" data-fragment-index="3" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -918,7 +948,7 @@ inverso = sorted(nombres, { $0 > $1 } )
 ```swift
 inverso = sorted(nombres) { $0 > $1 }
 ```
-- Y si la función no tiene más argumentos que la clausura, es posible omitir los paréntesis vacíos. Por ejemplo, el método `map` tiene como único parámetro una clasusura que se aplica a todos los elementos de un `Array`:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Y si la función no tiene más argumentos que la clausura, es posible omitir los paréntesis vacíos. Por ejemplo, el método `map` tiene como único parámetro una clasusura que se aplica a todos los elementos de un `Array`:
 
 ```swift
 func cuadrado(x: Int) -> Int {return x * x}
@@ -926,12 +956,14 @@ let numeros = [1, 2, 3, 4, 5]
 numeros.map(cuadrado)
 ⇒ [1, 4, 9, 16, 25]
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Lo podemos expresar en forma de clausura al final:
+- <!-- .element: class="fragment" data-fragment-index="2" --> Lo podemos expresar en forma de clausura al final:
 
 ```swift
 numeros.map { $0 * $0 }
 ```
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -985,6 +1017,7 @@ println(vehiculo.descripcion)
 vehiculo.numeroRuedas = 2
 println(vehiculo.descripcion)
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 ---
 
@@ -1023,6 +1056,7 @@ class Bicicleta: Vehiculo {
 let bicicleta = Bicicleta()
 println(bicicleta.descripcion)
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1049,6 +1083,7 @@ println(coche.descripcion)
 coche.velocidad = 35.0 
 println(coche.descripcion)
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1077,6 +1112,8 @@ let cochePadres = CochePadres()
 cochePadres.velocidad = 100.0
 cochePadres.velocidad = 130.0
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -1101,6 +1138,8 @@ let c = Contador()
 c.incrementaEn(10)
 println("El valor del contador es \(c.contador)")
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 ---
 
 - Se usa `self.contador` para evitar la ambiguedad con el nombre del parámetro del método.
@@ -1125,13 +1164,15 @@ struct Rect {
 }
 ```
 
-- Creación de instancias de estructuras:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Creación de instancias de estructuras:
 
 ```swift
 var punto = Punto(x: 0.0, y: 0.0)
 var tamaño = Tamaño(ancho: 640.0, alto: 480.0)
 var rect = Rect(origen: punto, tamaño: tamaño)
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -1187,7 +1228,7 @@ let miPlaneta = Planeta.Tierra
 miPlaneta.rawVale ⇒ 3
 ```
 
-- Enumeración `Character`:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Enumeración `Character`:
 
 ```swift
 enum CaracterControl: Character { 
@@ -1198,6 +1239,7 @@ enum CaracterControl: Character {
 
 let c = CaracterControl.FinDeLinea
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1214,13 +1256,13 @@ var direccion = Direccion.Oeste
 direccion = .Este
 ```
 
-- Ejemplo con _Cocoa_:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Ejemplo con _Cocoa_:
 
 ```swift
 let label = UILabel()
 label.textAlignment = .Right
 ```
-
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1268,7 +1310,7 @@ extension Tamaño {
     } 
 } 
 ```
-- Es posible extender cualquier clase, incluyendo clases de _Cocoa_ y _CocoaTouch_
+- <!-- .element: class="fragment" data-fragment-index="1" --> Es posible extender cualquier clase, incluyendo clases de _Cocoa_ y _CocoaTouch_
 
 ```swift
 extension CGSize {
@@ -1278,7 +1320,7 @@ extension CGSize {
    }
 }
 ```
-
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1333,12 +1375,13 @@ println(stringStack.pop())
 
 
 ## Prácticas
-
+<!-- .slide: data-background="#cbe0fc"-->
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
 ### Trabajo con Git y Bitbucket
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Debes crear todos los proyectos en el repositorio `entregas-servicios-ios` en tu cuenta de _Bitbucket_. Crea ese repositorio y da permisos de lectura al usuario `entregas-mastermoviles`.
 - Ve haciendo pequeños _commits_ conforme vayas añadiendo funcionalidades a los proyectos. Los _commits_ no deben tener errores de compilación. Haz _push_ regularmente al repositorio _Bitbucket_.
@@ -1347,7 +1390,6 @@ println(stringStack.pop())
 ---
 
 #### Creación del repositorio en _Bitbucket_ y en local
-
 
 - Crea en tu cuenta de _Bitbucket_ un repositorio `entregas-servicios-ios`.
 - Crea en local un directorio con el mismo nombre.
@@ -1394,6 +1436,7 @@ git push -u origin master
 
 
 ### Ejercicio: Calculadora
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/calculadora.png" width="200px"/>
 
@@ -1405,6 +1448,7 @@ git push -u origin master
 
 
 ### Tareas a realizar
+<!-- .slide: data-background="#cbe0fc"-->
 
 - Copia el proyecto `Calculadora` del repositorio de plantillas en tu repositorio de entregas. Se trata de una aplicación que muestra un ejemplo sencillo de patrón MVC en Swift. 
 - Completa la aplicación, súbela a tu repositorio _Bitbucket_ y escribe en la entrega Moodle la entrega de Moodle la URL de tu repositorio y cualquier indicación que quieras comentar.
@@ -1423,7 +1467,7 @@ git push -u origin master
 
 
 ### `ViewController.swift (1)`
-
+<!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/calculadora-view-controller-1.png" width=600px/>
 
@@ -1433,7 +1477,7 @@ git push -u origin master
 
 
 ### `ViewController.swift` (2)
-
+<!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-view-controller-2.png" width=900px/>
 
 
@@ -1442,7 +1486,7 @@ git push -u origin master
 
 
 ### `CalculatorBrain.swift` (1)
-
+<!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-modelo-1.png" width=900px/>
 
 
@@ -1451,7 +1495,7 @@ git push -u origin master
 
 
 ### `CalculatorBrain.swift` (2)
-
+<!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-modelo-2.png" width=900px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -1459,7 +1503,7 @@ git push -u origin master
 
 
 ### `CalculatorBrain.swift` (3)
-
+<!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-modelo-3.png" width=900px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -1467,7 +1511,7 @@ git push -u origin master
 
 
 ### `CalculatorBrain.swift` (4)
-
+<!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-modelo-4.png" width=700px/>
 
 
@@ -1476,7 +1520,7 @@ git push -u origin master
 
 
 ### Algunas ideas sueltas de Xcode
-
+<!-- .slide: data-background="#cbe0fc"-->
 - El panel a la izquierda del _storyboard_ muestra el _outline_ con todos los elementos de la interfaz de usuario.
 - Cuando se hace un click del botón derecho sobre un elemento de la interfaz de usuario aparecen los eventos y las acciones a las que está conectado. Esto nos permite eliminar conexiones y volverlas a realizar. No es posible modificar conexiones, por lo que hay que tener cuidado con editar los elementos generados por el Ctrl+Drag cuando inicializamos una conexión.
 - CMD + "/" comenta el texto seleccionado.
