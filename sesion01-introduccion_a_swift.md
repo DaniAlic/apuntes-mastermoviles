@@ -190,34 +190,6 @@ if i {
 
 
 
-### Tuplas
-
-- Una tupla agrupa varios valores en un único valor compuesto
-- El tipo de la tupla es `(Int, String)`
-
-```swift
-let http404Error = (404, "Not Found")
-```
-
-- Para obtener los valores de la tupla podemos _descomponerla_. Si queremos ignorar una parte podemos utilizar un subrrayado (`_`).
-
-```swift
-let (statusCode, statusMensaje) = http404Error
-⇒ statusCode: Int = 404
-⇒ statusMensaje: String = "Not Found"
-let (soloStatusCode, _) = http404Error
-```
-- También podemos acceder por posición:
-
-```swift
-println("El código de estado es \(http404Error.0)")
-⇒ El código de estado es 404
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
 ### _Optionals_
 
 - Los _opcionales_ permiten expresar situaciones en las que un valor puede estar ausente.
@@ -571,6 +543,34 @@ for nombreAeropuerto in aeropuertos.values {
 ## Tuplas
 
 
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Definición y acceso a tuplas
+
+- Una tupla agrupa varios valores en un único valor compuesto
+- El tipo de la tupla es `(Int, String)`
+
+```swift
+let http404Error = (404, "Not Found")
+```
+
+- Para obtener los valores de la tupla podemos _descomponerla_. Si queremos ignorar una parte podemos utilizar un subrrayado (`_`).
+
+```swift
+let (statusCode, statusMensaje) = http404Error
+⇒ statusCode: Int = 404
+⇒ statusMensaje: String = "Not Found"
+let (soloStatusCode, _) = http404Error
+```
+- También podemos acceder por posición:
+
+```swift
+println("El código de estado es \(http404Error.0)")
+⇒ El código de estado es 404
+```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
