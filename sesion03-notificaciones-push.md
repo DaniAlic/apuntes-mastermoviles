@@ -649,7 +649,6 @@ func application(application: UIApplication,
 
 
 ### Nuevo App ID en el _member center_ (1)
-<!-- .slide: data-background="#cbe0fc"-->
 
 - Un administrador del equipo UA debe crear una App ID con el nombre explícito de la app que se va a poner en producción.
 
@@ -660,7 +659,6 @@ func application(application: UIApplication,
 
 
 ### Nuevo App ID en el _member center_ (2)
-<!-- .slide: data-background="#cbe0fc"-->
 
 - Se debe añadir en el App ID la autorización de notificaciones push.
 
@@ -671,7 +669,6 @@ func application(application: UIApplication,
 
 
 ### Creación del certificado SSL en el _member center_ (1)
-<!-- .slide: data-background="#cbe0fc"-->
 
 - Debemos obtener un certificado de una autoridad certificadora que después subiremos al _member center_.
 - Abrimos Acceso a Llaveros y seleccionamos _Asistente de Certificados > Solicitar un certificado de una autoridad certificadora_.
@@ -684,31 +681,48 @@ func application(application: UIApplication,
 
 
 ### Creación del certificado SSL en el _member center_ (2)
-<!-- .slide: data-background="#cbe0fc"-->
 
-<img src="images/app-id-notificaciones-servicios.png"/>
-<img src="images/crear-certificado-ssl.png"/>
-
-Subir fichero `CertificateSigningRequest.certSigningRequest` 
-
-<img src="images/generar-certificado-ssl.png"/>
-
-Descargar el certificado e instalarlo en Acceso a llaveros para generar un fichero `.p12` que enviaremos a Parse.
-
-- Creamos el perfil de aprovisionamiento `Master Moviles Notificaciones`
-
-- Creamos el certificado SSL para Parse
-
-<img src="images/exportar-fichero-p12.png"/>
-
-- Salvamos como `ParseDevelopmentPushCertificate.p12` sin crear una contraseña asociada al certificado
-
-- Se puede descargar desde [este enlace](https://www.dropbox.com/s/7lsgv194kkwz9cp/ParseDevelopmentPushCertificate.p12?dl=0)
+<img src="images/app-id-notificaciones-servicios.png" width=600px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
-### Con perfil de desarrollador
+
+### Creación del certificado SSL en el _member center_ (3)
+
+- Para crear el certificado es necesario subir el fichero generado previamente `CertificateSigningRequest.certSigningRequest` 
+
+<img src="images/crear-certificado-ssl.png" width=600px/> 
+
+<img src="images/generar-certificado-ssl.png" width=600px/>
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Generación del fichero `.p12` (1)
+
+<img src="images/exportar-fichero-p12.png" width=800px/>
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Generación del fichero `.p12` (2)
+
+- Una vez creado el certificado en el _Member Center_ lo descargamos y lo instalamos en Acceso a llaveros para generar un fichero `.p12` que enviaremos a Parse.
+
+- Lo salvamos como `ParseDevelopmentPushCertificate.p12` sin crear una contraseña asociada al certificado. Cuando estemos en clase lo podrás descargar [desde este enlace](http://domingogallardo.github.io/apuntes-mastermoviles/ParseDevelopmentPushCertificate.p12).
+
+- Después subiremos a Parse este certificado para que el servicio que crearemos allí pueda establecer una conexión SSL con el APNs. Todos podemos subir a Parse el mismo certificado para cada uno de los servicios que crearemos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Creación del servicio en Parse (1)
 
 <!-- .slide: data-background="#cbe0fc"-->
 
@@ -717,11 +731,26 @@ Descargar el certificado e instalarlo en Acceso a llaveros para generar un fiche
 
 <img src="images/parse-app-settings.png" />
 
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Creación del servicio en Parse (2)
+<!-- .slide: data-background="#cbe0fc"-->
+
 - En el menú de la izquierda selecciona Push y sube el certificado .p12
 
 <img src="images/parse-certificate.png" />
 
-- En Xcode debemos activar el perfil
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Actualizar la app Notificaciones
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- En Xcode debemos comprobar que se ha cargado el perfil de aprovisionamiento recién creado que nos permite desarrollar e instalar aplicaciones que usan notificaciones remotas.
 
 <img src="images/perfil-aprovisionamiento-notificaciones.png"/>
 
@@ -730,11 +759,15 @@ Descargar el certificado e instalarlo en Acceso a llaveros para generar un fiche
 
 
 
-### Parse
+### Añadir Frameworks a la app
 
-<!-- .slide: data-background="#cbe0fc"-->
+<!-- .slide: data-background="#cbe0fc" -->
+<!-- .slide: class="image-right"-->
 
-- [SDKs](https://www.parse.com/downloads/ios/parse-library/latest)
+<img style="margin-left:20px" src="images/estructura-proyecto.png"/>
+
+- Para poder trabajar con las notificaciones remotas usando Parse debemos incorporar en nuestro proyecto _frameworks_ de la biblioteca de Parse (descargarlo desde [este enlace](https://www.parse.com/downloads/ios/parse-library/latest)) y del sistema.
+
 - Añadir las siguientes clases del sistema:
     - MobileCoreServices.framework
     - SystemConfiguration.framework
@@ -742,27 +775,30 @@ Descargar el certificado e instalarlo en Acceso a llaveros para generar un fiche
     - libstdc++.6.dylib
     - libsqlite3.dylib
 
-<img src="images/estructura-proyecto.png"/>
 
-- [Documentación Push](https://www.parse.com/docs/push_guide#top/iOS)
+<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-- Crear una app nueva en Parse
-- Añadir el certificado SSL `.p12`
 
-- Al comienzo de la función `application:didFinishLaunchingWithOptions:` añadir las claves de la app de Parse:
+
+### Incluir el código para conectar con Parse y con APNs
+<!-- .slide: data-background="#cbe0fc" -->
+
+- [Documentación Push en Parse](https://www.parse.com/docs/push_guide#top/iOS)
+
+- Al comienzo de la función `application:didFinishLaunchingWithOptions:` añadir las claves de la app de Parse (las puedes encontrar en el apartado _Keys_ del menú de la izquierda ):
 
 ```swift
-Parse.setApplicationId("XbzOYWsLBD3hsc06nJLBv5UaHeyMMVsgnn3UfxOD",
-            clientKey: "exa2DqHhrc3swRA360x5NfV8kK2pojziDH5Og6GT")
+Parse.setApplicationId("parseAppID", clientKey: "clientKey")
 ```
 
-- Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
+- <!-- .element: class="fragment" data-fragment-index="1" --> Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
 
 ```swift
 application.registerForRemoteNotifications()
 ```
+<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- Añadir el manejador que obtiene el token de dispositivo y enviárselo a Parse
+- <!-- .element: class="fragment" data-fragment-index="2" --> Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse
 
 ```swift
 func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -771,12 +807,23 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
     installation.saveInBackground()
 }
 ```
-
+<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
-https://www.parse.com/apps/quickstart#parse_push/ios/swift/existing
+
+### Instalar la app en un dispositivo físico
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Las notificaciones remotas no funcionan en el simulador.
+- Hay que instalar la app en un dispositivo real, abrirla y enviar las notificaciones desde Parse
+
+
+<img src="images/send-push-parse.png"/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
 
 
 # Master Programación <br/> de Dispositivos Móviles
