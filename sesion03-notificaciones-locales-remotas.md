@@ -1,4 +1,4 @@
-# Sesión 3: <br/> Notificaciones <br/> push
+# Sesión 3: <br/> Notificaciones locales <br/> y remotas
 
 ### Servicios de las plataformas móviles - iOS
 
