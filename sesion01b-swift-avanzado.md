@@ -1,4 +1,4 @@
-# Sesión 4: <br/> Swift <br/> avanzado
+# Sesión 1b: <br/> Swift <br/> avanzado
 
 ### Servicios de las plataformas móviles - iOS
 
