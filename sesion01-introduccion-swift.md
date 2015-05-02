@@ -561,8 +561,6 @@ for nombreAeropuerto in aeropuertos.values {
 
 ## Tuplas
 
-
-
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -1519,13 +1517,16 @@ git push -u origin master
 
 
 
+<!-- 
+
 ### Algunas ideas sueltas de Xcode
-<!-- .slide: data-background="#cbe0fc"-->
+.slide: data-background="#cbe0fc"
 - El panel a la izquierda del _storyboard_ muestra el _outline_ con todos los elementos de la interfaz de usuario.
 - Cuando se hace un click del botón derecho sobre un elemento de la interfaz de usuario aparecen los eventos y las acciones a las que está conectado. Esto nos permite eliminar conexiones y volverlas a realizar. No es posible modificar conexiones, por lo que hay que tener cuidado con editar los elementos generados por el Ctrl+Drag cuando inicializamos una conexión.
 - CMD + "/" comenta el texto seleccionado.
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
+ Tres líneas en blanco para la siguiente transparencia
+-->
 
 
 
