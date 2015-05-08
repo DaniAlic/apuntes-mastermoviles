@@ -258,12 +258,19 @@ for _ in 1...5 { println("Random dice roll is \(d6.roll())") }
 ### El estado del juego: tablero y variables
 
 ```swift
-let finalSquare = 25
-var board = [Int](count: finalSquare + 1, repeatedValue: 0)
-board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
-board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
-var square = 0
-var diceRoll = 0
+class SnakesAndLadders {
+    let finalSquare = 25
+    let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
+    var square = 0
+    var board: [Int]
+    
+    init() {
+        board = [Int](count: finalSquare + 1, repeatedValue: 0)
+        board[03] = +08; board[06] = +11; board[09] = +09; board[10] = +02
+        board[14] = -10; board[19] = -11; board[22] = -02; board[24] = -08
+    }
+    ...
+}
 ```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -273,22 +280,21 @@ var diceRoll = 0
 ### El juego sin delegación
 
 ```swift
-gameLoop: while square != finalSquare {
-    let diceRoll = dice.roll()
-    switch square + diceRoll {
-    case finalSquare:
-        // diceRoll will move us to the final square, so the game is over
-        break gameLoop
-    case let newSquare where newSquare > finalSquare:
-        // diceRoll will move us beyond the final square, so roll again
-        continue gameLoop
-    default:
-        // this is a valid move, so find out its effect
-        square += diceRoll
-        square += board[square]
+    func play() {
+        square = 0
+        gameLoop: while square != finalSquare {
+            let diceRoll = dice.roll()
+            switch square + diceRoll {
+            case finalSquare:
+                break gameLoop
+            case let newSquare where newSquare > finalSquare:
+                continue gameLoop
+            default:
+                square += diceRoll
+                square += board[square]
+            }
+        }
     }
-}
-println("Game over!")
 ```
 
 ---
@@ -334,10 +340,11 @@ class SnakesAndLadders: DiceGame {
     let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
     var square = 0
     var board: [Int]
+    var delegate: DiceGameDelegate?
+
     init() {
         // Inicializamos el tablero, mismo código que antes
     }
-    var delegate: DiceGameDelegate?
     func play() {
         // bucle del juego completo
     }
@@ -385,16 +392,15 @@ class DiceGameTracker: DiceGameDelegate {
     func gameDidStart(game: DiceGame) {
         numberOfTurns = 0
         if game is SnakesAndLadders {
-            println("Started a new game of Snakes and Ladders")
+            println("Comienza un juego nuevo de Serpientes y Escaleras")
         }
-        println("The game is using a \(game.dice.sides)-sided dice")
+        println("El juego está usando un dado de \(game.dice.sides) caras")
     }
-    func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
-        ++numberOfTurns
-        println("Rolled a \(diceRoll)")
-    }
+    
+    // Falta código que tienes que completar
+
     func gameDidEnd(game: DiceGame) {
-        println("The game lasted for \(numberOfTurns) turns")
+        println("El juego ha durado \(numberOfTurns) movimientos")
     }
 }
 ```
@@ -409,16 +415,36 @@ class DiceGameTracker: DiceGameDelegate {
 let tracker = DiceGameTracker()
 let game = SnakesAndLadders()
 game.delegate = tracker
+println("Comienza el juego")
 game.play()
-// Started a new game of Snakes and Ladders
-// The game is using a 6-sided dice
-// Rolled a 3
-// Rolled a 5
-// Rolled a 4
-// Rolled a 5
-// The game lasted for 4 turns
+println("Final del juego")
+// Comienza el juego
+// Comienza un juego nuevo de Serpientes y Escaleras
+// El juego está usando un dado de 6 caras
+// El dado saca un 3
+// El dado saca un 5
+// El dado saca un 4
+// El dado saca un 5
+// El juego ha durado 4 movimientos
+// Final del juego
 ```
 
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Práctica
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Crea un _playground_ llamado _SerpientesEscaleras_
+- Copia el código y corrígelo para que funcione
+- _Assistant Editor > Show Assistant Editor_ para ver la salida
+- Para probar distintas ejecuciones del juego puedes cambiar el valor inicial de `lastRandom` = 40.0, 41.0, 42.0, ...
+- No olvides subirlo a tu cuenta de Bitbucket y confirmar la entrega en Moodle
+
+<img src="images/playground-snakes.png" width=400px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
