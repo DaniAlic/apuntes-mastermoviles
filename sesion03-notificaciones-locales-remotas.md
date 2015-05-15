@@ -10,6 +10,14 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
+### Referencias
+
+- [Local and Remote Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194)
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 ### Notificaciones
 
 <!-- .slide: class="image-right"-->
@@ -129,6 +137,46 @@ UIApplication.sharedApplication()
 
 
 
+## Notificaciones locales
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Qué contiene una notificación local
+
+- Para crear una notificación local hay que crear una instancia de [`UILocalNotification`](https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber). Se pueden definir, entre otros, los siguientes atributos:
+    - `fireDate: NSDate?` - fecha en la que se lanza la notifiación.
+    - `repeatInterval: NSCalendarUnit?` - intervalo de repetición.
+    - `alertBody: String?` - mensaje en la alerta.
+    - `applicationIconBadgetNumber: Int?` - número a incluir en el globo cuando llegue la notificación.
+    - `soundName: String?` - nombre del fichero del sonido a reproducir.
+    - `userInfo: [NSObject : AnyObject]?` - un diccionario para pasar información _custom_ a la app notificada. En Swift se declaran todos los `NSDictionary` como diccionarios del tipo `[NSObject: AnyObject]`. Podemos inicializarlo a cualquier tipo de diccionario y después hay que hacer un _downcasting_.
+    - `category: String?` - el nombre de un grupo de acciones a mostrar en la alerta.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Código para enviar una notificación local
+
+- Creamos una notificación local que aparece a los 10 segundos utilizando un objeto de la clase [`UILocalNotification`](https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/).
+- Codificación local que aparece a los 10 segundos.
+
+```swift
+let localNotification:UILocalNotification = UILocalNotification()
+localNotification.alertAction = "Volver a la app"
+localNotification.alertBody = "¡¡Funciona!!"
+localNotification.soundName = UILocalNotificationDefaultSoundName
+localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
+UIApplication.sharedApplication()
+   .scheduleLocalNotification(localNotification)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 ### Acciones en las notificaciones
 
 - En versiones anteriores a iOS 8, las notificaciones sólo podían tener una acción por defecto. 
@@ -160,11 +208,13 @@ UIApplication.sharedApplication()
 
 ### Definición de acciones de notificación
 
+- En la inicialización de las notificaciones definimos las posibles acciones:
+
 ```swift
 let acceptAction = UIMutableUserNotificationAction()
 acceptAction.identifier = "ACCEPT"
 acceptAction.title = "Accept"
-acceptAction.activationMode = UIUserNotificationActivationMode.Background
+acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
 acceptAction.destructive = false // acciones destructivas se muestran en rojo
 acceptAction.authenticationRequired = false // determina si el usuario necesita autenticarse
 
@@ -182,6 +232,8 @@ declineAction.authenticationRequired = false
 
 ### Agrupación de acciones en categorías
 
+- Las agrupamos en la categoría `INVITE`:
+
 ```swift
 let category = UIMutableUserNotificationCategory()
 category.identifier = "INVITE"
@@ -194,7 +246,9 @@ category.setActions([acceptAction, declineAction],
 
 
 
-### Registro de las categorías
+### Registro de las categorías y actualización en la notificación
+
+- Y registramos la categoría (puede haber más de una):
 
 ```swift
 let types: UIUserNotificationType = UIUserNotificationType.Badge |
@@ -205,44 +259,12 @@ let settings = UIUserNotificationSettings(forTypes: types,
 application.registerUserNotificationSettings(settings)
 ```
 
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Notificaciones locales
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Qué contiene una notificación local
-
-- Para crear una notificación local hay que crear una instancia de [`UILocalNotification`](https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/#//apple_ref/occ/instp/UILocalNotification/applicationIconBadgeNumber). Se pueden definir, entre otros, los siguientes atributos:
-    - `fireDate: NSDate?` - fecha en la que se lanza la notifiación.
-    - `repeatInterval: NSCalendarUnit?` - intervalo de repetición.
-    - `alertBody: String?` - mensaje en la alerta.
-    - `applicationIconBadgetNumber: Int?` - número a incluir en el globo cuando llegue la notificación.
-    - `soundName: String?` - nombre del fichero del sonido a reproducir.
-    - `userInfo: [NSObject : AnyObject]?` - un diccionario para pasar información _custom_ a la app notificada. En Swift se declaran todos los `NSDictionary` como diccionarios del tipo `[NSObject: AnyObject]`. Podemos inicializarlo a cualquier tipo de diccionario y después hay que hacer un _downcasting_.
-    - `category: String?` - el nombre de un grupo de acciones a mostrar en la alerta.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Código para enviar una notificación local
-
-- Creamos una notificación local que aparece a los 10 segundos utilizando un objeto de la clase [`UILocalNotification`](https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/).
-- Codificación local que aparece a los 10 segundos.
+- En la notificación ya podemos usar la categoría recién registrada:
 
 ```swift
-let localNotification:UILocalNotification = UILocalNotification()
-localNotification.alertAction = "Volver a lanzar notificación"
-localNotification.alertBody = "¡¡Funciona!!"
-localNotification.soundName = UILocalNotificationDefaultSoundName
-localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
-UIApplication.sharedApplication()
-   .scheduleLocalNotification(localNotification)
+...
+localNotification.category = "INVITE"
+...
 ```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -400,16 +422,12 @@ badgeNumber = 0
 
 
 
-### Código ejemplo para crear una notificación
+### Añadir datos en la notificación
 
 ```swift
-let localNotification:UILocalNotification = UILocalNotification()
-localNotification.alertAction = "Volver a lanzar notificación"
-localNotification.alertBody = "¡¡Funciona!!"
-localNotification.soundName = UILocalNotificationDefaultSoundName
-localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
-localNotification.category = "INVITE"
+...
 localNotification.userInfo = ["Mensaje":"Hola, mundo"]
+...
 ```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -421,7 +439,6 @@ localNotification.userInfo = ["Mensaje":"Hola, mundo"]
 ```swift
 func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
     println("Recibida notificación")
-    println(notification.alertAction!);
     let userInfo = notification.userInfo as! Dictionary<String,String>
     if let s = userInfo["Mensaje"] {
             println("Mensaje: \(s)")
@@ -444,6 +461,16 @@ func application(application: UIApplication,
 ```
 
 <!-- .element: class="fragment" data-fragment-index="2" -->
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Práctica: app `Notificaciones`
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Añade el código anterior para probar el paso de datos y el manejo de la notificación.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
