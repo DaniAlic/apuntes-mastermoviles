@@ -197,7 +197,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 </style>
 
 </head>
-<body class="normal">
+<body class="normal firstload">
   <div id="wrapper">
       <h1 id="sesión3:brnotificacioneslocalesbryremotas">Sesión 3: <br/> Notificaciones locales <br/> y remotas</h1>
 
@@ -206,6 +206,13 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 <p><small>Domingo Gallardo - domingo.gallardo@ua.es<br/>
 Departamento Ciencia de la Computación e Inteligencia Artificial<br/>
 Master Programación de Dispositivos Móviles</small></p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="referencias">Referencias</h3>
+
+<ul>
+<li><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194">Local and Remote Programming Guide</a></li>
+</ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h3 id="notificaciones">Notificaciones</h3>
@@ -316,60 +323,6 @@ UIApplication.sharedApplication()
 //</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
-
-<ul>
-<li>En versiones anteriores a iOS 8, las notificaciones sólo podían tener una acción por defecto.</li>
-<li>A partir de iOS 8, las notificaciones pueden tener acciones <em>custom</em> adicionales.</li>
-<li>En la pantalla de bloqueo, en las tiras y en el Centro de Notificaciones se pueden mostrar dos acciones.</li>
-<li>En las alertas modales, las notificaciones pueden mostrar hasta cuatro acciones cuando el usuario pulsa el botón <code>Opciones</code>.</li>
-<li>Para usar acciones de notificación en tu app, debes registrar las acciones, planificar una notificación local o hacer un <em>push</em> de una notificación remota y gestionar la acción escogida por el usuario.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
-
-<p><img src="images/notif-actions-lock-screen.png" width=800px/></p>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
-
-<p><img src="images/notif-actions-alert.png" width=800px/></p>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="definicióndeaccionesdenotificación">Definición de acciones de notificación</h3>
-<pre><code class="swift">let acceptAction = UIMutableUserNotificationAction()
-acceptAction.identifier = &quot;ACCEPT&quot;
-acceptAction.title = &quot;Accept&quot;
-acceptAction.activationMode = UIUserNotificationActivationMode.Background
-acceptAction.destructive = false // acciones destructivas se muestran en rojo
-acceptAction.authenticationRequired = false // determina si el usuario necesita autenticarse
-
-let declineAction = UIMutableUserNotificationAction()
-declineAction.identifier = &quot;DECLINE&quot;
-declineAction.title = &quot;Decline&quot;
-declineAction.activationMode = UIUserNotificationActivationMode.Background
-declineAction.destructive = false
-declineAction.authenticationRequired = false</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="agrupacióndeaccionesencategorías">Agrupación de acciones en categorías</h3>
-<pre><code class="swift">let category = UIMutableUserNotificationCategory()
-category.identifier = &quot;INVITE&quot;
-category.setActions([acceptAction, declineAction], 
-                    forContext: 
-                        UIUserNotificationActionContext.Default)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="registrodelascategorías">Registro de las categorías</h3>
-<pre><code class="swift">let types: UIUserNotificationType = UIUserNotificationType.Badge |
-     UIUserNotificationType.Alert | UIUserNotificationType.Sound
-let categories = NSSet(array: [category]) as Set&lt;NSObject&gt;
-let settings = UIUserNotificationSettings(forTypes: types, 
-                                          categories: categories)
-application.registerUserNotificationSettings(settings)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
 <h2 id="notificacioneslocales">Notificaciones locales</h2>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -397,12 +350,85 @@ application.registerUserNotificationSettings(settings)</code></pre>
 <li>Codificación local que aparece a los 10 segundos.</li>
 </ul>
 <pre><code class="swift">let localNotification:UILocalNotification = UILocalNotification()
-localNotification.alertAction = &quot;Volver a lanzar notificación&quot;
+localNotification.alertAction = &quot;Volver a la app&quot;
 localNotification.alertBody = &quot;¡¡Funciona!!&quot;
 localNotification.soundName = UILocalNotificationDefaultSoundName
 localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
 UIApplication.sharedApplication()
    .scheduleLocalNotification(localNotification)</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
+
+<ul>
+<li>En versiones anteriores a iOS 8, las notificaciones sólo podían tener una acción por defecto.</li>
+<li>A partir de iOS 8, las notificaciones pueden tener acciones <em>custom</em> adicionales.</li>
+<li>En la pantalla de bloqueo, en las tiras y en el Centro de Notificaciones se pueden mostrar dos acciones.</li>
+<li>En las alertas modales, las notificaciones pueden mostrar hasta cuatro acciones cuando el usuario pulsa el botón <code>Opciones</code>.</li>
+<li>Para usar acciones de notificación en tu app, debes registrar las acciones, planificar una notificación local o hacer un <em>push</em> de una notificación remota y gestionar la acción escogida por el usuario.</li>
+</ul>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
+
+<p><img src="images/notif-actions-lock-screen.png" width=800px/></p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="accionesenlasnotificaciones">Acciones en las notificaciones</h3>
+
+<p><img src="images/notif-actions-alert.png" width=800px/></p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="definicióndeaccionesdenotificación">Definición de acciones de notificación</h3>
+
+<ul>
+<li>En la inicialización de las notificaciones definimos las posibles acciones:</li>
+</ul>
+<pre><code class="swift">let acceptAction = UIMutableUserNotificationAction()
+acceptAction.identifier = &quot;ACCEPT&quot;
+acceptAction.title = &quot;Accept&quot;
+acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
+acceptAction.destructive = false // acciones destructivas se muestran en rojo
+acceptAction.authenticationRequired = false // determina si el usuario necesita autenticarse
+
+let declineAction = UIMutableUserNotificationAction()
+declineAction.identifier = &quot;DECLINE&quot;
+declineAction.title = &quot;Decline&quot;
+declineAction.activationMode = UIUserNotificationActivationMode.Background
+declineAction.destructive = false
+declineAction.authenticationRequired = false</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="agrupacióndeaccionesencategorías">Agrupación de acciones en categorías</h3>
+
+<ul>
+<li>Las agrupamos en la categoría <code>INVITE</code>:</li>
+</ul>
+<pre><code class="swift">let category = UIMutableUserNotificationCategory()
+category.identifier = &quot;INVITE&quot;
+category.setActions([acceptAction, declineAction], 
+                    forContext: 
+                        UIUserNotificationActionContext.Default)</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="registrodelascategoríasyactualizaciónenlanotificación">Registro de las categorías y actualización en la notificación</h3>
+
+<ul>
+<li>Y registramos la categoría (puede haber más de una):</li>
+</ul>
+<pre><code class="swift">let types: UIUserNotificationType = UIUserNotificationType.Badge |
+     UIUserNotificationType.Alert | UIUserNotificationType.Sound
+let categories = NSSet(array: [category]) as Set&lt;NSObject&gt;
+let settings = UIUserNotificationSettings(forTypes: types, 
+                                          categories: categories)
+application.registerUserNotificationSettings(settings)</code></pre>
+
+<ul>
+<li>En la notificación ya podemos usar la categoría recién registrada:</li>
+</ul>
+<pre><code class="swift">...
+localNotification.category = &quot;INVITE&quot;
+...</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h3 id="práctica:appnotificaciones">Práctica: app <code>Notificaciones</code></h3>
@@ -545,20 +571,15 @@ badgeNumber = 0</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="códigoejemploparacrearunanotificación">Código ejemplo para crear una notificación</h3>
-<pre><code class="swift">let localNotification:UILocalNotification = UILocalNotification()
-localNotification.alertAction = &quot;Volver a lanzar notificación&quot;
-localNotification.alertBody = &quot;¡¡Funciona!!&quot;
-localNotification.soundName = UILocalNotificationDefaultSoundName
-localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
-localNotification.category = &quot;INVITE&quot;
-localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]</code></pre>
+<h3 id="añadirdatosenlanotificación">Añadir datos en la notificación</h3>
+<pre><code class="swift">...
+localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]
+...</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h3 id="códigoejemploparamanejarunanotificación">Código ejemplo para manejar una notificación</h3>
 <pre><code class="swift">func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
     println(&quot;Recibida notificación&quot;)
-    println(notification.alertAction!);
     let userInfo = notification.userInfo as! Dictionary&lt;String,String&gt;
     if let s = userInfo[&quot;Mensaje&quot;] {
             println(&quot;Mensaje: \(s)&quot;)
@@ -576,6 +597,14 @@ localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]</code
         completionHandler()
     }</code></pre>
 <!-- .element: class="fragment" data-fragment-index="2" -->
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="práctica:appnotificaciones">Práctica: app <code>Notificaciones</code></h3>
+<!-- .slide: data-background="#cbe0fc"-->
+
+<ul>
+<li>Añade el código anterior para probar el paso de datos y el manejo de la notificación.</li>
+</ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h2 id="notificacionesremotaspush">Notificaciones remotas (<em>push</em>)</h2>
@@ -834,6 +863,7 @@ localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]</code
 
 <ul>
 <li><p>Para poder trabajar con las notificaciones remotas usando Parse debemos incorporar en nuestro proyecto <em>frameworks</em> de la biblioteca de Parse (descargarlo desde <a href="https://www.parse.com/downloads/ios/parse-library/latest">este enlace</a>) y del sistema.</p></li>
+<li><p>Añadir las dependencias con Targets &gt; Notificaciones &gt; Build Phases &gt; Link Binary With Libraries </p></li>
 <li>Añadir las siguientes clases del sistema:
 
 <ul>
@@ -846,30 +876,38 @@ localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]</code
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="incluirelcódigoparaconectarconparseyconapns">Incluir el código para conectar con Parse y con APNs</h3>
+<h3 id="incluirelcódigoparaconectarconparseyconapns1">Incluir el código para conectar con Parse y con APNs (1)</h3>
 <!-- .slide: data-background="#cbe0fc" -->
 
 <ul>
 <li><p><a href="https://www.parse.com/docs/push_guide#top/iOS">Documentación Push en Parse</a></p></li>
-<li><p>Al comienzo de la función <code>application:didFinishLaunchingWithOptions:</code> añadir las claves de la app de Parse (las puedes encontrar en el apartado <em>Keys</em> del menú de la izquierda ):</p></li>
+<li><p>En el fichero <code>AppDelegate.swift</code> añade los siguientes imports:</p></li>
+</ul>
+<pre><code class="swift">import Bolts
+import Parse</code></pre>
+
+<ul>
+<li>Al comienzo de la función <code>application:didFinishLaunchingWithOptions:</code> añadir las claves de la app de Parse (las puedes encontrar en el apartado <em>Keys</em> del menú de la izquierda ):</li>
 </ul>
 <pre><code class="swift">Parse.setApplicationId(&quot;parseAppID&quot;, clientKey: &quot;clientKey&quot;)</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="incluirelcódigoparaconectarconparseyconapns2">Incluir el código para conectar con Parse y con APNs (2)</h3>
+<!-- .slide: data-background="#cbe0fc" -->
 
 <ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Al final de la función <code>application:didFinishLaunchingWithOptions:</code> registrar la app para notificaciones remotas:</li>
+<li>Al final de la función <code>application:didFinishLaunchingWithOptions:</code> registrar la app para notificaciones remotas:</li>
 </ul>
 <pre><code class="swift">application.registerForRemoteNotifications()</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
 
 <ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse</li>
+<li>Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse</li>
 </ul>
 <pre><code class="swift">func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
     let installation = PFInstallation.currentInstallation()
     installation.setDeviceTokenFromData(deviceToken)
     installation.saveInBackground()
 }</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h3 id="instalarlaappenundispositivofísico">Instalar la app en un dispositivo físico</h3>
@@ -881,6 +919,14 @@ localNotification.userInfo = [&quot;Mensaje&quot;:&quot;Hola, mundo&quot;]</code
 </ul>
 
 <p><img src="images/send-push-parse.png"/></p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="prácticaopcional">Práctica opcional</h3>
+<!-- .slide: data-background="#cbe0fc" -->
+
+<ul>
+<li><strong>Avanzado</strong>: Añadir una etiqueta en la pantalla de la app, que muestre el texto de la notificación remota enviada.</li>
+</ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h1 id="masterprogramaciónbrdedispositivosmóviles">Master Programación <br/> de Dispositivos Móviles</h1>
