@@ -794,6 +794,7 @@ func application(application: UIApplication,
 <img style="margin-left:20px" src="images/estructura-proyecto.png"/>
 
 - Para poder trabajar con las notificaciones remotas usando Parse debemos incorporar en nuestro proyecto _frameworks_ de la biblioteca de Parse (descargarlo desde [este enlace](https://www.parse.com/downloads/ios/parse-library/latest)) y del sistema.
+- Añadir las dependencias con Targets > Notificaciones > Build Phases > Link Binary With Libraries 
 
 - Añadir las siguientes clases del sistema:
     - MobileCoreServices.framework
@@ -807,10 +808,17 @@ func application(application: UIApplication,
 
 
 
-### Incluir el código para conectar con Parse y con APNs
+### Incluir el código para conectar con Parse y con APNs (1)
 <!-- .slide: data-background="#cbe0fc" -->
 
 - [Documentación Push en Parse](https://www.parse.com/docs/push_guide#top/iOS)
+
+- En el fichero `AppDelegate.swift` añade los siguientes imports:
+
+```swift
+import Bolts
+import Parse
+```
 
 - Al comienzo de la función `application:didFinishLaunchingWithOptions:` añadir las claves de la app de Parse (las puedes encontrar en el apartado _Keys_ del menú de la izquierda ):
 
@@ -818,14 +826,20 @@ func application(application: UIApplication,
 Parse.setApplicationId("parseAppID", clientKey: "clientKey")
 ```
 
-- <!-- .element: class="fragment" data-fragment-index="1" --> Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Incluir el código para conectar con Parse y con APNs (2)
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
 
 ```swift
 application.registerForRemoteNotifications()
 ```
-<!-- .element: class="fragment" data-fragment-index="1" -->
 
-- <!-- .element: class="fragment" data-fragment-index="2" --> Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse
+- Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse
 
 ```swift
 func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -834,7 +848,6 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
     installation.saveInBackground()
 }
 ```
-<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -848,6 +861,16 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
 
 
 <img src="images/send-push-parse.png"/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Práctica opcional
+<!-- .slide: data-background="#cbe0fc" -->
+
+- **Avanzado**: Añadir una etiqueta en la pantalla de la app, que muestre el texto de la notificación remota enviada.
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
