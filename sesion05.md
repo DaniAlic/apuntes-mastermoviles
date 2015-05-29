@@ -626,7 +626,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 ```swift
 func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
    // Código para gestionar las localizaciones
-}```
+}
+```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 

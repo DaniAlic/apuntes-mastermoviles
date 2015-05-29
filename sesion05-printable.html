@@ -719,41 +719,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 </ul>
 <pre><code class="swift">func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
    // Código para gestionar las localizaciones
-}```
+}</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
 
-&lt;!-- Tres líneas en blanco para la siguiente transparencia --&gt;
+<h3 id="clasecllocation">Clase <code>CLLocation</code></h3>
 
+<ul>
+<li>La clase <code>CLLocation</code> permite representar una posición <em>outdoor</em> o <em>indoor</em> y el instante de tiempo asociado a ella.</li>
+<li>Atributos:</li>
+<li><code>coordinate</code></li>
+<li><code>altitude</code></li>
+<li><code>floor</code></li>
+<li><code>horizontalAccuracy</code></li>
+<li><code>verticalAccuracy</code></li>
+<li><code>timestamp</code></li>
+<li><code>description</code></li>
+</ul>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
 
+<h3 id="activacióndelalocalizaciónenelmapa">Activación de la localización en el mapa</h3>
 
-### Clase `CLLocation`
-
-- La clase `CLLocation` permite representar una posición _outdoor_ o _indoor_ y el instante de tiempo asociado a ella.
-- Atributos:
-  - `coordinate`
-  - `altitude`
-  - `floor`
-  - `horizontalAccuracy`
-  - `verticalAccuracy`
-  - `timestamp`
-  - `description`
-
-&lt;!-- Tres líneas en blanco para la siguiente transparencia --&gt;
-
-
-
-### Activación de la localización en el mapa
-
-- Una vez activado el servicio de localización se puede activar la localización en el mapa obteniendo el `MKUserTrackingBarButtonItem` y añadiéndolo a la barra de navegación.
-- No hace falta llamar a `startUpdatingLocation()`.
-- Se puede hacer en el `ViewController` que contiene el mapa:
-</code></pre>
-
-<p>override func viewDidLoad() {
- super.viewDidLoad()
- let userTrackingButton = MKUserTrackingBarButtonItem(mapView: mapView)
- self.navigationItem.leftBarButtonItem = userTrackingButton
-}
-```</p>
+<ul>
+<li>Una vez activado el servicio de localización se puede activar la localización en el mapa obteniendo el <code>MKUserTrackingBarButtonItem</code> y añadiéndolo a la barra de navegación.</li>
+<li>No hace falta llamar a <code>startUpdatingLocation()</code>.</li>
+<li>Se puede hacer en el <code>ViewController</code> que contiene el mapa:</li>
+</ul>
+<pre><code class="swift">override func viewDidLoad() {
+    super.viewDidLoad()
+    let userTrackingButton = MKUserTrackingBarButtonItem(mapView: mapView)
+    self.navigationItem.leftBarButtonItem = userTrackingButton
+}</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h3 id="pruebadelalocalizaciónenelsimulador">Prueba de la localización en el simulador</h3>
