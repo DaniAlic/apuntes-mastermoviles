@@ -197,7 +197,7 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 </style>
 
 </head>
-<body class="normal firstload">
+<body class="normal">
   <div id="wrapper">
       <h1 id="sesión5:brmapasybrlocalización">Sesión 5: <br/> Mapas y <br/>localización</h1>
 
@@ -773,7 +773,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 <p><img style="margin-left:50px" src="images/practica-5.png" width=300px/></p>
 
 <ul>
-<li>Añade la localización al mapa.</li>
+<li>Añade la localización al mapa, haciendo que aparezca en la parte izquierda de la barra de navegación el botón de navegación.</li>
+<li>Cuando pulses el botón de navegación se debe mostrar la posición actual del dispositivo.</li>
+<li>Deberás modificar la función que muestra la vista de una anotación (<a href="https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/#//apple_ref/occ/intfm/MKMapViewDelegate/mapView:viewForAnnotation:"><code>mapView:viewForAnnotation:</code></a>) porque se utiliza también para mostrar la vista de la posición actual del dispositivo (que también es una anotación).</li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 

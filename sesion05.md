@@ -690,7 +690,9 @@ override func viewDidLoad() {
 
 <img style="margin-left:50px" src="images/practica-5.png" width=300px/>
 
-- Añade la localización al mapa.
+- Añade la localización al mapa, haciendo que aparezca en la parte izquierda de la barra de navegación el botón de navegación.
+- Cuando pulses el botón de navegación se debe mostrar la posición actual del dispositivo.
+- Deberás modificar la función que muestra la vista de una anotación ([`mapView:viewForAnnotation:`](https://developer.apple.com/library/mac/documentation/MapKit/Reference/MKMapViewDelegate_Protocol/#//apple_ref/occ/intfm/MKMapViewDelegate/mapView:viewForAnnotation:)) porque se utiliza también para mostrar la vista de la posición actual del dispositivo (que también es una anotación).
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
