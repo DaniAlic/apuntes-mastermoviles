@@ -6,3 +6,4 @@
 - Sesión 3: [Notificaciones locales y remotas](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-notificaciones-locales-remotas.html)
 - Sesión 4: [iCloud](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04.html)
 - Sesión 5: [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion05.html)
+- Sesión 6: [iAd](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06.html)
