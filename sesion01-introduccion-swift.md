@@ -10,7 +10,7 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
-## Recursos
+### Recursos
 
 <img style="vertical-align: middle; margin-right: 150px;" src="images/Xcode.png" width="200px"/> <img style="vertical-align: middle; border: 1px solid; " src="images/swift-book-cover.png" width="250px">
 
@@ -19,6 +19,7 @@ Master Programación de Dispositivos Móviles</small>
 - Además del libro es recomendable consultar la página de Apple con los [recursos sobre Swift](https://developer.apple.com/swift/resources/).
 
 ---
+<!-- Los comentarios después de los tres guiones no salen en la diapositiva  -->
 
 Vamos a utilizar como guía el libro de Apple _The Swift Programming Language_ que puedes descargar de forma gratuita de [iBooks Store](https://itunes.apple.com/es/book/swift-programming-language/id881256329?mt=11) o consultar en el [portal de desarrolladores de Apple](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/).
 
@@ -32,7 +33,7 @@ Vamos a dedicar más de una sesión a repasar los aspectos más importantes de S
 
 
 
-## Características de Swift de esta sesión
+### Características de Swift de esta sesión
 
 - Aspectos básicos
 - Cadenas y caracteres
@@ -46,7 +47,7 @@ Vamos a dedicar más de una sesión a repasar los aspectos más importantes de S
 
 
 
-## Ejecución de los ejemplos
+### Ejecución de los ejemplos
 
 - Es posible ejecutar los ejemplos de Swift sin crear un proyecto de aplicación en Xcode:
     - En un **intérprete** en el terminal
@@ -111,8 +112,13 @@ Referencias:
 
 
 
-## Aspectos básicos
+### Aspectos básicos
 
+- Constantes y variables
+- Tipos e inferencia de tipos
+- Tipos numéricos
+- Conversión de tipos numéricos
+- _Booleans_
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -121,13 +127,13 @@ Referencias:
 ### Constantes y variables
 
 ```swift
-let maximoNumeroDeIntentosDeLogin = 10
-var intentosDeLoginActuales = 0
-var x = 0.0, y = 0.0, z = 0.0
+var miVariable = 42
+miVariable = 50
+let miConstante = 42
 ```
 
-- La palabra clave `let` sirve para definir constantes.
-- La palabra clave `var` se utiliza para definir variables. Podemos definir más de un identificador en cada línea, separándolas por comas.
+- La palabra clave `let` sirve para definir constantes. No es necesario que se conozca en tiempo de compilación el valor de una constante, pero debes asignarle un valor exactamente una vez.
+- La palabra clave `var` se utiliza para definir variables. 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -136,31 +142,1649 @@ var x = 0.0, y = 0.0, z = 0.0
 ### Tipos e inferencia de tipos
 
 ```swift
-var mensajeBienvenida: String = "Hola"
-var rojo, verde, azul: Double
+let implicitInteger = 70
+let implicitDouble = 70.0
+let explicitDouble: Double = 70
 ```
+- Los tipos de las variables se **infieren** a partir de los tipos devueltos por las expresiones de la derecha.
 
-- Los tipos de las variables se **infieren** a partir de los tipos devueltos por las expresiones de la derecha:
+> Crea una constante con el tipo explícito de Float y un valor de 4.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Conversión de tipos
+
+- Los valores nunca se convierten implícitamente a otro tipo. Si necesitas convertir un valor a un tipo diferente, construye explícitamente una instancia del tipo deseado.
 
 ```swift
-var mensajeBienvenida = "Hola"
-⇒ mensajeBienvenida: String = "Hola"
-var cantidad = 1 / 0.3
-⇒ cantidad: Double = 3.3333333333333335
+let etiqueta = "El ancho es "
+let ancho = 94
+let anchoEtiqueta = etiqueta + String(ancho)
+```
+
+> Intenta eliminar la conversión a `String` en la última línea. ¿Qué error obtienes?
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores en cadenas
+
+- Podemos incluir un valor en una cadena escribiendo el valor entre paréntesis y una barra invertida  (`\`) antes de los paréntesis. Por ejemplo:
+
+```swift
+let manzanas = 3
+let naranjas = 5
+let resumenManzanas = "Tengo \(manzanas) manzanas."
+let resumenFrutas = "Tengo \(manzanas + naranjas) frutas."
+```
+
+> Usa `\()` para incluir un cálculo en punto flotante en una cadena y para incluir el nombre de alguien en un saludo.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Arrays y diccionarios
+
+```swift
+var listaCompra = ["huevos", "agua", "tomates", "pant"]
+listaCompra[1] = "botella de agua"
+
+var trabajos = [
+    "Malcolm": "Capitán",
+    "Kaylee": "Mecánico",
+]
+trabajos["Jayne"] = "Relaciones públicas"
 ```
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Tipos numéricos
+### Inicialización arrays y diccionarios vacíos
 
 ```swift
-var numInt: Int = 10
-var numDouble: Double = 10.0 // punto flotante de 64 bits
-var numFloat: Float = 10.0 // punto flotante de 32 bits
+let arrayVacio = [String]()
+let diccionarioVacio = [String: Float]()
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Arrays y diccionarios vacíos con tipos inferidos
+
+```swift
+listaCompra = []
+trabajos = [:]
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Control de flujo
+
+- Se usa `if` y `switch` para hacer condicionales y `for-in`, `for`, `while` y `repeat-while` para hacer bucles. 
+- Los paréntesis alrededor de las condiciones o de la variable del bucle son opcionales. 
+- Se requieren llaves alrededor del cuerpo.
+
+```swift
+let puntuacionesIndividuales = [75, 43, 103, 87, 12]
+var punutacionEquipo = 0
+for puntuacion in puntuacionesIndividuales {
+    if puntacion > 50 {
+        puntuacionEquipo += 3
+    } else {
+        puntuacionEquipo += 1
+    }
+}
+print(puntuacionEquipo)
+```
+
+- En una sentencia `if`, el condicional debe ser una expresión booleana; esto significa que código como `if score { ... }` es un error, no una comparación implícita con cero.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores opcionales
+
+- Puedes usar `if` y `let` juntos para trabajar con valores que pueden faltar, valores se representan como opcionales. 
+- Un valor opcional o bien contiene un valor o contiene `nil` para indicar que el valor falta.
+- Escribimos una interrogación (`?`) después del tipo de un valor para marcar el valor como opcional.
+
+```swift
+var cadenaOpcional: String? = "Hola"
+print(cadenaOpcional == nil)
+
+var nombreOpcional: String? = "John Appleseed"
+var saludo = "Hello!"
+if let nombre = nombreOpcional {
+    saludo = "Hola, \(nombre)"
+}
+```
+
+> Cambia `nombreOpcional` a `nil`. ¿Qué saludo obtienes? Añade una cláusula `else` que establezca un saludo diferente si `nombreOpcional` es `nil`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Opcionales sin valor
+
+- Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador `??`. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.
+
+```swift
+let nombrePila: String? = nil
+let nombreCompleto: String = "John Appleseed"
+let saludoInformal = "¿Qué tal, \(nombrePila ?? nombreCompleto)?"
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Sentencia `switch` 
+
+- Las sentencias `switch` permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.
+
+```swift
+let verdura = "pimiento rojo"
+switch verdura {
+    case "zanahoria":
+        print("Buena para la vista.")
+    case "lechuga", "tomates":
+        print("Podrías hacer una buena ensalada.")
+    case let x where x.hasPrefix("pimiento"):
+        print("¿Es un \(x) picante?")
+    default:
+        print("Siempre puedes hacer una buena sopa.")
+}
 ```
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
+
+
+### Bucle `for-in` sobre diccionarios
+
+```swift
+let numerosInteresantes = [
+    "Primos": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Cuadrados": [1, 4, 9, 16, 25],
+]
+var mayor = 0
+for (clase, numeros) in numerosInteresantes {
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+    }
+}
+print(mayor)
+```
+
+> Añade otra variable para seguir qué clase de número es el mayor.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Bucle `while`
+
+- Usamos `while` para repetir un bloque de código hasta que una condición cambie. 
+
+```swift
+var n = 2
+while n < 100 {
+    n = n * 2
+}
+print(n)
+```
+- La condición de un bucle puede estar también al final, asegurando que el bucle se ejecuta al menos una vez.
+ 
+```swift
+var m = 2
+repeat {
+    m = m * 2
+} while m < 100
+print(m)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Rangos
+
+```swift
+var primerBucleFor = 0
+for i in 0..<4 {
+    primerBucleFor += i
+}
+print(primerBucleFor)
+
+var segundoBucleFor = 0
+for i in 0...4 {
+    segundoBucleFor += i
+}
+print(segundoBucleFor)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Función
+
+- Usamos `func` para declarar una función. Usamos `->` para separar los nombres de los parámetros y sus tipos del tipo devuelto de la función.
+- Para llamar a una función hay que escribir el nombre externo de los parámetros 2 .. n. El primer parámetro se pasa sin escribir su nombre.
+
+```swift
+func saluda(nombre: String, dia: String) -> String {
+    return "Hola \(nombre), hoy es \(dia)."
+}
+saluda("Bob", dia: "martes")
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Tuplas
+
+```swift
+func calculaEstadisticas(puntuaciones: [Int]) -> 
+                        (min: Int, max: Int, sum: Int) {
+    var min = puntuaciones[0]
+    var max = puntuaciones[0]
+    var sum = 0
+
+    for puntuacion in puntuaciones {
+        if puntuacion > max {
+            max = puntuacion
+        } else if puntuacion < min {
+            min = puntuacion
+        }
+        sum += puntuacion
+    }
+
+    return (min, max, sum)
+}
+let estadisticas = calculaEstadisticas([5, 3, 100, 3, 9])
+print(estadisticas.sum)
+print(estadisticas.2)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Número variable de argumentos
+
+- Las funciones también pueden tener un número variable de argumentos, agrupándose todos ellos en un array.
+
+```swift
+func sumaDe(numeros: Int...) -> Int {
+    var suma = 0
+    for numeros in numeros {
+        suma += numeros
+    }
+    return suma
+}
+sumaDe()
+sumaDe(42, 597, 12)
+```
+
+> Escribe una función que calcule la media de sus argumentos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Funciones anidadas
+
+- Las funciones pueden anidarse. Las funciones pueden acceder variables declaradas en la función exterior. Puedes usar funciones anidadas para organizar el código en una función que es larga o complicada.
+
+```swift
+func devuelveQuince() -> Int {
+    var y = 10
+    func suma() {
+        y += 5
+    }
+    suma()
+    return y
+}
+devuelveQuince()
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Las funciones son un tipo de primera clase
+
+- Las funciones son un tipo de primera clase. Una función puede devolver otra función como resultado.
+
+```swift
+func construyeIncrementador() -> ((Int) -> Int) {
+    func sumaUno(numero: Int) -> Int {
+        return 1 + numero
+    }
+    return sumaUno
+}
+var incrementa = construyeIncrementador()
+incrementa(7)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Función argumento de otra función
+
+- Una función puede tomar otra función como uno de sus argumentos.
+
+```swift
+func cumpleCondicion(lista: [Int], condicion: (Int) -> Bool) -> Bool {
+    for item in lista {
+        if condicion(item) {
+            return true
+        }
+    }
+    return false
+}
+func menorQueDiez(numero: Int) -> Bool {
+    return numero < 10
+}
+var numeros = [20, 19, 7, 12]
+cumpleCondicion(numeros, condicion: menorQueDiez)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clausuras
+
+- Clausura: bloque de código que puede ser llamado después.
+- El código en la clausura tiene acceso a cosas como variables y funciones que estaban disponibles en el ámbito (*scope*) en el que se creó la clausura, incluso si la clausura se está en un ámbito distinto cuando se ejecuta; ya viste un ejemplo de esto con las funciones anidadas.
+
+```swift
+numeros.map({
+    (numero: Int) -> Int in
+    let resultado = 3 * numero
+    return resultado
+})
+```
+
+> Reescribe la clausura para que devuelva cero para todos los números impares.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Formas abreviadas de clausuras
+
+- Cuando ya se conoce el tipo de una clausura se puede  omitir el tipo de sus parámetros, el tipo devuelto o ambos. 
+- Las clausuras escritas en una línea devuelven implícitamente el valor de su única sentencia.
+
+```swift
+let numerosMapeados = numeros.map({ numero in 3 * numero })
+print(numerosMapeados)
+```
+
+- Podemos referirnos a los parámetros por número en lugar de por nombre.
+- Una clausura pasada como último argumento puede aparecer inmediatamente después de los paréntesis.
+- Cuando una clausura es el único argumento de una función, puedes omitir los paréntesis por completo.
+
+```swift
+let numerosOrdenados = numeros.sort { $0 > $1 }
+print(numerosOrdenados)
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clases
+
+- Usamos `class` seguido por el nombre de la clase para crear una clase. 
+- Una declaración de una propiedad en una clase se escribe de la misma forma que la declaración de una constante o una variable, excepto que está en el contexto de una clase. 
+- De la misma forma, las declaraciones de los métodos se escriben de la misma forma que las funciones.
+
+```swift
+class Figura {
+    var numeroDeLados = 0
+    func descripcionSencilla() -> String {
+        return "Una figura con \(numeroDeLados) lados."
+    }
+}
+```
+
+> Añade una propiedad constante con `let`, y añade otro método que tome un argumento.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Instancias de clases
+
+- Creamos una instancia de una clase poniendo paréntesis después del nombre de la clase. 
+- Usamos la sintaxis de punto para acceder a las propiedades y los métodos de la instancia.
+
+```swift
+var figura = Figura()
+figura.numeroDeLados = 7
+var descripcionFigura = figura.descripcionSencilla()
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Inicializadores
+
+- Se definen los inicializadores con `init`
+
+```swift
+class FiguraConNombre {
+    var numeroDeLados: Int = 0
+    var nombre: String
+    
+    init(nombre: String) {
+        self.nombre = nombre
+    }
+    
+    func descripcionSencilla() -> String {
+        return "Una figura con \(numeroDeLados) lados."
+    }
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Subclases
+
+- Las subclases incluyen el nombre de su subclase después del nombre de la clase, separado por una coma. 
+- No hay ningún requisito de que las clases deban ser subclases de alguna clase raíz, por lo que puedes omitir una superclase si así lo necesitas.
+- Los métodos en una subclase que sobreescriben la implementación de la superclase se marcan con `override`; la sobreescritura de un método por accidente, sin `override`, se detecta por el compilador como un error. El compilador también detecta métodos con `override` que realmente no sobreescriben ningún método de la superclase.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Ejemplo
+
+```swift
+class Cuadrado: FiguraConNombre {
+    var longitudLado: Double
+    
+    init(longitudLado: Double, nombre: String) {
+        self.longitudLado = longitudLado
+        super.init(nombre: nombre)
+        numeroDeLados = 4
+    }
+    
+    func area() ->  Double {
+        return longitudLado * longitudLado
+    }
+    
+    override func descripcionSencilla() -> String {
+        return "Un cuadrado con lados de longitud \(longitudLado)."
+    }
+}
+let test = Cuadrado(longitudLado: 5.2, nombre: "Mi cuadrado de prueba")
+test.area()
+test.descripcionSencilla()
+```
+
+> Construye otra subclase de `FiguraConNombre` llamada `Circulo` que tome un radio y un nombre como argumentos de su inicializador. Implementa un método `area()` y `descripcionSencilla()` en la clase `Circulo`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Getters y setters en propiedades
+
+- Además de propiedades simples que se almacenan, las propiedades pueden tener un *getter* y un *setter*.
+
+```swift
+class TrianguloEquilatero: FiguraConNombre {
+    var longitudLado: Double = 0.0
+    
+    init(longitudLado: Double, nombre: String) {
+        self.longitudLado = longitudLado
+        super.init(nombre: nombre)
+        numeroDeLados = 3
+    }
+    
+    var perimetro: Double {
+        get {
+            return 3.0 * longitudLado
+        }
+        set {
+            longitudLado = newValue / 3.0
+        }
+    }
+    
+    override func descripcionSencilla() -> String {
+        return "Un triangulo equilátero con lados de longitud \(longitudLado)."
+    }
+}
+var triangulo = TrianguloEquilatero(longitudLado: 3.1, nombre: "un triángulo")
+print(triangulo.perimetro)
+triangulo.perimetro = 9.9
+print(triangulo.longitudLado)
+```
+
+---
+
+Date cuenta de que el inicializador de la clase `TrianguloEquilatero` tiene tres pasos diferentes:
+
+1. Establecer el valor de las propiedades que declara la subclase.
+2. Llamar al inicializador de la superclase.
+3. Cambiar el valor de las propiedades definidas por la superclase. Cualquier trabajo adicional que use métodos, *getters* o *setters* puede hacerse también en este punto.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### `willSet` y `didSet`
+
+- Si necesitamos proporcionar código que se ejecuta antes y después de establecer un nuevo valor, usaremos `willSet` y `didSet`. El código proporcionado se ejecuta cada vez que el valor cambia fuera de un inicializador. 
+- Por ejemplo, la siguiente clase se asegura de que la longitud del lado de su triángulo siempre es la misma que la longitud del lado de su cuadrado.
+
+```swift
+class TrianguloYCuadrado {
+    var triangulo: TrianguloEquilatero {
+        willSet {
+            cuadrado.longitudLado = newValue.longitudLado
+        }
+    }
+    var cuadrado: Cuadrado {
+        willSet {
+            triangulo.longitudLado = newValue.longitudLado
+        }
+    }
+    init(tamaño: Double, nombre: String) {
+        cuadrado = Cuadrado(longitudLado: tamaño, nombre: nombre)
+        triangulo = TrianguloEquilatero(longitudLado: tamaño, nombre: nombre)
+    }
+}
+var trianguloYCuadrado = TrianguloYCuadrado(tamaño: 10, nombre: "Otra figura de prueba")
+print(trianguloYCuadrado.cuadrado.longitudLado)
+print(trianguloYCuadrado.triangulo.longitudLado)
+trianguloYCuadrado.cuadrado = Cuadrado(longitudLado: 50, nombre: "Cuadrado mayor")
+print(trianguloYCuadrado.triangulo.longitudLado)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores opcionales en métodos
+
+- Cuando trabajamos con valores opcionales, podemos escribir `?` antes de operaciones como métodos, propiedades y subíndices. 
+- Si el valor antes del `?` es `nil`, todo lo que hay después se ignora y el valor de la expresión completa es `nil`. En otro caso, el valor opcional se desenvuelve, y todo lo que hay después del `?` se realiza sobre el valor desenvuelto. 
+- En ambos casos, el valor de la expresión completa es un valor opcional.
+
+```swift
+let cuadradoOpcional: Cuadrado? = 
+          Cuadrado(longitudLado: 2.5, nombre: "Cuadrado opcional")
+let longitudLado = cuadradoOpcional?.longitudLado
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Enumeraciones
+
+- Como las clases y otros tipos con nombre, las enumeraciones pueden tener métodos asociados.
+
+```swift
+enum Valor: Int {
+    case As = 1
+    case Dos, Tres, Cuatro, Cinco, Seis, Siete, Ocho, Nueve, Diez
+    case Sota, Caballo, Rey
+    func descripcionSencilla() -> String {
+        switch self {
+        case .As:
+            return "as"
+        case .Sota:
+            return "sota"
+        case .Caballo:
+            return "caballo"
+        case .Rey:
+            return "rey"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let carta = Valor.As
+let valorBrutoCarta = carta.rawValue
+```
+
+> Escribe una función que compare dos valores `Valor` usando sus valores brutos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Inicialización enum
+
+- Por defecto, Swift asigna los valores brutos comenzando en cero e incrementándolos por uno cada vez. 
+- Se puede cambiar esta conducta especificando explícitamente los valores. 
+- Se puede también usar cadenas o números en punto flotante como valores brutos de una enumeración. 
+- Se utiliza la propiedad `rawValue` para acceder al valor bruto de una enumeración.
+- Se usa el inicializador `init?(rawValue:)` para construir una instancia de una enumeración a través de un valor bruto.
+
+```swift
+if let valorConvertido = Valor(rawValue: 3) {
+    let descripcionTres = valorConvertido.descripcionSencilla()
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores `case` del `enum`
+
+- Los valores *case* de una enumeración son valores reales, no una forma nueva de escribir sus valores brutos. 
+
+```
+enum Palo {
+    case Oros, Bastos, Copas, Espadas
+    func descripcionSencilla() -> String {
+        switch self {
+        case .Oros:
+            return "oros"
+        case .Bastos:
+            return "bastos"
+        case .Copas:
+            return "copas"
+        case .Espadas:
+            return "espadas"
+        }
+    }
+}
+let copas = Palo.Copas
+let descripcionCopas = copas.descripcionSencilla()
+```
+
+> Añade un método `color()` a `Palo` que devuelva "agresivo" para *bastos* y *espadas* y devuelva "reflexivo" para *oros* y *copas*.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores asociados a instancias de enums
+
+- Una instancia de un caso de enumeración puede tener valores asociados con la instancia. Instancias del mismo caso de enumeración pueden tener asociados valores diferentes. 
+- Proporcionamos los valores asociados cuando creamos la instancia. 
+
+```swift
+enum RespuestaServidor {
+    case Resultado(String, String)
+    case Error(String)
+}
+ 
+let exito = RespuestaServidor.Resultado("6:00 am", "8:09 pm")
+let fallo = RespuestaServidor.Error("Sin queso.")
+ 
+switch exito {
+    case let .Resultado(salidaSol, puestaSol):
+        print("La salida del sol es a las \(salidaSol) y la puesta es a \(puestaSol).")
+    case let .Error(error):
+        print("Fallo...  \(error)")
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Structs
+
+- Usamos `struct` para crear una estructura. 
+- Las estructuras comparten muchas características de las clases, incluyendo métodos e inicializadores. 
+- Una de las diferencias más importantes entre estructuras y clases es que las estructuras siempre se copian cuando las pasas en tu código, mientras que las clases se pasan por referencia.
+
+```swift
+struct Carta {
+    var valor: Valor
+    var palo: Palo
+    func descripcionSencilla() -> String {
+        return "El \(valor.descripcionSencilla()) de \(palo.descripcionSencilla())"
+    }
+}
+let tresDeEspadas = Carta(valor: .Tres, palo: .Espadas)
+let descripcionTresDeEspadas = tresDeEspadas.descripcionSencilla()
+```
+
+> Añade un método a `Carta` que cree un mazo completo de cartas, con una carta de cada combinación de valor y palo.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Protocolos
+
+- Usamos `protocol` para declarar un protocolo.
+
+```swift
+protocol ExampleProtocol {
+    var simpleDescription: String { get }
+    mutating func adjust()
+}
+```
+
+- Clases, enumeraciones y estructuras pueden todas adoptar protocolos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clases que adopta un protocolo
+
+```swift
+class ClaseSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una clase muy simple."
+    var otraPropiedad: Int = 69105
+    func ajustar() {
+        descripcionSencilla += "  Ahora 100% ajustada."
+    }
+}
+var a = ClaseSencilla()
+a.ajustar()
+let descripcionA = a.descripcionSencilla
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Estructura que adopta un protocolo
+
+```swift
+struct EstructuraSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una estructura sencilla"
+    mutating func ajustar() {
+        descripcionSencilla += " (ajustada)"
+    }
+}
+var b = EstructuraSencilla()
+b.ajustar()
+let descripcionB = b.descripcionSencilla
+```
+
+> Escribe una enumeración que cumpla el protocolo.
+
+- Hacer notar el uso de la palabra clave `mutating` en la declaración de `SimpleStructure` para marcar el método que modifica la estructura. 
+- La declaración de `ClaseSencilla` no necesita que se marquen como mutadores ninguno de sus métodos porque los métodos en una clase siempre pueden modificar la clase.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Extensiones
+
+- Una `extension` sirve para añadir funcionalidad a un tipo existente, como métodos nuevos y propiedades calculadas. 
+- Se puede utilizar una extensión para añadir un cumplimiento de un protocolo a un tipo que se declara en otro lugar, o incluso a un tipo que hayas importado de una biblioteca o un *framework*. 
+
+```swift
+extension Int: ProtocoloEjemplo {
+    var descripcionSencilla: String {
+        return "El número \(self)"
+    }
+    mutating func ajustar() {
+        self += 42
+    }
+}
+print(7.descripcionSencilla)
+```
+
+> Escribe una extensión para el tipo `Double` que añada una propiedad `absoluteValue`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Tipos protocolo
+
+- Se puede usar un nombre de un protocolo de la misma forma que cualquier otro tipo con nombre; por ejemplo, para crear una colección de objetos que tienen tipos diferentes pero que cumplen un único protocolo. 
+- Cuando se trabaja con valores cuyo tipo es un tipo de protocolo, no están disponibles los métodos fuera del protocolo.
+
+```swift
+let valorProtocolo: ProtocoloEjemplo = a
+print(valorProtocolo.descripcionSencilla)
+// print(valorProtocolo.otraPropiedad)  // Descomentar para comprobar el error
+```
+
+- Incluso aunque la variable `valorProtocolo` tenga un tipo en tiempo de ejecución de `ClaseSencilla`, el compilador lo trata como uno del tipo `ProtocoloEjemplo`. De esta forma no es posible acceder accidentalmente a métodos o propiedades que implemente la clase de forma adicional al cumplimiento del protocolo.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Manejo de errores
+
+- Se representa un error  usando cualquier tipo que adopte el protocolo `ErrorType`.
+
+```swift
+enum ErrorImpresora: ErrorType {
+    case SinPapel
+    case SinToner
+    case Ardiendo
+}
+```
+
+- Usamos `throw` para arrojar un error y `throws` para marcar una función que puede arrojar un error. 
+- Si arrojamos un error en una función, la función termina inmediatamente y el código que llamó a la función maneja el error:
+
+```swift
+func enviaAImpresora(nombreImpresora: String) throws -> String {
+    if nombreImpresora == "Nunca Tiene Toner" {
+        throw ErrorImpresora.SinToner
+    }
+    return "Trabajo enviado"
+}
+```
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Manejo de errores
+
+- Hay varias formas de manejar errores. 
+- Una forma es usar `do-catch`. Dentro del bloque `do`, marcamos el código que pueda lanzar un error escribiendo `try` frente a él. Dentro del bloque `catch` se le da al error el nombre `error` a menos que le demos un nombre diferente.
+
+```swift
+do {
+    let respuestaImpresora = try enviaAImpresora("Bi Sheng")
+    print(respuestaImpresora)
+} catch {
+    print(error)
+}
+```
+
+> Cambia el nombre de la impresora a `"Nunca Tiene Toner", de forma que la función `enviaAImpresora(_:)` lance un error.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Múltiples bloques `catch`
+
+- Podemos proporcionar múltiples bloques `catch` que manejen errores específicos. 
+- Se debe escribir un patrón después de `catch` de la misma forma que haces después de un `case` en un switch.
+
+```swift
+do {
+    let respuestaImpresora = try enviaAImpresora("Gutenberg")
+    print(respuestaImpresora)
+} catch ErrorImpresora.Ardiendo {
+    print("Pondré esto aquí, junto con el resto del fuego.")
+} catch let errorImpresora as ErrorImpresora {
+    print("Error impresora: \(errorImpresora).")
+} catch {
+    print(error)
+}
+```
+
+> Añade código para lanzar un error dentro del bloque `do`. ¿Qué tipo de error debes lanzar para que el error se gestione en el primer bloque `catch`? ¿Y en el segundo y tercer bloque?
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `try?`
+
+- Otra forma de manejar errores es usar `try?` para convertir el resultado en un opcional. 
+- Si la función lanza un error, el error específico se descarta y el resultado es `nil`. En otro caso, el resultado es un opcional que contiene el valor que la función ha devuelto.
+
+```swift
+let exitoImpresora = try? enviaAImpresora("Mergenthaler")
+let falloImpresora = try? enviaAImpresora("Nunca Tiene Toner")
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `defer`
+
+- Usamos `defer` para escribir un bloque código que siempre se ejecute antes de que la función termine, independientemente de si se lanza un error. 
+- Podemos usar `defer` incluso cuando no existe manejo de errores, para simplificar funciones que terminan en muchos sitios distintos.
+
+```swift
+var calentadorDeTe = false
+func rutinaMatutina() throws {
+    calentadorDeTe = true
+    defer {
+        calentadorDeTe = false
+    }
+    
+    let diario = try enviaAImpresora("Lanston")
+    print(diario)
+    // Bebe el te y lee el diario
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Genéricos
+
+- Escribimos un nombre dentro de paréntesis angulares para construir una función o un tipo genérico. 
+
+```swift
+func itemRepetido<Item>(item: Item, numeroDeVeces: Int) -> [Item] {
+    var resultado = [Item]()
+    for _ in 0..<numeroDeVeces {
+        resultado.append(item)
+    }
+    return resultado
+}
+itemRepetido("knock", numeroDeVeces:4)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Cualquier cosa puede ser genérica
+
+- Podemos hacer formas genéricas de funciones y métodos, así como de clases, enumeraciones y estructuras.
+
+```swift
+// Reimplementamos el tipo Optional de la biblioteca estándar de Swift
+enum ValorOpcional<Envuelto> {
+    case Ninguno
+    case Alguno(Envuelto)
+}
+var posibleInteger: ValorOpcional<Int> = .Ninguno
+posibleInteger = .Alguno(100)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `where`
+
+- Usamos `where` después del nombre para especificar una lista de requisitos; por ejemplo, para requerir que el tipo implemente un protocolo, para requerir que dos tipos sean el mismo, o para requerir que una clase sea de una superclase particular.
+
+```swift
+func tienenElementosComunes <T: SequenceType, U: SequenceType where 
+      T.Generator.Element: Equatable, 
+      T.Generator.Element == U.Generator.Element> 
+      (lhs: T, _ rhs: U) -> Bool {
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+tienenElementosComunes([1, 2, 3], [3])
+```
+
+- Escribir `<T: Equatable>` es lo mismo que escribir `<T where T: Equatable>`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+
+### Tipos e inferencia de tipos
+
+```swift
+let implicitInteger = 70
+let implicitDouble = 70.0
+let explicitDouble: Double = 70
+```
+- Los tipos de las variables se **infieren** a partir de los tipos devueltos por las expresiones de la derecha.
+
+> Crea una constante con el tipo explícito de Float y un valor de 4.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Conversión de tipos
+
+- Los valores nunca se convierten implícitamente a otro tipo. Si necesitas convertir un valor a un tipo diferente, construye explícitamente una instancia del tipo deseado.
+
+```swift
+let etiqueta = "El ancho es "
+let ancho = 94
+let anchoEtiqueta = etiqueta + String(ancho)
+```
+
+> Intenta eliminar la conversión a `String` en la última línea. ¿Qué error obtienes?
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores en cadenas
+
+- Podemos incluir un valor en una cadena escribiendo el valor entre paréntesis y una barra invertida  (`\`) antes de los paréntesis. Por ejemplo:
+
+```swift
+let manzanas = 3
+let naranjas = 5
+let resumenManzanas = "Tengo \(manzanas) manzanas."
+let resumenFrutas = "Tengo \(manzanas + naranjas) frutas."
+```
+
+> Usa `\()` para incluir un cálculo en punto flotante en una cadena y para incluir el nombre de alguien en un saludo.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Arrays y diccionarios
+
+```swift
+var listaCompra = ["huevos", "agua", "tomates", "pant"]
+listaCompra[1] = "botella de agua"
+
+var trabajos = [
+    "Malcolm": "Capitán",
+    "Kaylee": "Mecánico",
+]
+trabajos["Jayne"] = "Relaciones públicas"
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Inicialización arrays y diccionarios vacíos
+
+```swift
+let arrayVacio = [String]()
+let diccionarioVacio = [String: Float]()
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Arrays y diccionarios vacíos con tipos inferidos
+
+```swift
+listaCompra = []
+trabajos = [:]
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Control de flujo
+
+- Se usa `if` y `switch` para hacer condicionales y `for-in`, `for`, `while` y `repeat-while` para hacer bucles. 
+- Los paréntesis alrededor de las condiciones o de la variable del bucle son opcionales. 
+- Se requieren llaves alrededor del cuerpo.
+
+```swift
+let puntuacionesIndividuales = [75, 43, 103, 87, 12]
+var punutacionEquipo = 0
+for puntuacion in puntuacionesIndividuales {
+    if puntacion > 50 {
+        puntuacionEquipo += 3
+    } else {
+        puntuacionEquipo += 1
+    }
+}
+print(puntuacionEquipo)
+```
+
+- En una sentencia `if`, el condicional debe ser una expresión booleana; esto significa que código como `if score { ... }` es un error, no una comparación implícita con cero.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores opcionales
+
+- Puedes usar `if` y `let` juntos para trabajar con valores que pueden faltar, valores se representan como opcionales. 
+- Un valor opcional o bien contiene un valor o contiene `nil` para indicar que el valor falta.
+- Escribimos una interrogación (`?`) después del tipo de un valor para marcar el valor como opcional.
+
+```swift
+var cadenaOpcional: String? = "Hola"
+print(cadenaOpcional == nil)
+
+var nombreOpcional: String? = "John Appleseed"
+var saludo = "Hello!"
+if let nombre = nombreOpcional {
+    saludo = "Hola, \(nombre)"
+}
+```
+
+> Cambia `nombreOpcional` a `nil`. ¿Qué saludo obtienes? Añade una cláusula `else` que establezca un saludo diferente si `nombreOpcional` es `nil`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Opcionales sin valor
+
+- Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador `??`. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.
+
+```swift
+let nombrePila: String? = nil
+let nombreCompleto: String = "John Appleseed"
+let saludoInformal = "¿Qué tal, \(nombrePila ?? nombreCompleto)?"
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Sentencia `switch` 
+
+- Las sentencias `switch` permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.
+
+```swift
+let verdura = "pimiento rojo"
+switch verdura {
+    case "zanahoria":
+        print("Buena para la vista.")
+    case "lechuga", "tomates":
+        print("Podrías hacer una buena ensalada.")
+    case let x where x.hasPrefix("pimiento"):
+        print("¿Es un \(x) picante?")
+    default:
+        print("Siempre puedes hacer una buena sopa.")
+}
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Bucle `for-in` sobre diccionarios
+
+```swift
+let numerosInteresantes = [
+    "Primos": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Cuadrados": [1, 4, 9, 16, 25],
+]
+var mayor = 0
+for (clase, numeros) in numerosInteresantes {
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+    }
+}
+print(mayor)
+```
+
+> Añade otra variable para seguir qué clase de número es el mayor.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Bucle `while`
+
+- Usamos `while` para repetir un bloque de código hasta que una condición cambie. 
+
+```swift
+var n = 2
+while n < 100 {
+    n = n * 2
+}
+print(n)
+```
+- La condición de un bucle puede estar también al final, asegurando que el bucle se ejecuta al menos una vez.
+ 
+```swift
+var m = 2
+repeat {
+    m = m * 2
+} while m < 100
+print(m)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Rangos
+
+```swift
+var primerBucleFor = 0
+for i in 0..<4 {
+    primerBucleFor += i
+}
+print(primerBucleFor)
+
+var segundoBucleFor = 0
+for i in 0...4 {
+    segundoBucleFor += i
+}
+print(segundoBucleFor)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Función
+
+- Usamos `func` para declarar una función. Usamos `->` para separar los nombres de los parámetros y sus tipos del tipo devuelto de la función.
+- Para llamar a una función hay que escribir el nombre externo de los parámetros 2 .. n. El primer parámetro se pasa sin escribir su nombre.
+
+```swift
+func saluda(nombre: String, dia: String) -> String {
+    return "Hola \(nombre), hoy es \(dia)."
+}
+saluda("Bob", dia: "martes")
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Tuplas
+
+```swift
+func calculaEstadisticas(puntuaciones: [Int]) -> 
+                        (min: Int, max: Int, sum: Int) {
+    var min = puntuaciones[0]
+    var max = puntuaciones[0]
+    var sum = 0
+
+    for puntuacion in puntuaciones {
+        if puntuacion > max {
+            max = puntuacion
+        } else if puntuacion < min {
+            min = puntuacion
+        }
+        sum += puntuacion
+    }
+
+    return (min, max, sum)
+}
+let estadisticas = calculaEstadisticas([5, 3, 100, 3, 9])
+print(estadisticas.sum)
+print(estadisticas.2)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Número variable de argumentos
+
+- Las funciones también pueden tener un número variable de argumentos, agrupándose todos ellos en un array.
+
+```swift
+func sumaDe(numeros: Int...) -> Int {
+    var suma = 0
+    for numeros in numeros {
+        suma += numeros
+    }
+    return suma
+}
+sumaDe()
+sumaDe(42, 597, 12)
+```
+
+> Escribe una función que calcule la media de sus argumentos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Funciones anidadas
+
+- Las funciones pueden anidarse. Las funciones pueden acceder variables declaradas en la función exterior. Puedes usar funciones anidadas para organizar el código en una función que es larga o complicada.
+
+```swift
+func devuelveQuince() -> Int {
+    var y = 10
+    func suma() {
+        y += 5
+    }
+    suma()
+    return y
+}
+devuelveQuince()
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Las funciones son un tipo de primera clase
+
+- Las funciones son un tipo de primera clase. Una función puede devolver otra función como resultado.
+
+```swift
+func construyeIncrementador() -> ((Int) -> Int) {
+    func sumaUno(numero: Int) -> Int {
+        return 1 + numero
+    }
+    return sumaUno
+}
+var incrementa = construyeIncrementador()
+incrementa(7)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Función argumento de otra función
+
+- Una función puede tomar otra función como uno de sus argumentos.
+
+```swift
+func cumpleCondicion(lista: [Int], condicion: (Int) -> Bool) -> Bool {
+    for item in lista {
+        if condicion(item) {
+            return true
+        }
+    }
+    return false
+}
+func menorQueDiez(numero: Int) -> Bool {
+    return numero < 10
+}
+var numeros = [20, 19, 7, 12]
+cumpleCondicion(numeros, condicion: menorQueDiez)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clausuras
+
+- Clausura: bloque de código que puede ser llamado después.
+- El código en la clausura tiene acceso a cosas como variables y funciones que estaban disponibles en el ámbito (*scope*) en el que se creó la clausura, incluso si la clausura se está en un ámbito distinto cuando se ejecuta; ya viste un ejemplo de esto con las funciones anidadas.
+
+```swift
+numeros.map({
+    (numero: Int) -> Int in
+    let resultado = 3 * numero
+    return resultado
+})
+```
+
+> Reescribe la clausura para que devuelva cero para todos los números impares.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Formas abreviadas de clausuras
+
+- Cuando ya se conoce el tipo de una clausura se puede  omitir el tipo de sus parámetros, el tipo devuelto o ambos. 
+- Las clausuras escritas en una línea devuelven implícitamente el valor de su única sentencia.
+
+```swift
+let numerosMapeados = numeros.map({ numero in 3 * numero })
+print(numerosMapeados)
+```
+
+- Podemos referirnos a los parámetros por número en lugar de por nombre.
+- Una clausura pasada como último argumento puede aparecer inmediatamente después de los paréntesis.
+- Cuando una clausura es el único argumento de una función, puedes omitir los paréntesis por completo.
+
+```swift
+let numerosOrdenados = numeros.sort { $0 > $1 }
+print(numerosOrdenados)
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clases
+
+- Usamos `class` seguido por el nombre de la clase para crear una clase. 
+- Una declaración de una propiedad en una clase se escribe de la misma forma que la declaración de una constante o una variable, excepto que está en el contexto de una clase. 
+- De la misma forma, las declaraciones de los métodos se escriben de la misma forma que las funciones.
+
+```swift
+class Figura {
+    var numeroDeLados = 0
+    func descripcionSencilla() -> String {
+        return "Una figura con \(numeroDeLados) lados."
+    }
+}
+```
+
+> Añade una propiedad constante con `let`, y añade otro método que tome un argumento.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Instancias de clases
+
+- Creamos una instancia de una clase poniendo paréntesis después del nombre de la clase. 
+- Usamos la sintaxis de punto para acceder a las propiedades y los métodos de la instancia.
+
+```swift
+var figura = Figura()
+figura.numeroDeLados = 7
+var descripcionFigura = figura.descripcionSencilla()
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Inicializadores
+
+- Se definen los inicializadores con `init`
+
+```swift
+class FiguraConNombre {
+    var numeroDeLados: Int = 0
+    var nombre: String
+    
+    init(nombre: String) {
+        self.nombre = nombre
+    }
+    
+    func descripcionSencilla() -> String {
+        return "Una figura con \(numeroDeLados) lados."
+    }
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Subclases
+
+- Las subclases incluyen el nombre de su subclase después del nombre de la clase, separado por una coma. 
+- No hay ningún requisito de que las clases deban ser subclases de alguna clase raíz, por lo que puedes omitir una superclase si así lo necesitas.
+- Los métodos en una subclase que sobreescriben la implementación de la superclase se marcan con `override`; la sobreescritura de un método por accidente, sin `override`, se detecta por el compilador como un error. El compilador también detecta métodos con `override` que realmente no sobreescriben ningún método de la superclase.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Ejemplo
+
+```swift
+class Cuadrado: FiguraConNombre {
+    var longitudLado: Double
+    
+    init(longitudLado: Double, nombre: String) {
+        self.longitudLado = longitudLado
+        super.init(nombre: nombre)
+        numeroDeLados = 4
+    }
+    
+    func area() ->  Double {
+        return longitudLado * longitudLado
+    }
+    
+    override func descripcionSencilla() -> String {
+        return "Un cuadrado con lados de longitud \(longitudLado)."
+    }
+}
+let test = Cuadrado(longitudLado: 5.2, nombre: "Mi cuadrado de prueba")
+test.area()
+test.descripcionSencilla()
+```
+> Construye otra subclase de `FiguraConNombre` llamada `Circulo` que tome un radio y un nombre como argumentos de su inicializador. Implementa un método `area()` y `descripcionSencilla()` en la clase `Circulo`.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Getters y setters en propiedades
+
+- Además de propiedades simples que se almacenan, las propiedades pueden tener un *getter* y un *setter*.
+
+```swift
+class TrianguloEquilatero: FiguraConNombre {
+    var longitudLado: Double = 0.0
+    
+    init(longitudLado: Double, nombre: String) {
+        self.longitudLado = longitudLado
+        super.init(nombre: nombre)
+        numeroDeLados = 3
+    }
+    
+    var perimetro: Double {
+        get {
+            return 3.0 * longitudLado
+        }
+        set {
+            longitudLado = newValue / 3.0
+        }
+    }
+    
+    override func descripcionSencilla() -> String {
+        return "Un triangulo equilátero con lados de longitud \(longitudLado)."
+    }
+}
+var triangulo = TrianguloEquilatero(longitudLado: 3.1, nombre: "un triángulo")
+print(triangulo.perimetro)
+triangulo.perimetro = 9.9
+print(triangulo.longitudLado)
+```
+
+---
+
+Date cuenta de que el inicializador de la clase `TrianguloEquilatero` tiene tres pasos diferentes:
+
+1. Establecer el valor de las propiedades que declara la subclase.
+2. Llamar al inicializador de la superclase.
+3. Cambiar el valor de las propiedades definidas por la superclase. Cualquier trabajo adicional que use métodos, *getters* o *setters* puede hacerse también en este punto.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### `willSet` y `didSet`
+
+- Si necesitamos proporcionar código que se ejecuta antes y después de establecer un nuevo valor, usaremos `willSet` y `didSet`. El código proporcionado se ejecuta cada vez que el valor cambia fuera de un inicializador. 
+- Por ejemplo, la siguiente clase se asegura de que la longitud del lado de su triángulo siempre es la misma que la longitud del lado de su cuadrado.
+
+```swift
+class TrianguloYCuadrado {
+    var triangulo: TrianguloEquilatero {
+        willSet {
+            cuadrado.longitudLado = newValue.longitudLado
+        }
+    }
+    var cuadrado: Cuadrado {
+        willSet {
+            triangulo.longitudLado = newValue.longitudLado
+        }
+    }
+    init(tamaño: Double, nombre: String) {
+        cuadrado = Cuadrado(longitudLado: tamaño, nombre: nombre)
+        triangulo = TrianguloEquilatero(longitudLado: tamaño, nombre: nombre)
+    }
+}
+var trianguloYCuadrado = TrianguloYCuadrado(tamaño: 10, nombre: "Otra figura de prueba")
+print(trianguloYCuadrado.cuadrado.longitudLado)
+print(trianguloYCuadrado.triangulo.longitudLado)
+trianguloYCuadrado.cuadrado = Cuadrado(longitudLado: 50, nombre: "Cuadrado mayor")
+print(trianguloYCuadrado.triangulo.longitudLado)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Valores opcionales en métodos
+
+- Cuando trabajamos con valores opcionales, podemos escribir `?` antes de operaciones como métodos, propiedades y subíndices. 
+- Si el valor antes del `?` es `nil`, todo lo que hay después se ignora y el valor de la expresión completa es `nil`. En otro caso, el valor opcional se desenvuelve, y todo lo que hay después del `?` se realiza sobre el valor desenvuelto. 
+- En ambos casos, el valor de la expresión completa es un valor opcional.
+
+```swift
+let cuadradoOpcional: Cuadrado? = 
+          Cuadrado(longitudLado: 2.5, nombre: "Cuadrado opcional")
+let longitudLado = cuadradoOpcional?.longitudLado
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Enumeraciones
+
+- Como las clases y otros tipos con nombre, las enumeraciones pueden tener métodos asociados.
+
+```swift
+enum Valor: Int {
+    case As = 1
+    case Dos, Tres, Cuatro, Cinco, Seis, Siete, Ocho, Nueve, Diez
+    case Sota, Caballo, Rey
+    func descripcionSencilla() -> String {
+        switch self {
+        case .As:
+            return "as"
+        case .Sota:
+            return "sota"
+        case .Caballo:
+            return "caballo"
+        case .Rey:
+            return "rey"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let carta = Valor.As
+let valorBrutoCarta = carta.rawValue
+```
+
+> Escribe una función que compare dos valores `Valor` usando sus valores brutos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Struct
 
 
 ### Conversión de tipos numéricos
