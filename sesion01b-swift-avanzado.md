@@ -20,202 +20,287 @@ Master Programación de Dispositivos Móviles</small>
     - Como el tipo de una constante, variable o propiedad.
     - Como el tipo de los ítems de un array, diccionario, o otros contenedores.
 
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Declaración de un protocolo
+
+- Usamos `protocol` para declarar un protocolo.
+
+```swift
+protocol ProtocoloEjemplo {
+    var descripcionSencilla: String { get }
+    mutating func ajustar()
+}
+```
+
+- Clases, enumeraciones y estructuras pueden todas adoptar protocolos.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Definición de un protocolo
-
-
-- La forma de definir un protocolo es muy similar a la de clases, estructuras y enumeraciones.
-
-```swift
-protocol SomeProtocol {
-    // la definición del protocolo viene aquí
-}
-```
-
-- Un protocolo puede requerir que se defina una propiedad con un nombre y un tipo determinado. También define si la propiedad debe ser solo _gettable_ o _gettable_ y _settable_.
-
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-```swift
-protocol SomeProtocol {
-    var mustBeSettable: Int { get set }
-    var doesNotNeedToBeSettable: Int { get }
-}
-```
-
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-- Por ejemplo:
-
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-```swift
-protocol FullyNamed {
-    var fullName: String { get }
-}
-```
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-
----
-
-El protocolo `FullyNamed` requiere al tipo que lo adopte que proporcione una propiedad `fullName` de tipo `String` que sea _getteable_.
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Definición de una clase que _adopta_ un protocolo
+### Clases que adopta un protocolo
 
 - Para indicar que una clase, struct o enumeración adopta un protocolo escribimos el nombre del protocolo tras el nombre del tipo, separado por una coma. Se pueden listar múltiples protocolos, todos separadas por comas.
 
 ```swift
-struct SomeStructure: FirstProtocol, AnotherProtocol {
-    // structure definition goes here
+class ClaseSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una clase muy simple."
+    var otraPropiedad: Int = 69105
+    func ajustar() {
+        descripcionSencilla += "  Ahora 100% ajustada."
+    }
 }
+var a = ClaseSencilla()
+a.ajustar()
+let descripcionA = a.descripcionSencilla
 ```
 
 - Si una clase tiene una superclase, hay que escribir el nombre de la superclase antes de cualquiera de los protocolos que se adoptan.
 
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
 ```swift
-class SomeClass: SomeSuperclass, FirstProtocol, AnotherProtocol {
-    // class definition goes here
+class AlgunaClase: AlgunaSuperclase, PrimerProtocolo, OtroProtocolo {
+    // definición de la clase
 }
-```
-
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-- Un ejemplo con el protocolo anterior `FullyNamed`:
-
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-```swift
-struct Person: FullyNamed {
-   var fullName: String
-}
-let john = Person(fullName: "John Appleseed")
-```
-
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Ejemplo
-
-```swift
-class Starship: FullyNamed {
-    var prefix: String?
-    var name: String
-    init(name: String, prefix: String? = nil) {
-        self.name = name
-        self.prefix = prefix
-    }
-    var fullName: String {
-        return (prefix != nil ? prefix! + " " : "") + name
-    }
-}
-var ncc1701 = Starship(name: "Enterprise", prefix: "USS")
 ```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Requerimiento de métodos
-
-- Los protocolos pueden requerir que se implementen métodos específicos en los tipos que lo adopten. Estos métodos se escriben en la declaración del protocolo, de la misma forma que si fueran métodos de un tipo específico, pero sin las llaves ni el cuerpo de la implementación.
-
+### Estructura que adopta un protocolo
 
 ```swift
-protocol SomeProtocol {
-   class func someTypeMethod()
+struct EstructuraSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una estructura sencilla"
+    mutating func ajustar() {
+        descripcionSencilla += " (ajustada)"
+    }
 }
+var b = EstructuraSencilla()
+b.ajustar()
+let descripcionB = b.descripcionSencilla
 ```
 
-- Por ejemplo:
+> Escribe una enumeración que cumpla el protocolo.
 
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-```swift
-protocol RandomNumberGenerator {
-    func random() -> Double
-}
-```
-<!-- .element: class="fragment" data-fragment-index="1" -->
+- Hacer notar el uso de la palabra clave `mutating` en la declaración de `SimpleStructure` para marcar el método que modifica la estructura. 
+- La declaración de `ClaseSencilla` no necesita que se marquen como mutadores ninguno de sus métodos porque los métodos en una clase siempre pueden modificar la clase.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Implementación de métodos
+### Extensiones
 
-- La implementación del método se debe realizar en la clase que adopta el protocolo.
+- Una `extension` sirve para añadir funcionalidad a un tipo existente, como métodos nuevos y propiedades calculadas. Similares a _categorías_ en Objective-C.
+- Se puede utilizar una extensión para añadir un cumplimiento de un protocolo a un tipo que se declara en otro lugar, o incluso a un tipo que hayas importado de una biblioteca o un *framework*. 
 
 ```swift
-class LinearCongruentialGenerator: RandomNumberGenerator {
-    var lastRandom = 42.0
-    let m = 139968.0
-    let a = 3877.0
-    let c = 29573.0
-    func random() -> Double {
-        lastRandom = ((lastRandom * a + c) % m)
-        return lastRandom / m
+extension Int: ProtocoloEjemplo {
+    var descripcionSencilla: String {
+        return "El número \(self)"
+    }
+    mutating func ajustar() {
+        self += 42
     }
 }
+print(7.descripcionSencilla)
 ```
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-```swift
-let generator = LinearCongruentialGenerator()
-println("Here's a random number: \(generator.random())")
-// prints "Here's a random number: 0.37464991998171"
-println("And another one: \(generator.random())")
-// prints "And another one: 0.729023776863283"
-```
-
-<!-- .element: class="fragment" data-fragment-index="2" -->
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Ejemplo completo
+### Tipos protocolo
 
-- Veamos un ejemplo sencillo en el que se define un clase `Dice` que representa un dado de _n_ caras que puede usarse en un juego de mesa.
+- Se puede usar un nombre de un protocolo de la misma forma que cualquier otro tipo con nombre; por ejemplo, para crear una colección de objetos que tienen tipos diferentes pero que cumplen un único protocolo. 
+- Cuando se trabaja con valores cuyo tipo es un tipo de protocolo, no están disponibles los métodos fuera del protocolo.
 
 ```swift
-class Dice {
-    let sides: Int
-    let generator: RandomNumberGenerator
-    init(sides: Int, generator: RandomNumberGenerator) {
-        self.sides = sides
-        self.generator = generator
-    }
-    func roll() -> Int {
-        return Int(generator.random() * Double(sides)) + 1
-    }
+let valorProtocolo: ProtocoloEjemplo = a
+print(valorProtocolo.descripcionSencilla)
+// print(valorProtocolo.otraPropiedad)  
+// Descomentar para comprobar el error
+```
+
+- Incluso aunque la variable `valorProtocolo` tenga un tipo en tiempo de ejecución de `ClaseSencilla`, el compilador lo trata como uno del tipo `ProtocoloEjemplo`. De esta forma no es posible acceder accidentalmente a métodos o propiedades que implemente la clase de forma adicional al cumplimiento del protocolo.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Manejo de errores
+
+- Se representa un error  usando cualquier tipo que adopte el protocolo `ErrorType`.
+
+```swift
+enum ErrorImpresora: ErrorType {
+    case SinPapel
+    case SinToner
+    case Ardiendo
 }
 ```
 
-- La propiedad `generator` es del tipo `RandomNumberGenerator` y se inicializa en el constructor, pasándole una instancia de una clase que haya adoptado el protocolo.
+- Usamos `throw` para arrojar un error y `throws` para marcar una función que puede arrojar un error. 
+- Si arrojamos un error en una función, la función termina inmediatamente y el código que llamó a la función maneja el error:
 
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
+```swift
+func enviaAImpresora(nombreImpresora: String) throws -> String {
+    if nombreImpresora == "Nunca Tiene Toner" {
+        throw ErrorImpresora.SinToner
+    }
+    return "Trabajo enviado"
+}
 ```
-var d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
-for _ in 1...5 { println("Random dice roll is \(d6.roll())") }
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Manejo de errores
+
+- Hay varias formas de manejar errores. 
+- Una forma es usar `do-catch`. Dentro del bloque `do`, marcamos el código que pueda lanzar un error escribiendo `try` frente a él. Dentro del bloque `catch` se le da al error el nombre `error` a menos que le demos un nombre diferente.
+
+```swift
+do {
+    let respuestaImpresora = try enviaAImpresora("Bi Sheng")
+    print(respuestaImpresora)
+} catch {
+    print(error)
+}
 ```
 
-<!-- .element: class="fragment" data-fragment-index="1" -->
+> Cambia el nombre de la impresora a `"Nunca Tiene Toner", de forma que la función `enviaAImpresora(_:)` lance un error.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Múltiples bloques `catch`
+
+- Podemos proporcionar múltiples bloques `catch` que manejen errores específicos. 
+- Se debe escribir un patrón después de `catch` de la misma forma que haces después de un `case` en un switch.
+
+```swift
+do {
+    let respuestaImpresora = try enviaAImpresora("Gutenberg")
+    print(respuestaImpresora)
+} catch ErrorImpresora.Ardiendo {
+    print("Pondré esto aquí, junto con el resto del fuego.")
+} catch let errorImpresora as ErrorImpresora {
+    print("Error impresora: \(errorImpresora).")
+} catch {
+    print(error)
+}
+```
+
+> Añade código para lanzar un error dentro del bloque `do`. ¿Qué tipo de error debes lanzar para que el error se gestione en el primer bloque `catch`? ¿Y en el segundo y tercer bloque?
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `try?`
+
+- Otra forma de manejar errores es usar `try?` para convertir el resultado en un opcional. 
+- Si la función lanza un error, el error específico se descarta y el resultado es `nil`. En otro caso, el resultado es un opcional que contiene el valor que la función ha devuelto.
+
+```swift
+let exitoImpresora = try? enviaAImpresora("Mergenthaler")
+let falloImpresora = try? enviaAImpresora("Nunca Tiene Toner")
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `defer`
+
+- Usamos `defer` para escribir un bloque código que siempre se ejecute antes de que la función termine, independientemente de si se lanza un error. 
+- Podemos usar `defer` incluso cuando no existe manejo de errores, para simplificar funciones que terminan en muchos sitios distintos.
+
+```swift
+var calentadorDeTe = false
+func rutinaMatutina() throws {
+    calentadorDeTe = true
+    defer {
+        calentadorDeTe = false
+    }
+    
+    let diario = try enviaAImpresora("Lanston")
+    print(diario)
+    // Bebe el te y lee el diario
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Genéricos
+
+- Escribimos un nombre dentro de paréntesis angulares para construir una función o un tipo genérico. 
+
+```swift
+func itemRepetido<Item>(item: Item, numeroDeVeces: Int) -> [Item] {
+    var resultado = [Item]()
+    for _ in 0..<numeroDeVeces {
+        resultado.append(item)
+    }
+    return resultado
+}
+itemRepetido("knock", numeroDeVeces:4)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Cualquier cosa puede ser genérica
+
+- Podemos hacer formas genéricas de funciones y métodos, así como de clases, enumeraciones y estructuras.
+
+```swift
+// Reimplementamos el tipo Optional de la biblioteca estándar de Swift
+enum ValorOpcional<Envuelto> {
+    case Ninguno
+    case Alguno(Envuelto)
+}
+var posibleInteger: ValorOpcional<Int> = .Ninguno
+posibleInteger = .Alguno(100)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Uso de `where`
+
+- Usamos `where` después del nombre para especificar una lista de requisitos; por ejemplo, para requerir que el tipo implemente un protocolo, para requerir que dos tipos sean el mismo, o para requerir que una clase sea de una superclase particular.
+
+```swift
+func tienenElementosComunes <T: SequenceType, U: SequenceType where 
+      T.Generator.Element: Equatable, 
+      T.Generator.Element == U.Generator.Element> 
+      (lhs: T, _ rhs: U) -> Bool {
+    for lhsItem in lhs {
+        for rhsItem in rhs {
+            if lhsItem == rhsItem {
+                return true
+            }
+        }
+    }
+    return false
+}
+tienenElementosComunes([1, 2, 3], [3])
+```
+
+- Escribir `<T: Equatable>` es lo mismo que escribir `<T where T: Equatable>`.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -250,6 +335,60 @@ for _ in 1...5 { println("Random dice roll is \(d6.roll())") }
 - Veamos una implementación del juego _Snake and ladders_ en el que se usa delegación para poder ampliar el comportamiento del juego cuando suceden determinados eventos.
 
 <img src="images/snakesAndLadders.png" width=600px/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Protocolo `RandomNumberGenerator`
+
+- Definimos un protocolo `RandomNumberGenerator` y una clase que lo implementa
+
+```swift
+protocol RandomNumberGenerator {
+    func random() -> Double
+}
+
+class LinearCongruentialGenerator: RandomNumberGenerator {
+    var lastRandom = 42.0
+    let m = 139968.0
+    let a = 3877.0
+    let c = 29573.0
+    func random() -> Double {
+        lastRandom = ((lastRandom * a + c) % m)
+        return lastRandom / m
+    }
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Clase `Dice` 
+
+- Veamos un ejemplo sencillo en el que se define un clase `Dice` que representa un dado de _n_ caras que puede usarse en un juego de mesa.
+
+```swift
+class Dice {
+    let sides: Int
+    let generator: RandomNumberGenerator
+    init(sides: Int, generator: RandomNumberGenerator) {
+        self.sides = sides
+        self.generator = generator
+    }
+    func roll() -> Int {
+        return Int(generator.random() * Double(sides)) + 1
+    }
+}
+```
+
+- La propiedad `generator` es del tipo `RandomNumberGenerator` y se inicializa en el constructor, pasándole una instancia de una clase que haya adoptado el protocolo.
+
+```
+var d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
+for _ in 1...5 { println("Random dice roll is \(d6.roll())") }
+```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
