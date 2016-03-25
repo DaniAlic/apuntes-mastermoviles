@@ -1,4 +1,4 @@
-# Sesión 2: <br/> Firma y aprovisionamiento <br/> de apps
+# Sesión 3: <br/> Firma y aprovisionamiento <br/> de apps
 
 ### Servicios de las plataformas móviles - iOS
 

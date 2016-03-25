@@ -1,4 +1,4 @@
-# Sesión 6: <br/> Plataforma iAd
+# Sesión 7: <br/> Plataforma iAd
 
 ### Servicios de las plataformas móviles - iOS
 

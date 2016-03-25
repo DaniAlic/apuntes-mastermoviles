@@ -13,7 +13,7 @@ Ray Wenderlich Core Data Tutorial con Swift: http://www.raywenderlich.com/85578/
 
 -->
 
-# Sesión 4: iCloud
+# Sesión 5: iCloud
 
 ### Servicios de las plataformas móviles - iOS
 

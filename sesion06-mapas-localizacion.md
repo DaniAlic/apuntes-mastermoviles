@@ -1,4 +1,4 @@
-# Sesión 5: <br/> Mapas y <br/>localización
+# Sesión 6: <br/> Mapas y <br/>localización
 
 ### Servicios de las plataformas móviles - iOS
 
