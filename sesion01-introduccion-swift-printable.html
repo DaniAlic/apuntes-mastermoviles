@@ -171,19 +171,19 @@ html,body,#wrapper{font-size:10pt!important;}
   <div id="wrapper">
       <h1 id="sesión1:introducciónbraswift1">Sesión 1: Introducción <br/> a Swift 1</h1>
 
-<h3 id="serviciosdelasplataformasmóviles-ios">Servicios de las plataformas móviles - iOS</h3>
+<h4 id="serviciosdelasplataformasmóviles-ios">Servicios de las plataformas móviles - iOS</h4>
 
 <p><small>Domingo Gallardo - domingo.gallardo@ua.es<br/>
 Departamento Ciencia de la Computación e Inteligencia Artificial<br/>
 Master Programación de Dispositivos Móviles</small></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="recursos">Recursos</h3>
+<h4 id="recursos">Recursos</h4>
 
 <p><img style="vertical-align: middle; margin-right: 150px;" src="images/Xcode.png" width="200px"/> <img style="vertical-align: middle; border: 1px solid; " src="images/swift-book-cover.png" width="250px"></p>
 
 <ul>
-<li><a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Xcode 6.3</a> disponible en la Mac App Store.</li>
+<li><a href="http://itunes.apple.com/us/app/xcode/id497799835?ls=1&amp;mt=12">Xcode 7.3</a> disponible en la Mac App Store.</li>
 <li>Libro <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/"><em>The Swift Programming Language</em></a> disponible en el portal de desarrolladores de Apple.</li>
 <li>Además del libro es recomendable consultar la página de Apple con los <a href="https://developer.apple.com/swift/resources/">recursos sobre Swift</a>.</li>
 </ul>
@@ -195,45 +195,42 @@ Master Programación de Dispositivos Móviles</small></p>
 
 <p>Para cuestiones avanzadas, como integración con Objective-C y con Cocoa, también recomendamos el libro de Apple <em>Using Swift with Cocoa and Objective-C</em> descargable desde <a href="https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11">iBooks Store</a> o <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/">consultable en el portal de desarrolladores</a>.</p>
 
-<p>Vamos a trabajar con la última versión estable de Xcode (en marzo de 2015), la 6.2.</p>
+<p>Vamos a trabajar con la última versión estable de Xcode (en marzo de 2016), la 7.3.</p>
 
 <p>Vamos a dedicar más de una sesión a repasar los aspectos más importantes de Swift, basándonos en conceptos de estos libros. Haremos énfasis en los más importantes y difíciles de entender. Hay bastantes aspectos de Swift similares a C que no comentaremos.</p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="característicasdeswiftdeestasesión">Características de Swift de esta sesión</h3>
+<h4 id="característicasdeswiftdeestasesión">Características de Swift de esta sesión</h4>
 
 <ul>
-<li>Aspectos básicos</li>
-<li>Cadenas y caracteres</li>
-<li>Tipos <em>Collection</em></li>
+<li>Aspectos y tipos básicos</li>
+<li>Colecciones</li>
 <li>Control de flujo</li>
+<li>Opcionales</li>
 <li>Funciones</li>
 <li><em>Closures</em></li>
-<li>Clases y estructuras</li>
+<li>Clases</li>
+<li>Enumeraciones</li>
+<li>Estructuras</li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="ejecucióndelosejemplos">Ejecución de los ejemplos</h3>
+<h4 id="ejecucióndelosejemplos">Ejecución de los ejemplos</h4>
 
 <ul>
-<li>Es posible ejecutar los ejemplos de Swift sin crear un proyecto de aplicación en Xcode:
-
-<ul>
-<li>En un <strong>intérprete</strong> en el terminal</li>
 <li>Es posible crear <strong><em>playgrounds</em></strong> en Xcode, hojas interactivas que ejecutan código Swift</li>
-</ul></li>
+<li>Es posible también ejecutar los ejemplos en un <strong>intérprete</strong> en el terminal</li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="intérpretedeswiftenelterminal">Intérprete de Swift en el terminal</h3>
+<h4 id="intérpretedeswiftenelterminal">Intérprete de Swift en el terminal</h4>
 
 <p><img style="vertical-align: middle;" src="images/swift-terminal.png" width="500px"/></p>
 
 <ul>
-<li>Intérprete REPL en el terminal: <code>$ xcrun swift</code></li>
-<li>En Yosemite: <code>$ swift</code></li>
+<li>Intérprete REPL en el terminal: <code>$ swift</code></li>
 <li>Programa de script que se ejecuta con el intérprete:<br/>
-<code>$ xcrun swift programa.swift</code></li>
+<code>$ swift programa.swift</code></li>
 <li>Compilar con <code>$ swiftc</code> y ejecutar el programa resultante</li>
 </ul>
 
@@ -244,16 +241,16 @@ Master Programación de Dispositivos Móviles</small></p>
 <p>El intérprete tiene características avanzadas que facilitan su uso, como la edición de múltiples líneas, la historia de comandos y la completación automática de código Swift. En la página del blog de Apple sobre Swift <a href="https://developer.apple.com/swift/blog/?id=18">Introduction to the Swift REPL</a> puedes encontrar más información sobre los comandos y la forma de interactuar con el intérprete.</p>
 
 <p>Para lanzar el intérprete de Swift debes ejecutar desde un terminal:</p>
-<pre><code class="(null)">$ xcrun swift
+<pre><code class="(null)">$ swift
 1&gt; println(&quot;Hello World&quot;)
 Hello World</code></pre>
 
 <p>O crear el fichero <code>hello.swift</code>:</p>
 <pre><code class="swift">println(&quot;Hello World&quot;)</code></pre>
-<pre><code class="(null)">$ xcrun swift hello.swift
+<pre><code class="(null)">$ swift hello.swift
 Hello World
 
-$ xcrun swift hello.swift</code></pre>
+$ swift hello.swift</code></pre>
 
 <p>Referencias:</p>
 
@@ -262,25 +259,24 @@ $ xcrun swift hello.swift</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="playgrounds"><em>Playgrounds</em></h3>
+<h4 id="playgrounds"><em>Playgrounds</em></h4>
 
-<p><img src="images/swift-screenshot.jpg"></p>
+<p><img src="images/swift-screenshot.png" width="700px"></p>
 
-<p><a href="https://developer.apple.com/swift/blog/downloads/Balloons.zip">Ballons.playground</a></p>
+<p><a href="https://developer.apple.com/swift/blog/?id=35">Playgrounds interactivos</a></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="aspectosbásicos">Aspectos básicos</h3>
+<h4 id="descargadelasplantillas">Descarga de las plantillas</h4>
+<!-- .slide: data-background="#cbe0fc"-->
 
 <ul>
-<li>Constantes y variables</li>
-<li>Tipos e inferencia de tipos</li>
-<li>Tipos numéricos</li>
-<li>Conversión de tipos numéricos</li>
-<li><em>Booleans</em></li>
+<li><p>Las plantillas y ejemplos iniciales de los proyectos se encuentran en el <a href="https://bitbucket.org/mastermoviles/mastermoviles-servicios-ios/">repositorio <code>mastermoviles-servicios-ios</code></a> de la cuenta <code>mastermoviles</code> de Bitbucket. Descárgalo en un directorio aparte para ir cogiendo de ahí los distintos proyectos.</p></li>
+<li><p>Carga en Xcode el playground <code>NewtonsCradle</code> y pruébalo.</p></li>
+<li><p>Crea un <em>playground</em> en el que puedes probar el código de los ejemplos que hay a continuación. También hay ejercicios sombreados en azul que puedes resolver para aprender mejor Swift. Todos estos ejercicios son opcionales, no hay que entregar este <em>playground</em>.</p></li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="constantesyvariables">Constantes y variables</h3>
+<h4 id="constantesyvariables">Constantes y variables</h4>
 <pre><code class="swift">var miVariable = 42
 miVariable = 50
 let miConstante = 42</code></pre>
@@ -291,7 +287,7 @@ let miConstante = 42</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="tiposeinferenciadetipos">Tipos e inferencia de tipos</h3>
+<h4 id="tiposeinferenciadetipos">Tipos e inferencia de tipos</h4>
 <pre><code class="swift">let implicitInteger = 70
 let implicitDouble = 70.0
 let explicitDouble: Double = 70</code></pre>
@@ -303,7 +299,7 @@ let explicitDouble: Double = 70</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="conversióndetipos">Conversión de tipos</h3>
+<h4 id="conversióndetipos">Conversión de tipos</h4>
 
 <ul>
 <li>Los valores nunca se convierten implícitamente a otro tipo. Si necesitas convertir un valor a un tipo diferente, construye explícitamente una instancia del tipo deseado.</li>
@@ -317,7 +313,7 @@ let anchoEtiqueta = etiqueta + String(ancho)</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="valoresencadenas">Valores en cadenas</h3>
+<h4 id="valoresencadenas">Valores en cadenas</h4>
 
 <ul>
 <li>Podemos incluir un valor en una cadena escribiendo el valor entre paréntesis y una barra invertida (<code>\</code>) antes de los paréntesis. Por ejemplo:</li>
@@ -332,7 +328,13 @@ let resumenFrutas = &quot;Tengo \(manzanas + naranjas) frutas.&quot;</code></pre
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="arraysydiccionarios">Arrays y diccionarios</h3>
+<h4 id="arraysydiccionarios">Arrays y diccionarios</h4>
+
+<ul>
+<li>Arrays: listas ordenads de valores de un mismo tipo.</li>
+<li>Diccionarios: colecciones desordenadas de valores de un mismo tipo que pueden ser referenciados y buscados a través de un identificador único (<em>clave</em>).</li>
+<li>La mutabilidad o inmutabilidad de las colecciones dependen de si se asignan a variables (<code>var</code>) o a constantes (<code>let</code>).</li>
+</ul>
 <pre><code class="swift">var listaCompra = [&quot;huevos&quot;, &quot;agua&quot;, &quot;tomates&quot;, &quot;pant&quot;]
 listaCompra[1] = &quot;botella de agua&quot;
 
@@ -343,17 +345,17 @@ var trabajos = [
 trabajos[&quot;Jayne&quot;] = &quot;Relaciones públicas&quot;</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="inicializaciónarraysydiccionariosvacíos">Inicialización arrays y diccionarios vacíos</h3>
+<h4 id="inicializaciónarraysydiccionariosvacíos">Inicialización arrays y diccionarios vacíos</h4>
 <pre><code class="swift">let arrayVacio = [String]()
 let diccionarioVacio = [String: Float]()</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="arraysydiccionariosvacíoscontiposinferidos">Arrays y diccionarios vacíos con tipos inferidos</h3>
+<h4 id="arraysydiccionariosvacíoscontiposinferidos">Arrays y diccionarios vacíos con tipos inferidos</h4>
 <pre><code class="swift">listaCompra = []
 trabajos = [:]</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="controldeflujo">Control de flujo</h3>
+<h4 id="controldeflujo">Control de flujo</h4>
 
 <ul>
 <li>Se usa <code>if</code> y <code>switch</code> para hacer condicionales y <code>for-in</code>, <code>for</code>, <code>while</code> y <code>repeat-while</code> para hacer bucles.</li>
@@ -361,9 +363,9 @@ trabajos = [:]</code></pre>
 <li>Se requieren llaves alrededor del cuerpo.</li>
 </ul>
 <pre><code class="swift">let puntuacionesIndividuales = [75, 43, 103, 87, 12]
-var punutacionEquipo = 0
+var puntuacionEquipo = 0
 for puntuacion in puntuacionesIndividuales {
-    if puntacion &gt; 50 {
+    if puntuacion &gt; 50 {
         puntuacionEquipo += 3
     } else {
         puntuacionEquipo += 1
@@ -376,38 +378,7 @@ print(puntuacionEquipo)</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="valoresopcionales">Valores opcionales</h3>
-
-<ul>
-<li>Puedes usar <code>if</code> y <code>let</code> juntos para trabajar con valores que pueden faltar, valores se representan como opcionales.</li>
-<li>Un valor opcional o bien contiene un valor o contiene <code>nil</code> para indicar que el valor falta.</li>
-<li>Escribimos una interrogación (<code>?</code>) después del tipo de un valor para marcar el valor como opcional.</li>
-</ul>
-<pre><code class="swift">var cadenaOpcional: String? = &quot;Hola&quot;
-print(cadenaOpcional == nil)
-
-var nombreOpcional: String? = &quot;John Appleseed&quot;
-var saludo = &quot;Hello!&quot;
-if let nombre = nombreOpcional {
-    saludo = &quot;Hola, \(nombre)&quot;
-}</code></pre>
-
-<blockquote>
-<p>Cambia <code>nombreOpcional</code> a <code>nil</code>. ¿Qué saludo obtienes? Añade una cláusula <code>else</code> que establezca un saludo diferente si <code>nombreOpcional</code> es <code>nil</code>.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="opcionalessinvalor">Opcionales sin valor</h3>
-
-<ul>
-<li>Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador <code>??</code>. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.</li>
-</ul>
-<pre><code class="swift">let nombrePila: String? = nil
-let nombreCompleto: String = &quot;John Appleseed&quot;
-let saludoInformal = &quot;¿Qué tal, \(nombrePila ?? nombreCompleto)?&quot;</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="sentenciaswitch">Sentencia <code>switch</code></h3>
+<h4 id="sentenciaswitch">Sentencia <code>switch</code></h4>
 
 <ul>
 <li>Las sentencias <code>switch</code> permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.</li>
@@ -425,7 +396,7 @@ switch verdura {
 }</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="buclefor-insobrediccionarios">Bucle <code>for-in</code> sobre diccionarios</h3>
+<h4 id="buclefor-insobrediccionarios">Bucle <code>for-in</code> sobre diccionarios</h4>
 <pre><code class="swift">let numerosInteresantes = [
     &quot;Primos&quot;: [2, 3, 5, 7, 11, 13],
     &quot;Fibonacci&quot;: [1, 1, 2, 3, 5, 8],
@@ -446,7 +417,7 @@ print(mayor)</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="buclewhile">Bucle <code>while</code></h3>
+<h4 id="buclewhile">Bucle <code>while</code></h4>
 
 <ul>
 <li>Usamos <code>while</code> para repetir un bloque de código hasta que una condición cambie.</li>
@@ -465,7 +436,7 @@ repeat {
 print(m)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="rangos">Rangos</h3>
+<h4 id="rangos">Rangos</h4>
 <pre><code class="swift">var primerBucleFor = 0
 for i in 0..&lt;4 {
     primerBucleFor += i
@@ -479,7 +450,96 @@ for i in 0...4 {
 print(segundoBucleFor)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="función">Función</h3>
+<h4 id="valoresopcionales">Valores opcionales</h4>
+
+<ul>
+<li>En Swift todos los tipos deben tener valor.</li>
+<li>Un valor opcional o bien contiene un valor o contiene <code>nil</code> para indicar que el valor falta.</li>
+<li>Escribimos una interrogación (<code>?</code>) después del tipo de un valor para marcar el valor como opcional.</li>
+</ul>
+<pre><code class="swift">var saludo = &quot;Hola&quot;
+saludo = nil
+// error: una variable de tipo no puede tener el valor nil
+var cadenaOpcional: String? = &quot;Hola&quot;
+print(cadenaOpcional == nil)</code></pre>
+
+<hr />
+
+<p>El concepto de <em>optional</em> no existe ni en C, ni en Objective-C. Lo más cercano en Objective-C es la posibilidad de devolver <code>nil</code> desde un método que en otras ocasiones debería devolver un objeto. Sin embargo, esto sólo funciona para objetos, no funciona ni para estructuras, ni para tipos básicos de C, ni para enumeraciones. Para estos tipos Objective-C devuelve típicamente un valor especial (como <code>NSNotFound</code>) para indicar la ausencia de valor.</p>
+
+<p>El problema de este enfoque es que se asume que el llamador del método sabe que hay que chequear este valor especial, pero no hay nada en el tipo que lo indique y que pueda ser utilizado por el compilador para detectar posibles errores. Además, se debe saber cuál es el literal que define este valor especial.</p>
+
+<p>Los opcionales de Swift permiten expresar la ausencia de valor en <em>cualquier tipo</em>, sin la necesidad de constantes especiales.</p>
+
+<blockquote>
+<p>Importante: <code>String? saludo</code> representa que la variable <code>saludo</code> puede tener un valor de tipo <code>String</code> o que puede no tener valor. No que sea un <code>String</code> que puede tener el valor <code>nil</code>. En Swift los valores de los tipos nunca pueden ser <code>nil</code>.</p>
+</blockquote>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h4 id="trabajarconvaloresopcionales">Trabajar con valores opcionales</h4>
+
+<ul>
+<li>Los opcionales proporcionan una forma de devolver valores en métodos que deben tratar entradas erróneas:</li>
+</ul>
+<pre><code class="swift">let numero = &quot;123&quot;
+let numeroConError = &quot;123a&quot;
+let numeroConvertido = Int(numero) // Int? = 123
+let numeroConvertidoConError = Int(numeroConError) // Int? = nil</code></pre>
+
+<ul>
+<li>Se debe usar <code>if</code> y <code>let</code> juntos para trabajar con valores que pueden faltar, valores se representan como opcionales.</li>
+</ul>
+<pre><code class="swift">var nombreOpcional: String? = &quot;John Appleseed&quot;
+var saludo = &quot;Hola!&quot;
+if let nombre = nombreOpcional {
+    saludo = &quot;Hola, \(nombre)&quot;
+}</code></pre>
+
+<blockquote>
+<p>Cambia <code>nombreOpcional</code> a <code>nil</code>. ¿Qué saludo obtienes? Añade una cláusula <code>else</code> que establezca un saludo diferente si <code>nombreOpcional</code> es <code>nil</code>.</p>
+</blockquote>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h4 id="opcionalessinvalor">Opcionales sin valor</h4>
+
+<ul>
+<li>Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador <code>??</code>. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.</li>
+</ul>
+<pre><code class="swift">let nombrePila: String? = nil
+let nombreCompleto: String = &quot;John Appleseed&quot;
+let saludoInformal = &quot;¿Qué tal, \(nombrePila ?? nombreCompleto)?&quot;</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h5 id="desenvolverunoptional">Desenvolver un <em>optional</em></h5>
+
+<ul>
+<li>En un tipo opcional el valor está <em>envuelto</em> (<em>wrapped</em>). Obtendremos un error si lo intentamos usar.</li>
+</ul>
+<pre><code class="swift">numeroConvertido + 100
+// error: value of optional type &apos;Int?&apos; not unwrapped;</code></pre>
+
+<p>El valor se puede <em>desenvolver</em> usando la exclamación (<code>!</code>):</p>
+<pre><code class="swift">numeroConvertido! + 100 // Int = 223</code></pre>
+
+<p>Si desenvolvemos <code>nil</code> se obtiene un error en tiempo de ejecución:</p>
+<pre><code class="swift">numeroConvertidoConError! + 100 
+// fatal error: unexpectedly found nil unwrapping an Optional</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h5 id="opcionalesimplícitamentedesenvueltos">Opcionales implícitamente desenvueltos</h5>
+
+<ul>
+<li>En inglés: <em>implicitly unwrapped optionals</em>.</li>
+<li>Es un opcional que puede usarse como un no opcional, sin necesidad de desenvolver el valor opcional cada vez que se accede.</li>
+</ul>
+<pre><code class="swift">var num: Int! 
+num = Int(&quot;100&quot;)
+let num2 = num + 200 // No es necesario desenvolver numero</code></pre>
+
+<p>Se puede pensar en un opcional implícitamente desenvuelto como una forma de desenvolver automáticamente la variable cada vez que se usa. En lugar de poner una exclamación cada vez que se usa, se pone sólo una vez cuando se declara.</p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h4 id="función">Función</h4>
 
 <ul>
 <li>Usamos <code>func</code> para declarar una función. Usamos <code>-&gt;</code> para separar los nombres de los parámetros y sus tipos del tipo devuelto de la función.</li>
@@ -489,9 +549,17 @@ print(segundoBucleFor)</code></pre>
     return &quot;Hola \(nombre), hoy es \(dia).&quot;
 }
 saluda(&quot;Bob&quot;, dia: &quot;martes&quot;)</code></pre>
+
+<ul>
+<li>Podemos definir nombres externos distintos de los internos</li>
+</ul>
+<pre><code class="swift">func une(s1: String, con s2: String) -&gt; String {
+    return s1 + s2
+}
+une(&quot;Hola&quot;, con: &quot;, mundo&quot;)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="tuplas">Tuplas</h3>
+<h4 id="tuplas">Tuplas</h4>
 <pre><code class="swift">func calculaEstadisticas(puntuaciones: [Int]) -&gt; 
                         (min: Int, max: Int, sum: Int) {
     var min = puntuaciones[0]
@@ -514,7 +582,7 @@ print(estadisticas.sum)
 print(estadisticas.2)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="númerovariabledeargumentos">Número variable de argumentos</h3>
+<h4 id="númerovariabledeargumentos">Número variable de argumentos</h4>
 
 <ul>
 <li>Las funciones también pueden tener un número variable de argumentos, agrupándose todos ellos en un array.</li>
@@ -534,7 +602,7 @@ sumaDe(42, 597, 12)</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="funcionesanidadas">Funciones anidadas</h3>
+<h4 id="funcionesanidadas">Funciones anidadas</h4>
 
 <ul>
 <li>Las funciones pueden anidarse. Las funciones pueden acceder variables declaradas en la función exterior. Puedes usar funciones anidadas para organizar el código en una función que es larga o complicada.</li>
@@ -550,7 +618,7 @@ sumaDe(42, 597, 12)</code></pre>
 devuelveQuince()</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="lasfuncionessonuntipodeprimeraclase">Las funciones son un tipo de primera clase</h3>
+<h4 id="lasfuncionessonuntipodeprimeraclase">Las funciones son un tipo de primera clase</h4>
 
 <ul>
 <li>Las funciones son un tipo de primera clase. Una función puede devolver otra función como resultado.</li>
@@ -565,7 +633,7 @@ var incrementa = construyeIncrementador()
 incrementa(7)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="funciónargumentodeotrafunción">Función argumento de otra función</h3>
+<h4 id="funciónargumentodeotrafunción">Función argumento de otra función</h4>
 
 <ul>
 <li>Una función puede tomar otra función como uno de sus argumentos.</li>
@@ -585,7 +653,7 @@ var numeros = [20, 19, 7, 12]
 cumpleCondicion(numeros, condicion: menorQueDiez)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="clausuras">Clausuras</h3>
+<h4 id="clausuras">Clausuras</h4>
 
 <ul>
 <li>Clausura: bloque de código que puede ser llamado después.</li>
@@ -602,7 +670,7 @@ cumpleCondicion(numeros, condicion: menorQueDiez)</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="formasabreviadasdeclausuras">Formas abreviadas de clausuras</h3>
+<h4 id="formasabreviadasdeclausuras">Formas abreviadas de clausuras</h4>
 
 <ul>
 <li>Cuando ya se conoce el tipo de una clausura se puede omitir el tipo de sus parámetros, el tipo devuelto o ambos.</li>
@@ -620,7 +688,7 @@ print(numerosMapeados)</code></pre>
 print(numerosOrdenados)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="clases">Clases</h3>
+<h4 id="clases">Clases</h4>
 
 <ul>
 <li>Usamos <code>class</code> seguido por el nombre de la clase para crear una clase.</li>
@@ -639,7 +707,7 @@ print(numerosOrdenados)</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="instanciasdeclases">Instancias de clases</h3>
+<h4 id="instanciasdeclases">Instancias de clases</h4>
 
 <ul>
 <li>Creamos una instancia de una clase poniendo paréntesis después del nombre de la clase.</li>
@@ -650,7 +718,7 @@ figura.numeroDeLados = 7
 var descripcionFigura = figura.descripcionSencilla()</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="inicializadores">Inicializadores</h3>
+<h4 id="inicializadores">Inicializadores</h4>
 
 <ul>
 <li>Se definen los inicializadores con <code>init</code></li>
@@ -669,7 +737,7 @@ var descripcionFigura = figura.descripcionSencilla()</code></pre>
 }</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="subclases">Subclases</h3>
+<h4 id="subclases">Subclases</h4>
 
 <ul>
 <li>Las subclases incluyen el nombre de su subclase después del nombre de la clase, separado por una coma.</li>
@@ -678,7 +746,7 @@ var descripcionFigura = figura.descripcionSencilla()</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="ejemplo">Ejemplo</h3>
+<h4 id="ejemplo">Ejemplo</h4>
 <pre><code class="swift">class Cuadrado: FiguraConNombre {
     var longitudLado: Double
     
@@ -705,7 +773,7 @@ test.descripcionSencilla()</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="gettersysettersenpropiedades">Getters y setters en propiedades</h3>
+<h4 id="gettersysettersenpropiedades">Getters y setters en propiedades</h4>
 
 <ul>
 <li>Además de propiedades simples que se almacenan, las propiedades pueden tener un <em>getter</em> y un <em>setter</em>.</li>
@@ -748,7 +816,7 @@ print(triangulo.longitudLado)</code></pre>
 </ol>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="willsetydidset"><code>willSet</code> y <code>didSet</code></h3>
+<h4 id="willsetydidset"><code>willSet</code> y <code>didSet</code></h4>
 
 <ul>
 <li>Si necesitamos proporcionar código que se ejecuta antes y después de establecer un nuevo valor, usaremos <code>willSet</code> y <code>didSet</code>. El código proporcionado se ejecuta cada vez que el valor cambia fuera de un inicializador.</li>
@@ -777,7 +845,7 @@ trianguloYCuadrado.cuadrado = Cuadrado(longitudLado: 50, nombre: &quot;Cuadrado 
 print(trianguloYCuadrado.triangulo.longitudLado)</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="valoresopcionalesenmétodos">Valores opcionales en métodos</h3>
+<h4 id="valoresopcionalesenmétodos">Valores opcionales en métodos</h4>
 
 <ul>
 <li>Cuando trabajamos con valores opcionales, podemos escribir <code>?</code> antes de operaciones como métodos, propiedades y subíndices.</li>
@@ -789,7 +857,7 @@ print(trianguloYCuadrado.triangulo.longitudLado)</code></pre>
 let longitudLado = cuadradoOpcional?.longitudLado</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="enumeraciones">Enumeraciones</h3>
+<h4 id="enumeraciones">Enumeraciones</h4>
 
 <ul>
 <li>Como las clases y otros tipos con nombre, las enumeraciones pueden tener métodos asociados.</li>
@@ -821,7 +889,7 @@ let valorBrutoCarta = carta.rawValue</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="inicializaciónenum">Inicialización enum</h3>
+<h4 id="inicializaciónenum">Inicialización enum</h4>
 
 <ul>
 <li>Por defecto, Swift asigna los valores brutos comenzando en cero e incrementándolos por uno cada vez.</li>
@@ -835,7 +903,7 @@ let valorBrutoCarta = carta.rawValue</code></pre>
 }</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="valorescasedelenum">Valores <code>case</code> del <code>enum</code></h3>
+<h4 id="valorescasedelenum">Valores <code>case</code> del <code>enum</code></h4>
 
 <ul>
 <li>Los valores <em>case</em> de una enumeración son valores reales, no una forma nueva de escribir sus valores brutos.</li>
@@ -863,7 +931,7 @@ let descripcionCopas = copas.descripcionSencilla()</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="valoresasociadosainstanciasdeenums">Valores asociados a instancias de enums</h3>
+<h4 id="valoresasociadosainstanciasdeenums">Valores asociados a instancias de enums</h4>
 
 <ul>
 <li>Una instancia de un caso de enumeración puede tener valores asociados con la instancia. Instancias del mismo caso de enumeración pueden tener asociados valores diferentes.</li>
@@ -885,7 +953,7 @@ switch exito {
 }</code></pre>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="structs">Structs</h3>
+<h4 id="structs">Structs</h4>
 
 <ul>
 <li>Usamos <code>struct</code> para crear una estructura.</li>
@@ -907,1756 +975,40 @@ let descripcionTresDeEspadas = tresDeEspadas.descripcionSencilla()</code></pre>
 </blockquote>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="protocolos">Protocolos</h3>
-
-<ul>
-<li>Usamos <code>protocol</code> para declarar un protocolo.</li>
-</ul>
-<pre><code class="swift">protocol ExampleProtocol {
-    var simpleDescription: String { get }
-    mutating func adjust()
-}</code></pre>
-
-<ul>
-<li>Clases, enumeraciones y estructuras pueden todas adoptar protocolos.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="clasesqueadoptaunprotocolo">Clases que adopta un protocolo</h3>
-<pre><code class="swift">class ClaseSencilla: ProtocoloEjemplo {
-    var descripcionSencilla: String = &quot;Una clase muy simple.&quot;
-    var otraPropiedad: Int = 69105
-    func ajustar() {
-        descripcionSencilla += &quot;  Ahora 100% ajustada.&quot;
-    }
-}
-var a = ClaseSencilla()
-a.ajustar()
-let descripcionA = a.descripcionSencilla</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="estructuraqueadoptaunprotocolo">Estructura que adopta un protocolo</h3>
-<pre><code class="swift">struct EstructuraSencilla: ProtocoloEjemplo {
-    var descripcionSencilla: String = &quot;Una estructura sencilla&quot;
-    mutating func ajustar() {
-        descripcionSencilla += &quot; (ajustada)&quot;
-    }
-}
-var b = EstructuraSencilla()
-b.ajustar()
-let descripcionB = b.descripcionSencilla</code></pre>
-
-<blockquote>
-<p>Escribe una enumeración que cumpla el protocolo.</p>
-</blockquote>
-
-<ul>
-<li>Hacer notar el uso de la palabra clave <code>mutating</code> en la declaración de <code>SimpleStructure</code> para marcar el método que modifica la estructura.</li>
-<li>La declaración de <code>ClaseSencilla</code> no necesita que se marquen como mutadores ninguno de sus métodos porque los métodos en una clase siempre pueden modificar la clase.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="extensiones">Extensiones</h3>
-
-<ul>
-<li>Una <code>extension</code> sirve para añadir funcionalidad a un tipo existente, como métodos nuevos y propiedades calculadas.</li>
-<li>Se puede utilizar una extensión para añadir un cumplimiento de un protocolo a un tipo que se declara en otro lugar, o incluso a un tipo que hayas importado de una biblioteca o un <em>framework</em>.</li>
-</ul>
-<pre><code class="swift">extension Int: ProtocoloEjemplo {
-    var descripcionSencilla: String {
-        return &quot;El número \(self)&quot;
-    }
-    mutating func ajustar() {
-        self += 42
-    }
-}
-print(7.descripcionSencilla)</code></pre>
-
-<blockquote>
-<p>Escribe una extensión para el tipo <code>Double</code> que añada una propiedad <code>absoluteValue</code>.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="tiposprotocolo">Tipos protocolo</h3>
-
-<ul>
-<li>Se puede usar un nombre de un protocolo de la misma forma que cualquier otro tipo con nombre; por ejemplo, para crear una colección de objetos que tienen tipos diferentes pero que cumplen un único protocolo.</li>
-<li>Cuando se trabaja con valores cuyo tipo es un tipo de protocolo, no están disponibles los métodos fuera del protocolo.</li>
-</ul>
-<pre><code class="swift">let valorProtocolo: ProtocoloEjemplo = a
-print(valorProtocolo.descripcionSencilla)
-// print(valorProtocolo.otraPropiedad)  // Descomentar para comprobar el error</code></pre>
-
-<ul>
-<li>Incluso aunque la variable <code>valorProtocolo</code> tenga un tipo en tiempo de ejecución de <code>ClaseSencilla</code>, el compilador lo trata como uno del tipo <code>ProtocoloEjemplo</code>. De esta forma no es posible acceder accidentalmente a métodos o propiedades que implemente la clase de forma adicional al cumplimiento del protocolo.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="manejodeerrores">Manejo de errores</h3>
-
-<ul>
-<li>Se representa un error usando cualquier tipo que adopte el protocolo <code>ErrorType</code>.</li>
-</ul>
-<pre><code class="swift">enum ErrorImpresora: ErrorType {
-    case SinPapel
-    case SinToner
-    case Ardiendo
-}</code></pre>
-
-<ul>
-<li>Usamos <code>throw</code> para arrojar un error y <code>throws</code> para marcar una función que puede arrojar un error.</li>
-<li>Si arrojamos un error en una función, la función termina inmediatamente y el código que llamó a la función maneja el error:</li>
-</ul>
-<pre><code class="swift">func enviaAImpresora(nombreImpresora: String) throws -&gt; String {
-    if nombreImpresora == &quot;Nunca Tiene Toner&quot; {
-        throw ErrorImpresora.SinToner
-    }
-    return &quot;Trabajo enviado&quot;
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="manejodeerrores">Manejo de errores</h3>
-
-<ul>
-<li>Hay varias formas de manejar errores.</li>
-<li>Una forma es usar <code>do-catch</code>. Dentro del bloque <code>do</code>, marcamos el código que pueda lanzar un error escribiendo <code>try</code> frente a él. Dentro del bloque <code>catch</code> se le da al error el nombre <code>error</code> a menos que le demos un nombre diferente.</li>
-</ul>
-<pre><code class="swift">do {
-    let respuestaImpresora = try enviaAImpresora(&quot;Bi Sheng&quot;)
-    print(respuestaImpresora)
-} catch {
-    print(error)
-}</code></pre>
-
-<blockquote>
-<p>Cambia el nombre de la impresora a <code>&quot;Nunca Tiene Toner&quot;, de forma que la función</code>enviaAImpresora(_:)` lance un error.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="múltiplesbloquescatch">Múltiples bloques <code>catch</code></h3>
-
-<ul>
-<li>Podemos proporcionar múltiples bloques <code>catch</code> que manejen errores específicos.</li>
-<li>Se debe escribir un patrón después de <code>catch</code> de la misma forma que haces después de un <code>case</code> en un switch.</li>
-</ul>
-<pre><code class="swift">do {
-    let respuestaImpresora = try enviaAImpresora(&quot;Gutenberg&quot;)
-    print(respuestaImpresora)
-} catch ErrorImpresora.Ardiendo {
-    print(&quot;Pondré esto aquí, junto con el resto del fuego.&quot;)
-} catch let errorImpresora as ErrorImpresora {
-    print(&quot;Error impresora: \(errorImpresora).&quot;)
-} catch {
-    print(error)
-}</code></pre>
-
-<blockquote>
-<p>Añade código para lanzar un error dentro del bloque <code>do</code>. ¿Qué tipo de error debes lanzar para que el error se gestione en el primer bloque <code>catch</code>? ¿Y en el segundo y tercer bloque?</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="usodetry">Uso de <code>try?</code></h3>
-
-<ul>
-<li>Otra forma de manejar errores es usar <code>try?</code> para convertir el resultado en un opcional.</li>
-<li>Si la función lanza un error, el error específico se descarta y el resultado es <code>nil</code>. En otro caso, el resultado es un opcional que contiene el valor que la función ha devuelto.</li>
-</ul>
-<pre><code class="swift">let exitoImpresora = try? enviaAImpresora(&quot;Mergenthaler&quot;)
-let falloImpresora = try? enviaAImpresora(&quot;Nunca Tiene Toner&quot;)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="usodedefer">Uso de <code>defer</code></h3>
-
-<ul>
-<li>Usamos <code>defer</code> para escribir un bloque código que siempre se ejecute antes de que la función termine, independientemente de si se lanza un error.</li>
-<li>Podemos usar <code>defer</code> incluso cuando no existe manejo de errores, para simplificar funciones que terminan en muchos sitios distintos.</li>
-</ul>
-<pre><code class="swift">var calentadorDeTe = false
-func rutinaMatutina() throws {
-    calentadorDeTe = true
-    defer {
-        calentadorDeTe = false
-    }
-    
-    let diario = try enviaAImpresora(&quot;Lanston&quot;)
-    print(diario)
-    // Bebe el te y lee el diario
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="genéricos">Genéricos</h3>
-
-<ul>
-<li>Escribimos un nombre dentro de paréntesis angulares para construir una función o un tipo genérico.</li>
-</ul>
-<pre><code class="swift">func itemRepetido&lt;Item&gt;(item: Item, numeroDeVeces: Int) -&gt; [Item] {
-    var resultado = [Item]()
-    for _ in 0..&lt;numeroDeVeces {
-        resultado.append(item)
-    }
-    return resultado
-}
-itemRepetido(&quot;knock&quot;, numeroDeVeces:4)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="cualquiercosapuedesergenérica">Cualquier cosa puede ser genérica</h3>
-
-<ul>
-<li>Podemos hacer formas genéricas de funciones y métodos, así como de clases, enumeraciones y estructuras.</li>
-</ul>
-<pre><code class="swift">// Reimplementamos el tipo Optional de la biblioteca estándar de Swift
-enum ValorOpcional&lt;Envuelto&gt; {
-    case Ninguno
-    case Alguno(Envuelto)
-}
-var posibleInteger: ValorOpcional&lt;Int&gt; = .Ninguno
-posibleInteger = .Alguno(100)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="usodewhere">Uso de <code>where</code></h3>
-
-<ul>
-<li>Usamos <code>where</code> después del nombre para especificar una lista de requisitos; por ejemplo, para requerir que el tipo implemente un protocolo, para requerir que dos tipos sean el mismo, o para requerir que una clase sea de una superclase particular.</li>
-</ul>
-<pre><code class="swift">func tienenElementosComunes &lt;T: SequenceType, U: SequenceType where 
-      T.Generator.Element: Equatable, 
-      T.Generator.Element == U.Generator.Element&gt; 
-      (lhs: T, _ rhs: U) -&gt; Bool {
-    for lhsItem in lhs {
-        for rhsItem in rhs {
-            if lhsItem == rhsItem {
-                return true
-            }
-        }
-    }
-    return false
-}
-tienenElementosComunes([1, 2, 3], [3])</code></pre>
-
-<ul>
-<li>Escribir <code>&lt;T: Equatable&gt;</code> es lo mismo que escribir <code>&lt;T where T: Equatable&gt;</code>.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="tiposeinferenciadetipos">Tipos e inferencia de tipos</h3>
-<pre><code class="swift">let implicitInteger = 70
-let implicitDouble = 70.0
-let explicitDouble: Double = 70</code></pre>
-
-<p>Los tipos de las variables se <strong>infieren</strong> a partir de los tipos devueltos por las expresiones de la derecha.</p>
-
-<blockquote>
-<p>Crea una constante con el tipo explícito de Float y un valor de 4.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="conversióndetipos">Conversión de tipos</h3>
-
-<ul>
-<li>Los valores nunca se convierten implícitamente a otro tipo. Si necesitas convertir un valor a un tipo diferente, construye explícitamente una instancia del tipo deseado.</li>
-</ul>
-<pre><code class="swift">let etiqueta = &quot;El ancho es &quot;
-let ancho = 94
-let anchoEtiqueta = etiqueta + String(ancho)</code></pre>
-
-<blockquote>
-<p>Intenta eliminar la conversión a <code>String</code> en la última línea. ¿Qué error obtienes?</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="valoresencadenas">Valores en cadenas</h3>
-
-<ul>
-<li>Podemos incluir un valor en una cadena escribiendo el valor entre paréntesis y una barra invertida (<code>\</code>) antes de los paréntesis. Por ejemplo:</li>
-</ul>
-<pre><code class="swift">let manzanas = 3
-let naranjas = 5
-let resumenManzanas = &quot;Tengo \(manzanas) manzanas.&quot;
-let resumenFrutas = &quot;Tengo \(manzanas + naranjas) frutas.&quot;</code></pre>
-
-<blockquote>
-<p>Usa <code>\()</code> para incluir un cálculo en punto flotante en una cadena y para incluir el nombre de alguien en un saludo.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="arraysydiccionarios">Arrays y diccionarios</h3>
-<pre><code class="swift">var listaCompra = [&quot;huevos&quot;, &quot;agua&quot;, &quot;tomates&quot;, &quot;pant&quot;]
-listaCompra[1] = &quot;botella de agua&quot;
-
-var trabajos = [
-    &quot;Malcolm&quot;: &quot;Capitán&quot;,
-    &quot;Kaylee&quot;: &quot;Mecánico&quot;,
-]
-trabajos[&quot;Jayne&quot;] = &quot;Relaciones públicas&quot;</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="inicializaciónarraysydiccionariosvacíos">Inicialización arrays y diccionarios vacíos</h3>
-<pre><code class="swift">let arrayVacio = [String]()
-let diccionarioVacio = [String: Float]()</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="arraysydiccionariosvacíoscontiposinferidos">Arrays y diccionarios vacíos con tipos inferidos</h3>
-<pre><code class="swift">listaCompra = []
-trabajos = [:]</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="controldeflujo">Control de flujo</h3>
-
-<ul>
-<li>Se usa <code>if</code> y <code>switch</code> para hacer condicionales y <code>for-in</code>, <code>for</code>, <code>while</code> y <code>repeat-while</code> para hacer bucles.</li>
-<li>Los paréntesis alrededor de las condiciones o de la variable del bucle son opcionales.</li>
-<li>Se requieren llaves alrededor del cuerpo.</li>
-</ul>
-<pre><code class="swift">let puntuacionesIndividuales = [75, 43, 103, 87, 12]
-var punutacionEquipo = 0
-for puntuacion in puntuacionesIndividuales {
-    if puntacion &gt; 50 {
-        puntuacionEquipo += 3
-    } else {
-        puntuacionEquipo += 1
-    }
-}
-print(puntuacionEquipo)</code></pre>
-
-<ul>
-<li>En una sentencia <code>if</code>, el condicional debe ser una expresión booleana; esto significa que código como <code>if score { ... }</code> es un error, no una comparación implícita con cero.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="valoresopcionales">Valores opcionales</h3>
-
-<ul>
-<li>Puedes usar <code>if</code> y <code>let</code> juntos para trabajar con valores que pueden faltar, valores se representan como opcionales.</li>
-<li>Un valor opcional o bien contiene un valor o contiene <code>nil</code> para indicar que el valor falta.</li>
-<li>Escribimos una interrogación (<code>?</code>) después del tipo de un valor para marcar el valor como opcional.</li>
-</ul>
-<pre><code class="swift">var cadenaOpcional: String? = &quot;Hola&quot;
-print(cadenaOpcional == nil)
-
-var nombreOpcional: String? = &quot;John Appleseed&quot;
-var saludo = &quot;Hello!&quot;
-if let nombre = nombreOpcional {
-    saludo = &quot;Hola, \(nombre)&quot;
-}</code></pre>
-
-<blockquote>
-<p>Cambia <code>nombreOpcional</code> a <code>nil</code>. ¿Qué saludo obtienes? Añade una cláusula <code>else</code> que establezca un saludo diferente si <code>nombreOpcional</code> es <code>nil</code>.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="opcionalessinvalor">Opcionales sin valor</h3>
-
-<ul>
-<li>Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador <code>??</code>. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.</li>
-</ul>
-<pre><code class="swift">let nombrePila: String? = nil
-let nombreCompleto: String = &quot;John Appleseed&quot;
-let saludoInformal = &quot;¿Qué tal, \(nombrePila ?? nombreCompleto)?&quot;</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="sentenciaswitch">Sentencia <code>switch</code></h3>
-
-<ul>
-<li>Las sentencias <code>switch</code> permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.</li>
-</ul>
-<pre><code class="swift">let verdura = &quot;pimiento rojo&quot;
-switch verdura {
-    case &quot;zanahoria&quot;:
-        print(&quot;Buena para la vista.&quot;)
-    case &quot;lechuga&quot;, &quot;tomates&quot;:
-        print(&quot;Podrías hacer una buena ensalada.&quot;)
-    case let x where x.hasPrefix(&quot;pimiento&quot;):
-        print(&quot;¿Es un \(x) picante?&quot;)
-    default:
-        print(&quot;Siempre puedes hacer una buena sopa.&quot;)
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="buclefor-insobrediccionarios">Bucle <code>for-in</code> sobre diccionarios</h3>
-<pre><code class="swift">let numerosInteresantes = [
-    &quot;Primos&quot;: [2, 3, 5, 7, 11, 13],
-    &quot;Fibonacci&quot;: [1, 1, 2, 3, 5, 8],
-    &quot;Cuadrados&quot;: [1, 4, 9, 16, 25],
-]
-var mayor = 0
-for (clase, numeros) in numerosInteresantes {
-    for numero in numeros {
-        if numero &gt; mayor {
-            mayor = numero
-        }
-    }
-}
-print(mayor)</code></pre>
-
-<blockquote>
-<p>Añade otra variable para seguir qué clase de número es el mayor.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="buclewhile">Bucle <code>while</code></h3>
-
-<ul>
-<li>Usamos <code>while</code> para repetir un bloque de código hasta que una condición cambie.</li>
-</ul>
-<pre><code class="swift">var n = 2
-while n &lt; 100 {
-    n = n * 2
-}
-print(n)</code></pre>
-
-<p>La condición de un bucle puede estar también al final, asegurando que el bucle se ejecuta al menos una vez.</p>
-<pre><code class="swift">var m = 2
-repeat {
-    m = m * 2
-} while m &lt; 100
-print(m)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="rangos">Rangos</h3>
-<pre><code class="swift">var primerBucleFor = 0
-for i in 0..&lt;4 {
-    primerBucleFor += i
-}
-print(primerBucleFor)
-
-var segundoBucleFor = 0
-for i in 0...4 {
-    segundoBucleFor += i
-}
-print(segundoBucleFor)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="función">Función</h3>
-
-<ul>
-<li>Usamos <code>func</code> para declarar una función. Usamos <code>-&gt;</code> para separar los nombres de los parámetros y sus tipos del tipo devuelto de la función.</li>
-<li>Para llamar a una función hay que escribir el nombre externo de los parámetros 2 .. n. El primer parámetro se pasa sin escribir su nombre.</li>
-</ul>
-<pre><code class="swift">func saluda(nombre: String, dia: String) -&gt; String {
-    return &quot;Hola \(nombre), hoy es \(dia).&quot;
-}
-saluda(&quot;Bob&quot;, dia: &quot;martes&quot;)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="tuplas">Tuplas</h3>
-<pre><code class="swift">func calculaEstadisticas(puntuaciones: [Int]) -&gt; 
-                        (min: Int, max: Int, sum: Int) {
-    var min = puntuaciones[0]
-    var max = puntuaciones[0]
-    var sum = 0
-
-    for puntuacion in puntuaciones {
-        if puntuacion &gt; max {
-            max = puntuacion
-        } else if puntuacion &lt; min {
-            min = puntuacion
-        }
-        sum += puntuacion
-    }
-
-    return (min, max, sum)
-}
-let estadisticas = calculaEstadisticas([5, 3, 100, 3, 9])
-print(estadisticas.sum)
-print(estadisticas.2)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="númerovariabledeargumentos">Número variable de argumentos</h3>
-
-<ul>
-<li>Las funciones también pueden tener un número variable de argumentos, agrupándose todos ellos en un array.</li>
-</ul>
-<pre><code class="swift">func sumaDe(numeros: Int...) -&gt; Int {
-    var suma = 0
-    for numeros in numeros {
-        suma += numeros
-    }
-    return suma
-}
-sumaDe()
-sumaDe(42, 597, 12)</code></pre>
-
-<blockquote>
-<p>Escribe una función que calcule la media de sus argumentos.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="funcionesanidadas">Funciones anidadas</h3>
-
-<ul>
-<li>Las funciones pueden anidarse. Las funciones pueden acceder variables declaradas en la función exterior. Puedes usar funciones anidadas para organizar el código en una función que es larga o complicada.</li>
-</ul>
-<pre><code class="swift">func devuelveQuince() -&gt; Int {
-    var y = 10
-    func suma() {
-        y += 5
-    }
-    suma()
-    return y
-}
-devuelveQuince()</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="lasfuncionessonuntipodeprimeraclase">Las funciones son un tipo de primera clase</h3>
-
-<ul>
-<li>Las funciones son un tipo de primera clase. Una función puede devolver otra función como resultado.</li>
-</ul>
-<pre><code class="swift">func construyeIncrementador() -&gt; ((Int) -&gt; Int) {
-    func sumaUno(numero: Int) -&gt; Int {
-        return 1 + numero
-    }
-    return sumaUno
-}
-var incrementa = construyeIncrementador()
-incrementa(7)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="funciónargumentodeotrafunción">Función argumento de otra función</h3>
-
-<ul>
-<li>Una función puede tomar otra función como uno de sus argumentos.</li>
-</ul>
-<pre><code class="swift">func cumpleCondicion(lista: [Int], condicion: (Int) -&gt; Bool) -&gt; Bool {
-    for item in lista {
-        if condicion(item) {
-            return true
-        }
-    }
-    return false
-}
-func menorQueDiez(numero: Int) -&gt; Bool {
-    return numero &lt; 10
-}
-var numeros = [20, 19, 7, 12]
-cumpleCondicion(numeros, condicion: menorQueDiez)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="clausuras">Clausuras</h3>
-
-<ul>
-<li>Clausura: bloque de código que puede ser llamado después.</li>
-<li>El código en la clausura tiene acceso a cosas como variables y funciones que estaban disponibles en el ámbito (<em>scope</em>) en el que se creó la clausura, incluso si la clausura se está en un ámbito distinto cuando se ejecuta; ya viste un ejemplo de esto con las funciones anidadas.</li>
-</ul>
-<pre><code class="swift">numeros.map({
-    (numero: Int) -&gt; Int in
-    let resultado = 3 * numero
-    return resultado
-})</code></pre>
-
-<blockquote>
-<p>Reescribe la clausura para que devuelva cero para todos los números impares.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="formasabreviadasdeclausuras">Formas abreviadas de clausuras</h3>
-
-<ul>
-<li>Cuando ya se conoce el tipo de una clausura se puede omitir el tipo de sus parámetros, el tipo devuelto o ambos.</li>
-<li>Las clausuras escritas en una línea devuelven implícitamente el valor de su única sentencia.</li>
-</ul>
-<pre><code class="swift">let numerosMapeados = numeros.map({ numero in 3 * numero })
-print(numerosMapeados)</code></pre>
-
-<ul>
-<li>Podemos referirnos a los parámetros por número en lugar de por nombre.</li>
-<li>Una clausura pasada como último argumento puede aparecer inmediatamente después de los paréntesis.</li>
-<li>Cuando una clausura es el único argumento de una función, puedes omitir los paréntesis por completo.</li>
-</ul>
-<pre><code class="swift">let numerosOrdenados = numeros.sort { $0 &gt; $1 }
-print(numerosOrdenados)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="clases">Clases</h3>
-
-<ul>
-<li>Usamos <code>class</code> seguido por el nombre de la clase para crear una clase.</li>
-<li>Una declaración de una propiedad en una clase se escribe de la misma forma que la declaración de una constante o una variable, excepto que está en el contexto de una clase.</li>
-<li>De la misma forma, las declaraciones de los métodos se escriben de la misma forma que las funciones.</li>
-</ul>
-<pre><code class="swift">class Figura {
-    var numeroDeLados = 0
-    func descripcionSencilla() -&gt; String {
-        return &quot;Una figura con \(numeroDeLados) lados.&quot;
-    }
-}</code></pre>
-
-<blockquote>
-<p>Añade una propiedad constante con <code>let</code>, y añade otro método que tome un argumento.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="instanciasdeclases">Instancias de clases</h3>
-
-<ul>
-<li>Creamos una instancia de una clase poniendo paréntesis después del nombre de la clase.</li>
-<li>Usamos la sintaxis de punto para acceder a las propiedades y los métodos de la instancia.</li>
-</ul>
-<pre><code class="swift">var figura = Figura()
-figura.numeroDeLados = 7
-var descripcionFigura = figura.descripcionSencilla()</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="inicializadores">Inicializadores</h3>
-
-<ul>
-<li>Se definen los inicializadores con <code>init</code></li>
-</ul>
-<pre><code class="swift">class FiguraConNombre {
-    var numeroDeLados: Int = 0
-    var nombre: String
-    
-    init(nombre: String) {
-        self.nombre = nombre
-    }
-    
-    func descripcionSencilla() -&gt; String {
-        return &quot;Una figura con \(numeroDeLados) lados.&quot;
-    }
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="subclases">Subclases</h3>
-
-<ul>
-<li>Las subclases incluyen el nombre de su subclase después del nombre de la clase, separado por una coma.</li>
-<li>No hay ningún requisito de que las clases deban ser subclases de alguna clase raíz, por lo que puedes omitir una superclase si así lo necesitas.</li>
-<li>Los métodos en una subclase que sobreescriben la implementación de la superclase se marcan con <code>override</code>; la sobreescritura de un método por accidente, sin <code>override</code>, se detecta por el compilador como un error. El compilador también detecta métodos con <code>override</code> que realmente no sobreescriben ningún método de la superclase.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="ejemplo">Ejemplo</h3>
-<pre><code class="swift">class Cuadrado: FiguraConNombre {
-    var longitudLado: Double
-    
-    init(longitudLado: Double, nombre: String) {
-        self.longitudLado = longitudLado
-        super.init(nombre: nombre)
-        numeroDeLados = 4
-    }
-    
-    func area() -&gt;  Double {
-        return longitudLado * longitudLado
-    }
-    
-    override func descripcionSencilla() -&gt; String {
-        return &quot;Un cuadrado con lados de longitud \(longitudLado).&quot;
-    }
-}
-let test = Cuadrado(longitudLado: 5.2, nombre: &quot;Mi cuadrado de prueba&quot;)
-test.area()
-test.descripcionSencilla()</code></pre>
-
-<blockquote>
-<p>Construye otra subclase de <code>FiguraConNombre</code> llamada <code>Circulo</code> que tome un radio y un nombre como argumentos de su inicializador. Implementa un método <code>area()</code> y <code>descripcionSencilla()</code> en la clase <code>Circulo</code>.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="gettersysettersenpropiedades">Getters y setters en propiedades</h3>
-
-<ul>
-<li>Además de propiedades simples que se almacenan, las propiedades pueden tener un <em>getter</em> y un <em>setter</em>.</li>
-</ul>
-<pre><code class="swift">class TrianguloEquilatero: FiguraConNombre {
-    var longitudLado: Double = 0.0
-    
-    init(longitudLado: Double, nombre: String) {
-        self.longitudLado = longitudLado
-        super.init(nombre: nombre)
-        numeroDeLados = 3
-    }
-    
-    var perimetro: Double {
-        get {
-            return 3.0 * longitudLado
-        }
-        set {
-            longitudLado = newValue / 3.0
-        }
-    }
-    
-    override func descripcionSencilla() -&gt; String {
-        return &quot;Un triangulo equilátero con lados de longitud \(longitudLado).&quot;
-    }
-}
-var triangulo = TrianguloEquilatero(longitudLado: 3.1, nombre: &quot;un triángulo&quot;)
-print(triangulo.perimetro)
-triangulo.perimetro = 9.9
-print(triangulo.longitudLado)</code></pre>
-
-<hr />
-
-<p>Date cuenta de que el inicializador de la clase <code>TrianguloEquilatero</code> tiene tres pasos diferentes:</p>
-
-<ol>
-<li>Establecer el valor de las propiedades que declara la subclase.</li>
-<li>Llamar al inicializador de la superclase.</li>
-<li>Cambiar el valor de las propiedades definidas por la superclase. Cualquier trabajo adicional que use métodos, <em>getters</em> o <em>setters</em> puede hacerse también en este punto.</li>
-</ol>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="willsetydidset"><code>willSet</code> y <code>didSet</code></h3>
-
-<ul>
-<li>Si necesitamos proporcionar código que se ejecuta antes y después de establecer un nuevo valor, usaremos <code>willSet</code> y <code>didSet</code>. El código proporcionado se ejecuta cada vez que el valor cambia fuera de un inicializador.</li>
-<li>Por ejemplo, la siguiente clase se asegura de que la longitud del lado de su triángulo siempre es la misma que la longitud del lado de su cuadrado.</li>
-</ul>
-<pre><code class="swift">class TrianguloYCuadrado {
-    var triangulo: TrianguloEquilatero {
-        willSet {
-            cuadrado.longitudLado = newValue.longitudLado
-        }
-    }
-    var cuadrado: Cuadrado {
-        willSet {
-            triangulo.longitudLado = newValue.longitudLado
-        }
-    }
-    init(tamaño: Double, nombre: String) {
-        cuadrado = Cuadrado(longitudLado: tamaño, nombre: nombre)
-        triangulo = TrianguloEquilatero(longitudLado: tamaño, nombre: nombre)
-    }
-}
-var trianguloYCuadrado = TrianguloYCuadrado(tamaño: 10, nombre: &quot;Otra figura de prueba&quot;)
-print(trianguloYCuadrado.cuadrado.longitudLado)
-print(trianguloYCuadrado.triangulo.longitudLado)
-trianguloYCuadrado.cuadrado = Cuadrado(longitudLado: 50, nombre: &quot;Cuadrado mayor&quot;)
-print(trianguloYCuadrado.triangulo.longitudLado)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="valoresopcionalesenmétodos">Valores opcionales en métodos</h3>
-
-<ul>
-<li>Cuando trabajamos con valores opcionales, podemos escribir <code>?</code> antes de operaciones como métodos, propiedades y subíndices.</li>
-<li>Si el valor antes del <code>?</code> es <code>nil</code>, todo lo que hay después se ignora y el valor de la expresión completa es <code>nil</code>. En otro caso, el valor opcional se desenvuelve, y todo lo que hay después del <code>?</code> se realiza sobre el valor desenvuelto.</li>
-<li>En ambos casos, el valor de la expresión completa es un valor opcional.</li>
-</ul>
-<pre><code class="swift">let cuadradoOpcional: Cuadrado? = 
-          Cuadrado(longitudLado: 2.5, nombre: &quot;Cuadrado opcional&quot;)
-let longitudLado = cuadradoOpcional?.longitudLado</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="enumeraciones">Enumeraciones</h3>
-
-<ul>
-<li>Como las clases y otros tipos con nombre, las enumeraciones pueden tener métodos asociados.</li>
-</ul>
-<pre><code class="swift">enum Valor: Int {
-    case As = 1
-    case Dos, Tres, Cuatro, Cinco, Seis, Siete, Ocho, Nueve, Diez
-    case Sota, Caballo, Rey
-    func descripcionSencilla() -&gt; String {
-        switch self {
-        case .As:
-            return &quot;as&quot;
-        case .Sota:
-            return &quot;sota&quot;
-        case .Caballo:
-            return &quot;caballo&quot;
-        case .Rey:
-            return &quot;rey&quot;
-        default:
-            return String(self.rawValue)
-        }
-    }
-}
-let carta = Valor.As
-let valorBrutoCarta = carta.rawValue</code></pre>
-
-<blockquote>
-<p>Escribe una función que compare dos valores <code>Valor</code> usando sus valores brutos.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="struct">Struct</h3>
-
-<h3 id="conversióndetiposnuméricos">Conversión de tipos numéricos</h3>
-<pre><code class="swift">let tres = 3
-let puntoUnoCuatroUnoCincoNueve = 0.14159
-let pi = tres + puntoUnoCuatroUnoCincoNueve  // error
-let pi = Double(tres) + puntoUnoCuatroUnoCincoNueve
-// pi se infiere de tipo Double</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="booleans"><em>Booleans</em></h3>
-
-<ul>
-<li>El tipo <em>booleano</em> es <code>Bool</code>. Existen dos constantes: <code>true</code> y <code>false</code>.</li>
-<li>En las sentencias <code>if</code> sólo se admiten condiciones booleanas</li>
-</ul>
-<pre><code class="swift">if i { 
-    // este ejemplo no compila y da error
-} </code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="optionals"><em>Optionals</em></h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="definición">Definición</h2>
-
-<ul>
-<li>En Swift todos los tipos deben tener valor:</li>
-</ul>
-<pre><code class="swift">var saludo = &quot;Hola&quot;
-saludo = nil
-// error: una variable de tipo no puede tener el valor nil</code></pre>
-
-<p>Los <em>opcionales</em> permiten expresar situaciones en las que un valor puede estar ausente. </p>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> El tipo <code>String?</code> representa un <code>String</code> <em>opcional</em>. Una variable de ese tipo puede contener un <code>String</code> o <code>nil</code>:</li>
-</ul>
-<pre><code class="swift">var saludo: String? = &quot;Hola&quot;
-saludo = nil
-println(&quot;Mi saludo es \(saludo)&quot;)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<hr />
-
-<p>El concepto de <em>optional</em> no existe ni en C, ni en Objective-C. Lo más cercano en Objective-C es la posibilidad de devolver <code>nil</code> desde un método que en otras ocasiones debería devolver un objeto. Sin embargo, esto sólo funciona para objetos, no funciona ni para estructuras, ni para tipos básicos de C, ni para enumeraciones. Para estos tipos Objective-C devuelve típicamente un valor especial (como <code>NSNotFound</code>) para indicar la ausencia de valor.</p>
-
-<p>El problema de este enfoque es que se asume que el llamador del método sabe que hay que chequear este valor especial, pero no hay nada en el tipo que lo indique y que pueda ser utilizado por el compilador para detectar posibles errores. Además, se debe saber cuál es el literal que define este valor especial.</p>
-
-<p>Los opcionales de Swift permiten expresar la ausencia de valor en <em>cualquier tipo</em>, sin la necesidad de constantes especiales.</p>
-
-<blockquote>
-<p>Importante: <code>String? saludo</code> representa que la variable <code>saludo</code> puede tener un valor de tipo <code>String</code> o que puede no tener valor. No que sea un <code>String</code> que puede tener el valor <code>nil</code>. En Swift los valores de los tipos nunca pueden ser <code>nil</code>.</p>
-</blockquote>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="métodosquedevuelvenoptionals">Métodos que devuelven <em>optionals</em></h4>
-
-<ul>
-<li>En Swift no existen excepciones.</li>
-<li>La forma de indicar que se ha producido un error es devolviendo un <em>optional</em>.</li>
-</ul>
-<pre><code class="swift">let numero = &quot;123&quot;
-let numeroConError = &quot;123a&quot;
-let numeroConvertido = numero.toInt()
-⇒ numeroConvertido: Int? = 123
-let numeroConvertidoConError = numeroConError.toInt()
-⇒ numeroConvertido2: Int? = nil</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="desenvolverunoptional">Desenvolver un <em>optional</em></h4>
-
-<ul>
-<li>Un <em>optional</em> no es un valor del tipo opcional, el valor está <em>envuelto</em> (<em>wrapped</em>). Obtendremos un error si lo intentamos usar como <em>optional</em>.</li>
-</ul>
-<pre><code class="swift">numeroConvertido + 100
-\\ error: value of optional type &apos;Int?&apos; not unwrapped;</code></pre>
-
-<p><!-- .element: class="fragment" data-fragment-index="1" --> El valor de un <em>optional</em> se puede <em>desenvolver</em> usando la exclamación (<code>!</code>):</p>
-<pre><code class="swift">numeroConvertido! + 100
-⇒ Int = 223</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Si desenvolvemos <code>nil</code> se obtiene un error en tiempo de ejecución:</li>
-</ul>
-<pre><code class="swift">numeroConvertidoConError! + 100
-⇒ fatal error: unexpectedly found nil unwrapping an Optional</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="cómocomprobarsiunoptionalesnil">Cómo comprobar si un <em>optional</em> es <code>nil</code></h4>
-
-<ul>
-<li>Se puede comparar con <code>nil</code> y obtener su valor:</li>
-</ul>
-<pre><code class="swift">if numeroConvertido != nil { 
-    println(&quot;Valor entero: \(numeroConvertido!)&quot;)
-}</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Se puede usar <em>optional binding</em>:</li>
-</ul>
-<pre><code class="swift">if let numeroVerdadero = posibleNumero.toInt() {
-    println(&quot;Numero convertido: \(numeroVerdadero)&quot;)
-} else { 
-    println(&quot;\(posibleNumero) no se pudo convertir a entero&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="opcionalesimplícitamentedesenvueltos">Opcionales implícitamente desenvueltos</h4>
-
-<ul>
-<li>En inglés: <em>implicitly unwrapped optionals</em>.</li>
-</ul>
-<pre><code class="swift">let posibleCadena: String? = &quot;Hola&quot;
-let supuestaCadena: String! = &quot;Hola&quot;
-let cadena1: String = posibleCadena!
-let cadena2: String = supuestaCadena // No es necesario desdenvolver</code></pre>
-<pre><code class="swift">let numero: Int! = &quot;100&quot;.toInt()
-let numero2 = numero + 200 // No es necesario desenvolver numero</code></pre>
-
-<ul>
-<li>Es un opcional que puede usarse como un no opcional, sin necesidad de desenvolver el valor opcional cada vez que se accede.</li>
-</ul>
-
-<hr />
-
-<p>Se puede pensar en un opcional implícitamente desenvuelto como una forma de desenvolver automáticamente la variable cada vez que se usa. En lugar de poner una exclamación cada vez que se usa, se pone sólo una vez cuando se declara.</p>
-
-<p>Se puede tratar un opcional implícitamente desenvuelto como un opcional normal, comprobando si contiene un valor:</p>
-<pre><code class="swift">if numero != nil { 
-     println(numero) 
-}
-// Imprime el int implícitamente desenvuelto	 </code></pre>
-
-<p>Pero no es recomendable hacer esto. Si hay que chequear si una variable es <code>nil</code> es mejor declararla como opcional.</p>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="llamandoamétodosenopcionales">Llamando a métodos en opcionales</h4>
-
-<ul>
-<li>Aunque un opcional tenga el valor <code>nil</code> es posible llamar a propiedades, métodos, etc. de la clase original y estas llamadas siempre devolverán <code>nil</code>.</li>
-<li>Se denomina <em>optional chaining</em>.</li>
-</ul>
-<pre><code class="swift">class Person {
-    var residence: Residence?
-}
- 
-class Residence {
-    var numberOfRooms = 1
-}</code></pre>
-<pre><code class="swift">let roomCount = john.residence?.numberOfRooms
-println(&quot;John&apos;s residence has \(roomCount) room(s).&quot;</code></pre>
-
-<ul>
-<li><code>roomCount</code> será de tipo <code>Int?</code> y tendrá <code>nil</code> o un valor dependiendo de si <code>residence</code> está inicializada.</li>
-<li>Más información sobre <em>optional chaining</em> en <a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/OptionalChaining.html#//apple_ref/doc/uid/TP40014097-CH21-ID245">este enlace</a>.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="cadenasycaracteres">Cadenas y caracteres</h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="aspectosgenerales">Aspectos generales</h3>
-
-<ul>
-<li>Implementación moderna y rápida. Guardan caracteres Unicode.</li>
-<li>Se puede usar todo el API <code>NSString</code>.</li>
-<li>Se puede usar cadenas para insertar constantes, variables y expresiones dentro de cadenas más largas (<em>interpolación de cadenas</em>), lo que hace fácil la creación de valores <em>custom</em> de cadenas para mostrarlos por pantalla, almacenarlos o imprimirlos.</li>
-<li>Las cadenas son objetos de <em>tipo valor</em>. Esto quiere decir que cuando se asignan o se pasan como parámetro siempre se realiza una copia de valor y no una copia de referencia. El compilador optimiza el funcionamiento de las cadenas para hacer eficiente este comportamiento.</li>
-</ul>
-<pre><code class="swift">for caracter in &quot;áé@#😀\u{1F425}&quot; { 
-   println(caracter) 
-} </code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="operacionessobrecadenas">Operaciones sobre cadenas</h3>
-
-<ul>
-<li>El operador <code>+</code> se utiliza para concatenar cadenas. Es posible mutar cadenas cuando las variables son de tipo <code>var</code>.</li>
-<li>El método <code>isEmpty</code> se utiliza para comprobar si una cadena es vacía:</li>
-</ul>
-<pre><code class="swift">var cadenaVacia = &quot;&quot;
-if cadenaVacia.isEmpty { 
-    cadenaVacia += &quot;Hola&quot; 
-    println(cadenaVacia + &quot; ya no está vacía&quot;) 
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="comparacionesentrecadenas">Comparaciones entre cadenas</h3>
-
-<ul>
-<li>La igualdad de cadenas se compara con el operador <code>==</code>. Podemos también comparar si una es el prefijo o el sufijo de otra con los métodos <code>hasPrefix</code> y <code>hasSuffix</code>:</li>
-</ul>
-<pre><code class="swift">let cadena1 = &quot;Hola, amigos&quot;
-let cadena2 = &quot;Hola, amigos&quot;
-let cadena3 = &quot;Hola&quot;
-let cadena4 = &quot;, amigos&quot;
-if cadena1 == cadena2 &amp;&amp;
-   cadena1.hasPrefix(cadena3) &amp;&amp;
-   cadena1.hasSuffix(cadena4) {
-   println(&quot;Iguales, prefijo y sufijo&quot;)
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="tiposcollection">Tipos <em>Collection</em></h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="arraysydiccionarios">Arrays y diccionarios</h3>
-
-<ul>
-<li>Los más importantes: arrays y diccionarios.</li>
-<li>Arrays: listas ordenads de valores de un mismo tipo.</li>
-<li>Diccionarios: colecciones desordenadas de valores de un mismo tipo que pueden ser referenciados y buscados a través de un identificador único (<em>clave</em>).</li>
-<li>La mutabilidad o inmutabilidad de las colecciones dependen de si se asignan a variables (<code>var</code>) o a constantes (<code>let</code>).</li>
-</ul>
-<pre><code class="swift">var listaCompra: [String] = [&quot;Huevos&quot;, &quot;Tomates&quot;, &quot;Pan&quot;]
-listaCompra[2] = &quot;Fruta&quot;</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="arrays">Arrays</h3>
-
-<ul>
-<li>Es posible aumentar el tamaño de un array con el método <code>append</code> y con el operador <code>+=</code>:</li>
-</ul>
-<pre><code class="swift">listaCompra.append(&quot;Harina&quot;)
-listaCompra += [&quot;Queso&quot;, &quot;Mantequilla&quot;, &quot;Chocolate&quot;]</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Iteración sobre arrays:</li>
-</ul>
-<pre><code class="swift">for item in listaCompra {
-    println(item)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<pre><code class="swift">for (index, value) in enumerate(listaCompra) {
-    println(&quot;Item \(index + 1): \(value)&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="diccionarios">Diccionarios</h3>
-
-<ul>
-<li>Inicialización y declaración:</li>
-</ul>
-<pre><code class="swift">var aeropuertos: [String: String] = [&quot;YYZ&quot;: &quot;Toronto Pearson&quot;,
-                                     &quot;DUB&quot;: &quot;Dublin&quot;]</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> El acceso devuelve un valor opcional y devuelve <code>nil</code> si la clave no existe:</li>
-</ul>
-<pre><code class="swift">if let nombreAeropuerto = aeropuertos[&quot;YYZ&quot;] {
-   println(&quot;Aeropuerto YYZ = \(nombreAeropuerto)&quot;)
-} else {
-   println(&quot;El aeropuerto no está en el diccionario&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="modificacióndediccionarios">Modificación de diccionarios</h3>
-
-<ul>
-<li>Añadir elementos:</li>
-</ul>
-<pre><code class="swift">aeropuertos[&quot;LHR&quot;] = &quot;London&quot;
-// el diccionario tiene ahora tres ítems
-aeropuertos[&quot;LHR&quot;] = &quot;London Heathrow&quot;
-// cambiamos un ítem</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Actualizar y recuperar el valor antiguo:</li>
-</ul>
-<pre><code class="swift">if let antiguo = aeropuertos.updateValue(&quot;Dublin Airport&quot;,
-                                         forKey: &quot;DUB&quot;) {
-   println(&quot;El valor antiguo de DUB era \(antiguo)&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="iteraciónsobreundiccionario">Iteración sobre un diccionario</h3>
-
-<ul>
-<li>Iteración de clave y valor:</li>
-</ul>
-<pre><code class="swift">for (codigoAeropuerto, nombreAeropuerto) in aeropuertos {
-    println(&quot;\(codigoAeropuerto): \(nombreAeropuerto)&quot;)
-}</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Iteración por las claves:</li>
-</ul>
-<pre><code class="swift">for codigoAeropuerto in aeropuertos.keys {
-    println(&quot;Código aeropuerto: \(codigoAeropuerto)&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Iteración por los valores:</li>
-</ul>
-<pre><code class="swift">for nombreAeropuerto in aeropuertos.values {
-    println(&quot;Nombre aeropuerto: \(nombreAeropuerto)&quot;)
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="tuplas">Tuplas</h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="definiciónyaccesoatuplas">Definición y acceso a tuplas</h3>
-
-<ul>
-<li>Una tupla agrupa varios valores en un único valor compuesto</li>
-<li>El tipo de la tupla es <code>(Int, String)</code></li>
-</ul>
-<pre><code class="swift">let http404Error = (404, &quot;Not Found&quot;)</code></pre>
-
-<ul>
-<li>Para obtener los valores de la tupla podemos <em>descomponerla</em>. Si queremos ignorar una parte podemos utilizar un subrrayado (<code>_</code>).</li>
-</ul>
-<pre><code class="swift">let (statusCode, statusMensaje) = http404Error
-⇒ statusCode: Int = 404
-⇒ statusMensaje: String = &quot;Not Found&quot;
-let (soloStatusCode, _) = http404Error</code></pre>
-
-<p>También podemos acceder por posición:</p>
-<pre><code class="swift">println(&quot;El código de estado es \(http404Error.0)&quot;)
-⇒ El código de estado es 404</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="controldeflujo">Control de flujo</h2>
-
-<p><strong><em>Ejercicio de lectura</em></strong>: Estudia por tu cuenta las páginas XX-XX del libro <em>The Swift Programming Language</em>.</p>
-
-<ul>
-<li>Bucle <code>for-in</code> y <code>for</code></li>
-<li>Bucle <code>while</code></li>
-<li>Bucle <code>do-while</code></li>
-<li>Sentencia <code>if</code></li>
-<li>Sentencia <code>switch</code> y distintas condiciones <code>case</code>: rango, tuplas</li>
-<li>Sentencias de transferencia de control: <code>continue</code>, <code>break</code>, <code>fallthrough</code>, <code>return</code></li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="funciones">Funciones</h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="definiciónyllamadasafunciones">Definición y llamadas a funciones</h3>
-
-<ul>
-<li>Definición de una función:</li>
-</ul>
-<pre><code class="swift">func diHola(nombrePersona: String) -&gt; String {
-    let saludo = &quot;¡Hola, &quot; + nombrePersona + &quot;!&quot;
-    return saludo
-}</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Llamada a una función:</li>
-</ul>
-<pre><code class="swift">println(diHola(&quot;Ana&quot;))
-⇒ ¡Hola, Ana!
-println(diHola(&quot;Jordi&quot;))
-⇒ ¡Hola, Jordi!</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Podemos simplificar la definición de la función a una única línea:</li>
-</ul>
-<pre><code class="swift">func diHolaOtraVez(nombrePersona: String) -&gt; String {
-    return &quot;¡Hola otra vez, &quot; + nombrePersona + &quot;!&quot;
-}
-println(diHola(&quot;Ana&quot;))
-⇒ ¡Hola otra vez, Ana!</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="nombresexternosdeparámetros">Nombres externos de parámetros</h3>
-
-<ul>
-<li>Nombres externos de parámetros:</li>
-</ul>
-<pre><code class="swift">func join(string s1: String, toString s2: String,
-          withJoiner joiner: String) -&gt; String {
-    return s1 + joiner + s2
-}
-join(string: &quot;Hola&quot;, toString: &quot;mundo&quot;, withJoiner: &quot;, &quot;)
-⇒ Hola, mundo</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Los mismos nombres externos e internos:</li>
-</ul>
-<pre><code class="swift">func containsCharacter(#string: String, #characterToFind: Character)
-        -&gt; Bool {
-    for character in string {
-        if character == characterToFind {
-            return true
-        }
-    }
-    return false
-}
-containsCharacter(string: &quot;cerdo hormiguero&quot;, characterToFind: &quot;u&quot;)
-⇒ true</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="valorespordefecto">Valores por defecto</h3>
-
-<ul>
-<li>Es posible definir valores por defecto en los parámetros. En ese caso, el nombre del parámetro también es su nombre externo.</li>
-</ul>
-<pre><code class="swift">func join(s1: String, s2: String, joiner: String = &quot; &quot;) -&gt; String {
-    return s1 + joiner + s2
-}
-join(&quot;Hola&quot;, &quot;mundo&quot;, joiner: &quot;- &quot;)
-⇒ Hola-mundo
-join(&quot;Hola&quot;, &quot;mundo&quot;)
-⇒ Hola mundo</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="parámetrosconstantesyvariables">Parámetros constantes y variables</h3>
-
-<ul>
-<li>Por defecto los parámetros son constantes y no es posible cambiar su valor en el cuerpo de la función</li>
-<li>A veces es interesante tener <em>una copia</em> variable del parámetro en la función, para ahorrarnos la definición de variables auxiliares. Se puede conseguir con la palabra clave <code>var</code>:</li>
-</ul>
-<pre><code class="(null)">func alignRight(var string: String, count: Int, pad: Character) -&gt; String {
-    let amountToPad = count - countElements(string)
-    if amountToPad &lt; 1 {
-        return string
-    }
-    let padString = String(pad)
-    for _ in 1...amountToPad {
-        string = padString + string
-    }
-    return string
-}
-let originalString = &quot;hello&quot;
-let paddedString = alignRight(originalString, 10, &quot;*&quot;)
-// paddedString is equal to &quot;*****hello&quot;
-// originalString is still equal to &quot;hello&quot;</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="tiposfunción">Tipos <em>función</em></h3>
-
-<ul>
-<li>Cada función tiene un <em>tipo función</em> específico, definido a partir de los tipos de los parámetros y del tipo devuelto por la función.</li>
-<li>Por ejemplo:</li>
-</ul>
-<pre><code class="swift">func sumaDosInts(a: Int, b: Int) -&gt; Int {
-   return a + b
-}
-func multiplicaDosInts(a: Int, b: Int) -&gt; Int {
-   return a * b
-}</code></pre>
-
-<ul>
-<li>El tipo de estas dos funciones es <code>(Int, Int) -&gt; Int</code>, que puede leerse: &#8220;Un tipo función que tiene dos parámetros, ambos de tipo <code>Int</code> y que devuelve un valor de tipo <code>Int</code>.&#8221;</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="variablesdetipofunción">Variables de tipo función</h3>
-
-<ul>
-<li>Al igual que otros tipos de datos, en Swift es posible declarar variables o constantes de tipo función y asignarlas a funciones definidas.</li>
-</ul>
-<pre><code class="swift">var funcionMatematica: (Int, Int) -&gt; Int = sumaDosInts</code></pre>
-
-<ul>
-<li><p>Se puede entender así: &#8220;Define una variable llamada <code>funcionMatematica</code>, que tiene el tipo de una función que coge dos valores <code>Int</code> y devuelve un valor Int. Actualiza esta variable para que se refiera a la función llamada <code>sumaDosInts</code>&#8221;.</p></li>
-<li><p><!-- .element: class="fragment" data-fragment-index="1" --> Podemos llamar a <code>funcionMatematica</code> de la misma forma que se llama a cualquier otra función:</p></li>
-</ul>
-<pre><code class="swift">println(funcionMatematica(10, 20))
-⇒ 30</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Al ser una variable, podemos asignar otro valor a <code>funcionMatematica</code>:</li>
-</ul>
-<pre><code class="swift">funcionMatematica = multiplicaDosInts
-println(funcionMatematica(10, 20))
-⇒ 200</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-<hr />
-
-<p>Como cualquier otro valor de Swift, en las variables y constantes de tipo función también se realiza una inferencia de tipos:</p>
-<pre><code class="swift">let otraFuncionMatematica = sumaDosInts
-⇒ otraFuncionMatematica: (Int, Int) -&gt; Int = ...
-println(otraFuncionMatematica(2,3))
-⇒ 5</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="parámetrosdetipofunción">Parámetros de tipo función</h3>
-<pre><code class="swift">func doble(x: Int) -&gt; Int { return x + x }
-func cuadrado(x: Int) -&gt; Int { return x * x }
-func sumaRango(desde: Int, hasta: Int, f: (Int) -&gt; Int) -&gt; Int { 
-     var suma = 0 
-     for i in desde ... hasta { 
-         suma = suma + f(i)
-     } 
-     return suma 
-}
-println(sumaRango(1, 10, doble))
-⇒ 110
-println(sumaRango(1, 10, cuadrado))
-⇒ 385</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="resultadosdetipofunciónyfuncionesanidadas">Resultados de tipo función y funciones anidadas</h3>
-<pre><code class="swift">func seleccionaFuncionIncremento(haciaAtras: Bool) -&gt; (Int) -&gt; Int {
-    func pasoAtras(input: Int) -&gt; Int { return input - 1 }
-    func pasoAdelante(input: Int) -&gt; Int { return input + 1 }
-    return haciaAtras ? pasoAtras : pasoAdelante
-}
-var valorActual = -4
-let acercarseACero = seleccionaFuncionIncremento(valorActual &gt; 0)
-// acercarseACero ahora se refiere a la función anidada pasoAdelante()
-while valorActual != 0 {
-   println(&quot;\(valorActual)... &quot;)
-   valorActual = acercarseACero(valorActual)
-}
-println(&quot;cero!&quot;)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="clausuras">Clausuras</h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="definición">Definición</h3>
-
-<ul>
-<li>El concepto de <strong><em>clausura</em></strong> es idéntico al de <strong><em>bloque</em></strong> en Objective-C o <strong><em>lambda</em></strong> en otros lenguajes.</li>
-<li>Una clausura es una función (o bloque de código) creada en tiempo de ejecución que puede ser pasada a otras funciones y usada en tu código.</li>
-<li>Podemos definir clausuras:
-
-<ul>
-<li>Usando funciones anidadas.</li>
-<li>Usando expresiones de clausura (<em>closure expressions</em>).</li>
-</ul></li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="ejemplo">Ejemplo</h3>
-
-<ul>
-<li>Vamos a ver un ejemplo usando la función <code>sorted</code> que ordena un array:</li>
-</ul>
-<pre><code class="swift">let nombres = [&quot;Cris&quot;, &quot;Alex&quot;, &quot;Eva&quot;, &quot;Martín&quot;, &quot;Daniela&quot;]
-sorted(nombres)
-⇒ $R0: ([String]) = 5 values {
-  [0] = &quot;Alex&quot;
-  [1] = &quot;Cris&quot;
-  [2] = &quot;Daniela&quot;
-  [3] = &quot;Eva&quot;
-  [4] = &quot;Martín&quot;
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="clausuraparacomparar">Clausura para comparar</h3>
-
-<ul>
-<li>La función <code>sorted</code> permite especificar la función de ordenación mediante una clausura que toma dos argumentos del mismo tipo de los del contenido del array y devuelve un valor <code>Bool</code> que indica si el primer argumento debería aparecer antes o después del segundo una vez que los valores estén ordenados. En este caso, la clausura de ordenación debe ser del tipo:</li>
-</ul>
-<pre><code class="swift">(String, String) -&gt; Bool</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Una forma de especificar la clausura es escribiendo la función de ordenación de forma normal y pasándola como parámetro:</li>
-</ul>
-<pre><code class="swift">func haciaAtras(s1: String, s2: String) -&gt; Bool {
-    return s1 &gt; s2
-}
-var inverso = sorted(nombres, haciaAtras)
-⇒ inverso: [String] = 5 values {
-  [0] = &quot;Martín&quot;
-  [1] = &quot;Eva&quot;
-  [2] = &quot;Daniela&quot;
-  [3] = &quot;Cris&quot;
-  [4] = &quot;Alex&quot;
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="expresionesclausura">Expresiones clausura</h3>
-
-<ul>
-<li>En lugar de definir la función y pasar su nombre, podemos usar la sintaxis de <strong><em>expresiones clausura</em></strong> (<em>closure expressions</em>) para escribir en una expresión el código sin darle nombre:</li>
-</ul>
-<pre><code class="swift">inverso = sorted(nombres, { (s1: String, s2: String) -&gt; Bool in
-    return s1 &gt; s2
-})</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> El compilador de Swift infiere los tipos a partir del contexto de la definición:</li>
-</ul>
-<pre><code class="swift">inverso = sorted(nombres, {s1, s2 in return s1 &gt; s2} )</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Es posible eliminar la palabra <code>return</code>:</li>
-</ul>
-<pre><code class="swift">inverso = sorted(nombres, {s1, s2 in s1 &gt; s2} )</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="3" --> Y utilizar abreviaturas en los nombres de los argumentos y eliminar <code>in</code>:</li>
-</ul>
-<pre><code class="swift">inverso = sorted(nombres, { $0 &gt; $1 } )</code></pre>
-<!-- .element: class="fragment" data-fragment-index="3" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="clausurasalfinaltrailingclosures">Clausuras al final (<em>trailing closures</em>)</h3>
-
-<ul>
-<li>Al llamar a una función con una clausura como último argumento es posible escribir el código de la clausura fuera del paréntesis de llamada a la función:</li>
-</ul>
-<pre><code class="swift">inverso = sorted(nombres) { $0 &gt; $1 }</code></pre>
-
-<p><!-- .element: class="fragment" data-fragment-index="1" --> Y si la función no tiene más argumentos que la clausura, es posible omitir los paréntesis vacíos. Por ejemplo, el método <code>map</code> tiene como único parámetro una clasusura que se aplica a todos los elementos de un <code>Array</code>:</p>
-<pre><code class="swift">func cuadrado(x: Int) -&gt; Int {return x * x}
-let numeros = [1, 2, 3, 4, 5]
-numeros.map(cuadrado)
-⇒ [1, 4, 9, 16, 25]</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="2" --> Lo podemos expresar en forma de clausura al final:</li>
-</ul>
-<pre><code class="swift">numeros.map { $0 * $0 }</code></pre>
-<!-- .element: class="fragment" data-fragment-index="2" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="unejemplomáslargo">Un ejemplo más largo</h3>
-<pre><code class="swift">let nombresDigitos = [
-    0: &quot;Cero&quot;,  1: &quot;Uno&quot;,  2: &quot;Dos&quot;,   3: &quot;Tres&quot;, 4: &quot;Cuatro&quot;,
-    5: &quot;Cinco&quot;, 6: &quot;Seis&quot;, 7: &quot;Siete&quot;, 8: &quot;Ocho&quot;, 9: &quot;Nueve&quot;
-]
-let numeros = [16, 58, 510]
-let cadenas = numeros.map {
-    (var numero) -&gt; String in
-    var salida = &quot;&quot;
-    while numero &gt; 0 {
-        salida = nombresDigitos[numero % 10]! + salida
-        numero /= 10
-    }
-    return salida
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="clases">Clases</h2>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="propiedades">Propiedades</h3>
-
-<ul>
-<li>Una clase: propiedades, métodos, inicialización</li>
-<li>Propiedades almacenadas y propiedades calculada (<em>computed properties</em>):</li>
-</ul>
-<pre><code class="swift">class Vehiculo {
-    var numeroRuedas = 0
-    var descripcion: String {
-            return &quot;\(numeroRuedas) ruedas&quot;
-    }
-}</code></pre>
-<pre><code class="swift">let vehiculo = Vehiculo()
-println(vehiculo.descripcion)
-vehiculo.numeroRuedas = 2
-println(vehiculo.descripcion)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<hr />
-
-<p>Algunas notas sobre el ejemplo anterior, la clase <code>Vehiculo</code>:</p>
-
-<ul>
-<li>No es necesario que la clase herede de una clase superior.</li>
-<li>La propiedad <code>numeroRuedas</code> es una variable, pero también podría ser una constante sustituyendo <code>var</code> por <code>let</code>.</li>
-<li>No existe ninguna diferencia entre propiedades y variables de instancia.</li>
-<li>La propiedad <code>descripcion</code> es una propiedad calculada, no se almacena ningún valor asociada a ella, se calcula mediante otras propiedades.</li>
-</ul>
-
-<p>En cuanto a la creación y al uso de las instancias:</p>
-
-<ul>
-<li>No es necesaria ninguna instrucción para obtener memoria.</li>
-<li>El compilador infiere el tipo de la instancia:</li>
-</ul>
-<pre><code class="swift">let vehiculo: Vehiculo = Vehiculo()</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="herencia">Herencia</h3>
-<pre><code class="swift">class Bicicleta: Vehiculo {
-    override init() {
-        super.init()
-        numeroRuedas = 2
-    }
-}</code></pre>
-<pre><code class="swift">let bicicleta = Bicicleta()
-println(bicicleta.descripcion)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="nuevaspropiedadesenlassubclases">Nuevas propiedades en las subclases</h3>
-<pre><code class="swift">class Coche: Vehiculo {
-    var velocidad = 0.0
-    override init() {
-        super.init()
-        numeroRuedas = 4
-    }
-    override var descripcion: String {
-        return super.descripcion + &quot;, \(velocidad) km/h&quot;
-    }
-}</code></pre>
-<pre><code class="swift">let coche = Coche()
-println(coche.descripcion)
-coche.velocidad = 35.0 
-println(coche.descripcion)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="observadoresdepropiedades">Observadores de propiedades</h3>
-<pre><code class="swift">class CochePadres: Coche { 
-    override var velocidad: Double { 
-        willSet { 
-            if newValue &gt; 120.0 { 
-                println(&quot;Cuidado, has pasado el máximo&quot;) 
-            } 
-        } 
-        didSet { 
-            println(&quot;Has cambiado la velocidad&quot;) 
-            println(&quot;Velocidad antigua: \(oldValue). Nueva: \(velocidad)&quot;) 
-        } 
-    } 
-} </code></pre>
-<pre><code class="swift">let cochePadres = CochePadres()
-cochePadres.velocidad = 100.0
-cochePadres.velocidad = 130.0</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="métodos">Métodos</h3>
-<pre><code class="swift">class Contador {
-    var contador = 0
-    func incrementaEn(cantidad: Int) {
-        contador += cantidad
-    }
-    func restaurarValor(contador: Int) {
-        self.contador = contador
-    }
-}</code></pre>
-<pre><code class="swift">let c = Contador()
-c.incrementaEn(10)
-println(&quot;El valor del contador es \(c.contador)&quot;)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-
-<hr />
-
-<ul>
-<li>Se usa <code>self.contador</code> para evitar la ambiguedad con el nombre del parámetro del método.</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="estructuras">Estructuras</h2>
-<pre><code class="swift">struct Punto { 
-    var x, y: Double 
-} 
-struct Tamaño { 
-    var ancho, alto: Double 
-} 
-struct Rect { 
-    var origen: Punto 
-    var tamaño: Tamaño 
-}</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Creación de instancias de estructuras:</li>
-</ul>
-<pre><code class="swift">var punto = Punto(x: 0.0, y: 0.0)
-var tamaño = Tamaño(ancho: 640.0, alto: 480.0)
-var rect = Rect(origen: punto, tamaño: tamaño)</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="métodosypropiedadescalculadasenestructuras">Métodos y propiedades calculadas en estructuras</h3>
-<pre><code class="(null)">struct Rect { 
-    var origen: Punto 
-    var tamaño: Tamaño 
-    var area: Double { return tamaño.ancho * tamaño.alto }
-    func esMayorQueOtroRect(otro: Rect) -&gt; Bool {
-        return self.area &gt; other.area
-    }
-}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="diferenciasentreestructurasyclases">Diferencias entre estructuras y clases</h3>
-
-<ul>
-<li>Las estructuras no permiten herencia.</li>
-<li>Las estructuras se pasan por valor y las clases por referencia.</li>
-<li>Una instancia de una clase asignada a una constante con un <code>let</code> define una <em>referencia constante</em>. La instancia puede cambiar, pero la referencia no. En el caso de una estructura, no podríamos cambiar ninguna propiedad.</li>
-</ul>
-<pre><code class="swift">let contador = Contador()
-contador.incrementaEn(100)
-// hemos cambiado la instancia, pero no la referencia
-let punto = Punto(x: 0.0, y: 0.0)
-punto.x = 10.0
-// Error: let define un valor constante y
-// no se puede cambiar ninguno de sus atributos</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="enumeraciones">Enumeraciones</h2>
-
-<ul>
-<li>Enumeración <code>Int</code>:</li>
-</ul>
-<pre><code class="swift">enum Planeta: Int { 
-    case Mercurio = 1, Venus, Tierra, Marte, Jupiter, Saturno, 
-    Urano, Neptuno 
-}
-
-let miPlaneta = Planeta.Tierra
-miPlaneta.rawVale ⇒ 3</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Enumeración <code>Character</code>:</li>
-</ul>
-<pre><code class="swift">enum CaracterControl: Character { 
-    case Tab = &quot;\t&quot; 
-    case FinDeLinea = &quot;\n&quot; 
-    case RetornoDeCarro = &quot;\r&quot; 
-}
-
-let c = CaracterControl.FinDeLinea</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="enumeracionessintiposubyacente">Enumeraciones sin tipo subyacente</h3>
-<pre><code class="swift">enum Direccion {
-   case Norte, Sur, Este, Oeste
-}
-
-var direccion = Direccion.Oeste
-direccion = .Este</code></pre>
-
-<ul>
-<li><!-- .element: class="fragment" data-fragment-index="1" --> Ejemplo con <em>Cocoa</em>:</li>
-</ul>
-<pre><code class="swift">let label = UILabel()
-label.textAlignment = .Right</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="enumeracionesavanzadas">Enumeraciones avanzadas</h3>
-<pre><code class="swift">enum EstadoTren { 
-    case EnHora, Retrasado(Int) 
-    init() { 
-        self = EnHora 
-    } 
-    var descripcion: String { 
-        switch self { 
-            case EnHora: 
-                return &quot;en hora&quot; 
-            case Retrasado(let minutos): 
-                return &quot;retrasado \(minutos) minuto(s)&quot; 
-        }
-    }
-}</code></pre>
-<pre><code class="swift">var estado = EstadoTren()
-println(&quot;El tren viene \(estado.descripcion)&quot;)
-estado = .Retrasado(42)
-println(&quot;El tren viene \(estado.descripcion)&quot;)</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="extensiones">Extensiones</h3>
-
-<ul>
-<li>Similares a <em>categorías</em> en Objective-C. Podemos extender clases y cualquier tipo, incluyendo tipos valor.</li>
-<li>Una vez que extendemos una clase o un tipo podemos usar la nueva funcionalidad en nuestro código.</li>
-</ul>
-<pre><code class="swift">extension Tamaño { 
-    mutating func aumentaPorFactor(factor: Double) {
-        ancho *= factor 
-        alto *= factor 
-    } 
-} </code></pre>
-
-<p><!-- .element: class="fragment" data-fragment-index="1" --> Es posible extender cualquier clase, incluyendo clases de <em>Cocoa</em> y <em>CocoaTouch</em></p>
-<pre><code class="swift">extension CGSize {
-   mutating func increaseByFactor(factor: Int) {
-       width *= factor
-       height *= factor
-   }
-}</code></pre>
-<!-- .element: class="fragment" data-fragment-index="1" -->
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h3 id="¡extendemosint">¡Extendemos Int!</h3>
-<pre><code class="swift">extension Int { 
-    func repetitions(task: () -&gt; ()) { 
-        for i in 0...self { 
-            task() 
-        } 
-    } 
-} 
-
-10.repetitions {println(&quot;Hola&quot;)}</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="genericstack:unúltimoejemploavanzado">Generic Stack: un último ejemplo avanzado</h2>
-<pre><code class="swift">struct Stack&lt;T&gt; {
-    var elements = [T]()
-    
-    mutating func push(element: T) {
-        elements.append(element)
-    }
-
-    mutating func pop() -&gt; T {
-        return elements.removeLast()
-    }
-}</code></pre>
-<pre><code class="swift">var intStack = Stack&lt;Int&gt;()
-intStack.push(50)
-let lastIn = intStack.pop()
-
-var stringStack = Stack&lt;String&gt;()
-stringStack.push(&quot;Hola&quot;)
-println(stringStack.pop())</code></pre>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h2 id="prácticas">Prácticas</h2>
+<h4 id="prácticas">Prácticas</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="trabajocongitybitbucket">Trabajo con Git y Bitbucket</h3>
+<h4 id="trabajocongitybitbucket">Trabajo con Git y Bitbucket</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <ul>
-<li>Debes crear todos los proyectos en el repositorio <code>entregas-servicios-ios</code> en tu cuenta de <em>Bitbucket</em>. Crea ese repositorio y da permisos de lectura al usuario <code>entregas-mastermoviles</code>.</li>
+<li>Debes crear todos los proyectos en el único repositorio <code>mastermoviles-servicios-ios</code> en tu cuenta de <em>Bitbucket</em>. Crea ese repositorio y da permisos de lectura al usuario <code>entregas-mastermoviles</code>.</li>
 <li>Ve haciendo pequeños <em>commits</em> conforme vayas añadiendo funcionalidades a los proyectos. Los <em>commits</em> no deben tener errores de compilación. Haz <em>push</em> regularmente al repositorio <em>Bitbucket</em>.</li>
-<li>Las plantillas y ejemplos iniciales de los proyectos se encuentran en el repositorio <code>plantillas-servicios-ios</code> de la cuenta <code>mastermoviles</code> de Bitbucket. Descárgalo en un directorio aparte para ir cogiendo de ahí los distintos proyectos.</li>
 </ul>
-
-<hr />
+<!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h4 id="creacióndelrepositorioenbitbucketyenlocal">Creación del repositorio en <em>Bitbucket</em> y en local</h4>
+<!-- .slide: data-background="#cbe0fc"-->
 
 <ul>
-<li>Crea en tu cuenta de <em>Bitbucket</em> un repositorio <code>entregas-servicios-ios</code>.</li>
+<li>Crea en tu cuenta de <em>Bitbucket</em> un repositorio <code>mastermoviles-servicios-ios</code>.</li>
 <li>Crea en local un directorio con el mismo nombre.</li>
-<li>Dentro del directorio crea el fichero <code>.gitignore</code> con el siguiente contenido:</li>
-</ul>
-<pre><code class="(null)"># MacOS
-.DS_Store
-
-# Xcode
-#
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate</code></pre>
-
-<ul>
-<li>Dentro del directorio ejecuta los siguientes comandos para inicializar el repositorio y subir el fichero <code>.gitignore</code> a <em>Bitbucket</em></li>
+<li>Copia el fichero .gitignore del repositorio de plantillas</li>
+<li>Abre un terminal, muévete al directorio recién creado y ejecuta los siguientes comandos para inicializar el repositorio y subir el fichero <code>.gitignore</code> a <em>Bitbucket</em></li>
 </ul>
 <pre><code class="shell">git init
-git remote add origin https://&lt;usuario&gt;@bitbucket.org/usuario/entregas-servicios-ios.git
+git remote add origin https://&lt;usuario&gt;@bitbucket.org/usuario/mastermoviles-servicios-ios.git
 git add .gitignore
 git commit -m &apos;Commit inicial&apos;
 git push -u origin master</code></pre>
 
 <ul>
-<li>Una vez creado el repositorio git en el directorio <code>entregas-servicios-ios</code> Xcode lo reconocerá en cualquier proyecto que crees dentro de él y podrás hacer <em>commits</em> y <em>push</em> desde la propia herramienta. Para ello, lo único que tienes que hacer es activar el control de código fuente en el proyecto (con <em>Xcode &gt; Preferences &gt; Source Control &gt; Enable Source Control</em>).</li>
+<li>Una vez creado el repositorio git en el directorio <code>mastermoviles-servicios-ios</code> Xcode lo reconocerá en cualquier proyecto que crees dentro de él y podrás hacer <em>commits</em> y <em>push</em> desde la propia herramienta. Para ello, lo único que tienes que hacer es activar el control de código fuente en el proyecto (con <em>Xcode &gt; Preferences &gt; Source Control &gt; Enable Source Control</em>).</li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="ejercicio:calculadora">Ejercicio: Calculadora</h3>
+<h4 id="ejercicio:calculadora">Ejercicio: Calculadora</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <p><img src="images/calculadora.png" width="200px"/></p>
@@ -2667,7 +1019,7 @@ git push -u origin master</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="tareasarealizar">Tareas a realizar</h3>
+<h4 id="tareasarealizar">Tareas a realizar</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <ul>
@@ -2677,7 +1029,7 @@ git push -u origin master</code></pre>
 
 <hr />
 
-<h4 id="notas">Notas</h4>
+<h5 id="notas">Notas</h5>
 
 <ul>
 <li>La aplicación está incompleta, contiene el <em>storyboard</em> que define la vista y el fichero <code>ViewController.swift</code> incompleto. Le falta el fichero <code>CalculatorBrain.swift</code> que define el modelo.</li>
@@ -2687,44 +1039,44 @@ git push -u origin master</code></pre>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="viewcontroller.swift1"><code>ViewController.swift (1)</code></h3>
+<h4 id="viewcontroller.swift1"><code>ViewController.swift (1)</code></h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <p><img src="images/calculadora-view-controller-1.png" width=600px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="viewcontroller.swift2"><code>ViewController.swift</code> (2)</h3>
+<h4 id="viewcontroller.swift2"><code>ViewController.swift</code> (2)</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <p><img src="images/calculadora-view-controller-2.png" width=900px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="calculatorbrain.swift1"><code>CalculatorBrain.swift</code> (1)</h3>
+<h4 id="calculatorbrain.swift1"><code>CalculatorBrain.swift</code> (1)</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
-<p><img src="images/calculadora-modelo-1.png" width=900px/></p>
+<p><img src="images/calculadora-modelo-1.png" width=800px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="calculatorbrain.swift2"><code>CalculatorBrain.swift</code> (2)</h3>
+<h4 id="calculatorbrain.swift2"><code>CalculatorBrain.swift</code> (2)</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
-<p><img src="images/calculadora-modelo-2.png" width=900px/></p>
+<p><img src="images/calculadora-modelo-2.png" width=600px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="calculatorbrain.swift3"><code>CalculatorBrain.swift</code> (3)</h3>
+<h4 id="calculatorbrain.swift3"><code>CalculatorBrain.swift</code> (3)</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
-<p><img src="images/calculadora-modelo-3.png" width=900px/></p>
+<p><img src="images/calculadora-modelo-3.png" width=800px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
-<h3 id="calculatorbrain.swift4"><code>CalculatorBrain.swift</code> (4)</h3>
+<h4 id="calculatorbrain.swift4"><code>CalculatorBrain.swift</code> (4)</h4>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <p><img src="images/calculadora-modelo-4.png" width=700px/></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 <!-- 
 
-### Algunas ideas sueltas de Xcode
+#### Algunas ideas sueltas de Xcode
 .slide: data-background="#cbe0fc"
 - El panel a la izquierda del _storyboard_ muestra el _outline_ con todos los elementos de la interfaz de usuario.
 - Cuando se hace un click del botón derecho sobre un elemento de la interfaz de usuario aparecen los eventos y las acciones a las que está conectado. Esto nos permite eliminar conexiones y volverlas a realizar. No es posible modificar conexiones, por lo que hay que tener cuidado con editar los elementos generados por el Ctrl+Drag cuando inicializamos una conexión.

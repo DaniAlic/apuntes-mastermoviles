@@ -1,6 +1,6 @@
 # Sesión 1: Introducción <br/> a Swift 1
 
-### Servicios de las plataformas móviles - iOS
+#### Servicios de las plataformas móviles - iOS
 
 <small>Domingo Gallardo - domingo.gallardo@ua.es  
 Departamento Ciencia de la Computación e Inteligencia Artificial  
@@ -10,7 +10,7 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
-### Recursos
+#### Recursos
 
 <img style="vertical-align: middle; margin-right: 150px;" src="images/Xcode.png" width="200px"/> <img style="vertical-align: middle; border: 1px solid; " src="images/swift-book-cover.png" width="250px">
 
@@ -25,7 +25,7 @@ Vamos a utilizar como guía el libro de Apple _The Swift Programming Language_ q
 
 Para cuestiones avanzadas, como integración con Objective-C y con Cocoa, también recomendamos el libro de Apple _Using Swift with Cocoa and Objective-C_ descargable desde [iBooks Store](https://itunes.apple.com/us/book/using-swift-cocoa-objective/id888894773?mt=11) o [consultable en el portal de desarrolladores](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/).
 
-Vamos a trabajar con la última versión estable de Xcode (en marzo de 2015), la 6.2.
+Vamos a trabajar con la última versión estable de Xcode (en marzo de 2016), la 7.3.
 
 Vamos a dedicar más de una sesión a repasar los aspectos más importantes de Swift, basándonos en conceptos de estos libros. Haremos énfasis en los más importantes y difíciles de entender. Hay bastantes aspectos de Swift similares a C que no comentaremos.
 
@@ -33,38 +33,38 @@ Vamos a dedicar más de una sesión a repasar los aspectos más importantes de S
 
 
 
-### Características de Swift de esta sesión
+#### Características de Swift de esta sesión
 
-- Aspectos básicos
-- Cadenas y caracteres
-- Tipos _Collection_
+- Aspectos y tipos básicos
+- Colecciones
 - Control de flujo
+- Opcionales
 - Funciones
 - _Closures_
-- Clases y estructuras
+- Clases 
+- Enumeraciones 
+- Estructuras
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Ejecución de los ejemplos
+#### Ejecución de los ejemplos
 
-- Es posible ejecutar los ejemplos de Swift sin crear un proyecto de aplicación en Xcode:
-    - En un **intérprete** en el terminal
-    - Es posible crear **_playgrounds_** en Xcode, hojas interactivas que ejecutan código Swift
+- Es posible crear **_playgrounds_** en Xcode, hojas interactivas que ejecutan código Swift
+- Es posible también ejecutar los ejemplos en un **intérprete** en el terminal
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Intérprete de Swift en el terminal
+#### Intérprete de Swift en el terminal
 
 <img style="vertical-align: middle;" src="images/swift-terminal.png" width="500px"/>
 
-- Intérprete REPL en el terminal: `$ xcrun swift`
-- En Yosemite: `$ swift`
+- Intérprete REPL en el terminal: `$ swift`
 - Programa de script que se ejecuta con el intérprete:  
-	`$ xcrun swift programa.swift`
+	`$ swift programa.swift`
 - Compilar con `$ swiftc` y ejecutar el programa resultante
 
 ---
@@ -76,7 +76,7 @@ El intérprete tiene características avanzadas que facilitan su uso, como la ed
 Para lanzar el intérprete de Swift debes ejecutar desde un terminal:
 
 ```
-$ xcrun swift
+$ swift
 1> println("Hello World")
 Hello World
 ```
@@ -88,10 +88,10 @@ println("Hello World")
 ```
 
 ```
-$ xcrun swift hello.swift
+$ swift hello.swift
 Hello World
 
-$ xcrun swift hello.swift
+$ swift hello.swift
 ```
 
 Referencias:
@@ -102,29 +102,30 @@ Referencias:
 
 
 
-### _Playgrounds_
+#### _Playgrounds_
 
-<img src="images/swift-screenshot.jpg">
+<img src="images/swift-screenshot.png" width="700px">
 
-[Ballons.playground](https://developer.apple.com/swift/blog/downloads/Balloons.zip)
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Aspectos básicos
-
-- Constantes y variables
-- Tipos e inferencia de tipos
-- Tipos numéricos
-- Conversión de tipos numéricos
-- _Booleans_
+[Playgrounds interactivos](https://developer.apple.com/swift/blog/?id=35)
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Constantes y variables
+#### Descarga de las plantillas
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Las plantillas y ejemplos iniciales de los proyectos se encuentran en el [repositorio `mastermoviles-servicios-ios`](https://bitbucket.org/mastermoviles/mastermoviles-servicios-ios/) de la cuenta `mastermoviles` de Bitbucket. Descárgalo en un directorio aparte para ir cogiendo de ahí los distintos proyectos.
+
+- Carga en Xcode el playground `NewtonsCradle` y pruébalo.
+
+- Crea un _playground_ en el que puedes probar el código de los ejemplos que hay a continuación. También hay ejercicios sombreados en azul que puedes resolver para aprender mejor Swift. Todos estos ejercicios son opcionales, no hay que entregar este _playground_.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Constantes y variables
 
 ```swift
 var miVariable = 42
@@ -139,7 +140,7 @@ let miConstante = 42
 
 
 
-### Tipos e inferencia de tipos
+#### Tipos e inferencia de tipos
 
 ```swift
 let implicitInteger = 70
@@ -155,7 +156,7 @@ let explicitDouble: Double = 70
 
 
 
-### Conversión de tipos
+#### Conversión de tipos
 
 - Los valores nunca se convierten implícitamente a otro tipo. Si necesitas convertir un valor a un tipo diferente, construye explícitamente una instancia del tipo deseado.
 
@@ -171,7 +172,7 @@ let anchoEtiqueta = etiqueta + String(ancho)
 
 
 
-### Valores en cadenas
+#### Valores en cadenas
 
 - Podemos incluir un valor en una cadena escribiendo el valor entre paréntesis y una barra invertida  (`\`) antes de los paréntesis. Por ejemplo:
 
@@ -188,7 +189,7 @@ let resumenFrutas = "Tengo \(manzanas + naranjas) frutas."
 
 
 
-### Arrays y diccionarios
+#### Arrays y diccionarios
 
 - Arrays: listas ordenads de valores de un mismo tipo.
 - Diccionarios: colecciones desordenadas de valores de un mismo tipo que pueden ser referenciados y buscados a través de un identificador único (_clave_).
@@ -208,7 +209,7 @@ trabajos["Jayne"] = "Relaciones públicas"
 
 
 
-### Inicialización arrays y diccionarios vacíos
+#### Inicialización arrays y diccionarios vacíos
 
 ```swift
 let arrayVacio = [String]()
@@ -219,7 +220,7 @@ let diccionarioVacio = [String: Float]()
 
 
 
-### Arrays y diccionarios vacíos con tipos inferidos
+#### Arrays y diccionarios vacíos con tipos inferidos
 
 ```swift
 listaCompra = []
@@ -230,7 +231,7 @@ trabajos = [:]
 
 
 
-### Control de flujo
+#### Control de flujo
 
 - Se usa `if` y `switch` para hacer condicionales y `for-in`, `for`, `while` y `repeat-while` para hacer bucles. 
 - Los paréntesis alrededor de las condiciones o de la variable del bucle son opcionales. 
@@ -238,9 +239,9 @@ trabajos = [:]
 
 ```swift
 let puntuacionesIndividuales = [75, 43, 103, 87, 12]
-var punutacionEquipo = 0
+var puntuacionEquipo = 0
 for puntuacion in puntuacionesIndividuales {
-    if puntacion > 50 {
+    if puntuacion > 50 {
         puntuacionEquipo += 3
     } else {
         puntuacionEquipo += 1
@@ -255,7 +256,98 @@ print(puntuacionEquipo)
 
 
 
-### Valores opcionales
+#### Sentencia `switch` 
+
+- Las sentencias `switch` permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.
+
+```swift
+let verdura = "pimiento rojo"
+switch verdura {
+    case "zanahoria":
+        print("Buena para la vista.")
+    case "lechuga", "tomates":
+        print("Podrías hacer una buena ensalada.")
+    case let x where x.hasPrefix("pimiento"):
+        print("¿Es un \(x) picante?")
+    default:
+        print("Siempre puedes hacer una buena sopa.")
+}
+```
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Bucle `for-in` sobre diccionarios
+
+```swift
+let numerosInteresantes = [
+    "Primos": [2, 3, 5, 7, 11, 13],
+    "Fibonacci": [1, 1, 2, 3, 5, 8],
+    "Cuadrados": [1, 4, 9, 16, 25],
+]
+var mayor = 0
+for (clase, numeros) in numerosInteresantes {
+    for numero in numeros {
+        if numero > mayor {
+            mayor = numero
+        }
+    }
+}
+print(mayor)
+```
+
+> Añade otra variable para seguir qué clase de número es el mayor.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Bucle `while`
+
+- Usamos `while` para repetir un bloque de código hasta que una condición cambie. 
+
+```swift
+var n = 2
+while n < 100 {
+    n = n * 2
+}
+print(n)
+```
+- La condición de un bucle puede estar también al final, asegurando que el bucle se ejecuta al menos una vez.
+ 
+```swift
+var m = 2
+repeat {
+    m = m * 2
+} while m < 100
+print(m)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Rangos
+
+```swift
+var primerBucleFor = 0
+for i in 0..<4 {
+    primerBucleFor += i
+}
+print(primerBucleFor)
+
+var segundoBucleFor = 0
+for i in 0...4 {
+    segundoBucleFor += i
+}
+print(segundoBucleFor)
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Valores opcionales
 
 - En Swift todos los tipos deben tener valor.
 - Un valor opcional o bien contiene un valor o contiene `nil` para indicar que el valor falta.
@@ -283,7 +375,7 @@ Los opcionales de Swift permiten expresar la ausencia de valor en _cualquier tip
 
 
 
-### Trabajar con valores opcionales
+#### Trabajar con valores opcionales
 
 - Los opcionales proporcionan una forma de devolver valores en métodos que deben tratar entradas erróneas:
 
@@ -310,7 +402,7 @@ if let nombre = nombreOpcional {
 
 
 
-### Opcionales sin valor
+#### Opcionales sin valor
 
 - Otra forma de manejar valores opcionales es proporcionar un valor por defecto usando el operador `??`. Si falta el valor valor opcional, se usa el valor por defecto en su lugar.
 
@@ -324,7 +416,7 @@ let saludoInformal = "¿Qué tal, \(nombrePila ?? nombreCompleto)?"
 
 
 
-#### Desenvolver un _optional_
+##### Desenvolver un _optional_
 
 - En un tipo opcional el valor está _envuelto_ (_wrapped_). Obtendremos un error si lo intentamos usar.
 
@@ -348,15 +440,15 @@ numeroConvertidoConError! + 100
 
 
 
-#### Opcionales implícitamente desenvueltos
+##### Opcionales implícitamente desenvueltos
 
 - En inglés: _implicitly unwrapped optionals_.
 - Es un opcional que puede usarse como un no opcional, sin necesidad de desenvolver el valor opcional cada vez que se accede.
 
 ```swift
-var numero: Int! 
-numero = Int("100")
-let numero2 = numero + 200 // No es necesario desenvolver numero
+var num: Int! 
+num = Int("100")
+let num2 = num + 200 // No es necesario desenvolver numero
 ```
 - Se puede pensar en un opcional implícitamente desenvuelto como una forma de desenvolver automáticamente la variable cada vez que se usa. En lugar de poner una exclamación cada vez que se usa, se pone sólo una vez cuando se declara.
 
@@ -364,98 +456,7 @@ let numero2 = numero + 200 // No es necesario desenvolver numero
 
 
 
-### Sentencia `switch` 
-
-- Las sentencias `switch` permiten cualquier tipo de datos y una amplia variedad de operaciones de comparación; no están limitados a enteros y pruebas de igualdad.
-
-```swift
-let verdura = "pimiento rojo"
-switch verdura {
-    case "zanahoria":
-        print("Buena para la vista.")
-    case "lechuga", "tomates":
-        print("Podrías hacer una buena ensalada.")
-    case let x where x.hasPrefix("pimiento"):
-        print("¿Es un \(x) picante?")
-    default:
-        print("Siempre puedes hacer una buena sopa.")
-}
-```
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Bucle `for-in` sobre diccionarios
-
-```swift
-let numerosInteresantes = [
-    "Primos": [2, 3, 5, 7, 11, 13],
-    "Fibonacci": [1, 1, 2, 3, 5, 8],
-    "Cuadrados": [1, 4, 9, 16, 25],
-]
-var mayor = 0
-for (clase, numeros) in numerosInteresantes {
-    for numero in numeros {
-        if numero > mayor {
-            mayor = numero
-        }
-    }
-}
-print(mayor)
-```
-
-> Añade otra variable para seguir qué clase de número es el mayor.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Bucle `while`
-
-- Usamos `while` para repetir un bloque de código hasta que una condición cambie. 
-
-```swift
-var n = 2
-while n < 100 {
-    n = n * 2
-}
-print(n)
-```
-- La condición de un bucle puede estar también al final, asegurando que el bucle se ejecuta al menos una vez.
- 
-```swift
-var m = 2
-repeat {
-    m = m * 2
-} while m < 100
-print(m)
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Rangos
-
-```swift
-var primerBucleFor = 0
-for i in 0..<4 {
-    primerBucleFor += i
-}
-print(primerBucleFor)
-
-var segundoBucleFor = 0
-for i in 0...4 {
-    segundoBucleFor += i
-}
-print(segundoBucleFor)
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### Función
+#### Función
 
 - Usamos `func` para declarar una función. Usamos `->` para separar los nombres de los parámetros y sus tipos del tipo devuelto de la función.
 - Para llamar a una función hay que escribir el nombre externo de los parámetros 2 .. n. El primer parámetro se pasa sin escribir su nombre.
@@ -480,7 +481,7 @@ une("Hola", con: ", mundo")
 
 
 
-### Tuplas
+#### Tuplas
 
 ```swift
 func calculaEstadisticas(puntuaciones: [Int]) -> 
@@ -509,7 +510,7 @@ print(estadisticas.2)
 
 
 
-### Número variable de argumentos
+#### Número variable de argumentos
 
 - Las funciones también pueden tener un número variable de argumentos, agrupándose todos ellos en un array.
 
@@ -531,7 +532,7 @@ sumaDe(42, 597, 12)
 
 
 
-### Funciones anidadas
+#### Funciones anidadas
 
 - Las funciones pueden anidarse. Las funciones pueden acceder variables declaradas en la función exterior. Puedes usar funciones anidadas para organizar el código en una función que es larga o complicada.
 
@@ -551,7 +552,7 @@ devuelveQuince()
 
 
 
-### Las funciones son un tipo de primera clase
+#### Las funciones son un tipo de primera clase
 
 - Las funciones son un tipo de primera clase. Una función puede devolver otra función como resultado.
 
@@ -570,7 +571,7 @@ incrementa(7)
 
 
 
-### Función argumento de otra función
+#### Función argumento de otra función
 
 - Una función puede tomar otra función como uno de sus argumentos.
 
@@ -594,7 +595,7 @@ cumpleCondicion(numeros, condicion: menorQueDiez)
 
 
 
-### Clausuras
+#### Clausuras
 
 - Clausura: bloque de código que puede ser llamado después.
 - El código en la clausura tiene acceso a cosas como variables y funciones que estaban disponibles en el ámbito (*scope*) en el que se creó la clausura, incluso si la clausura se está en un ámbito distinto cuando se ejecuta; ya viste un ejemplo de esto con las funciones anidadas.
@@ -613,7 +614,7 @@ numeros.map({
 
 
 
-### Formas abreviadas de clausuras
+#### Formas abreviadas de clausuras
 
 - Cuando ya se conoce el tipo de una clausura se puede  omitir el tipo de sus parámetros, el tipo devuelto o ambos. 
 - Las clausuras escritas en una línea devuelven implícitamente el valor de su única sentencia.
@@ -635,7 +636,7 @@ print(numerosOrdenados)
 
 
 
-### Clases
+#### Clases
 
 - Usamos `class` seguido por el nombre de la clase para crear una clase. 
 - Una declaración de una propiedad en una clase se escribe de la misma forma que la declaración de una constante o una variable, excepto que está en el contexto de una clase. 
@@ -656,7 +657,7 @@ class Figura {
 
 
 
-### Instancias de clases
+#### Instancias de clases
 
 - Creamos una instancia de una clase poniendo paréntesis después del nombre de la clase. 
 - Usamos la sintaxis de punto para acceder a las propiedades y los métodos de la instancia.
@@ -670,7 +671,7 @@ var descripcionFigura = figura.descripcionSencilla()
 
 
 
-### Inicializadores
+#### Inicializadores
 
 - Se definen los inicializadores con `init`
 
@@ -693,7 +694,7 @@ class FiguraConNombre {
 
 
 
-### Subclases
+#### Subclases
 
 - Las subclases incluyen el nombre de su subclase después del nombre de la clase, separado por una coma. 
 - No hay ningún requisito de que las clases deban ser subclases de alguna clase raíz, por lo que puedes omitir una superclase si así lo necesitas.
@@ -703,7 +704,7 @@ class FiguraConNombre {
 
 
 
-### Ejemplo
+#### Ejemplo
 
 ```swift
 class Cuadrado: FiguraConNombre {
@@ -734,7 +735,7 @@ test.descripcionSencilla()
 
 
 
-### Getters y setters en propiedades
+#### Getters y setters en propiedades
 
 - Además de propiedades simples que se almacenan, las propiedades pueden tener un *getter* y un *setter*.
 
@@ -779,7 +780,7 @@ Date cuenta de que el inicializador de la clase `TrianguloEquilatero` tiene tres
 
 
 
-### `willSet` y `didSet`
+#### `willSet` y `didSet`
 
 - Si necesitamos proporcionar código que se ejecuta antes y después de establecer un nuevo valor, usaremos `willSet` y `didSet`. El código proporcionado se ejecuta cada vez que el valor cambia fuera de un inicializador. 
 - Por ejemplo, la siguiente clase se asegura de que la longitud del lado de su triángulo siempre es la misma que la longitud del lado de su cuadrado.
@@ -812,7 +813,7 @@ print(trianguloYCuadrado.triangulo.longitudLado)
 
 
 
-### Valores opcionales en métodos
+#### Valores opcionales en métodos
 
 - Cuando trabajamos con valores opcionales, podemos escribir `?` antes de operaciones como métodos, propiedades y subíndices. 
 - Si el valor antes del `?` es `nil`, todo lo que hay después se ignora y el valor de la expresión completa es `nil`. En otro caso, el valor opcional se desenvuelve, y todo lo que hay después del `?` se realiza sobre el valor desenvuelto. 
@@ -828,7 +829,7 @@ let longitudLado = cuadradoOpcional?.longitudLado
 
 
 
-### Enumeraciones
+#### Enumeraciones
 
 - Como las clases y otros tipos con nombre, las enumeraciones pueden tener métodos asociados.
 
@@ -862,7 +863,7 @@ let valorBrutoCarta = carta.rawValue
 
 
 
-### Inicialización enum
+#### Inicialización enum
 
 - Por defecto, Swift asigna los valores brutos comenzando en cero e incrementándolos por uno cada vez. 
 - Se puede cambiar esta conducta especificando explícitamente los valores. 
@@ -880,7 +881,7 @@ if let valorConvertido = Valor(rawValue: 3) {
 
 
 
-### Valores `case` del `enum`
+#### Valores `case` del `enum`
 
 - Los valores *case* de una enumeración son valores reales, no una forma nueva de escribir sus valores brutos. 
 
@@ -910,7 +911,7 @@ let descripcionCopas = copas.descripcionSencilla()
 
 
 
-### Valores asociados a instancias de enums
+#### Valores asociados a instancias de enums
 
 - Una instancia de un caso de enumeración puede tener valores asociados con la instancia. Instancias del mismo caso de enumeración pueden tener asociados valores diferentes. 
 - Proporcionamos los valores asociados cuando creamos la instancia. 
@@ -936,7 +937,7 @@ switch exito {
 
 
 
-### Structs
+#### Structs
 
 - Usamos `struct` para crear una estructura. 
 - Las estructuras comparten muchas características de las clases, incluyendo métodos e inicializadores. 
@@ -960,68 +961,45 @@ let descripcionTresDeEspadas = tresDeEspadas.descripcionSencilla()
 
 
 
-## Prácticas
+#### Prácticas
 <!-- .slide: data-background="#cbe0fc"-->
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Trabajo con Git y Bitbucket
+#### Trabajo con Git y Bitbucket
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Debes crear todos los proyectos en el repositorio `entregas-servicios-ios` en tu cuenta de _Bitbucket_. Crea ese repositorio y da permisos de lectura al usuario `entregas-mastermoviles`.
+- Debes crear todos los proyectos en el único repositorio `mastermoviles-servicios-ios` en tu cuenta de _Bitbucket_. Crea ese repositorio y da permisos de lectura al usuario `entregas-mastermoviles`.
 - Ve haciendo pequeños _commits_ conforme vayas añadiendo funcionalidades a los proyectos. Los _commits_ no deben tener errores de compilación. Haz _push_ regularmente al repositorio _Bitbucket_.
-- Las plantillas y ejemplos iniciales de los proyectos se encuentran en el repositorio `plantillas-servicios-ios` de la cuenta `mastermoviles` de Bitbucket. Descárgalo en un directorio aparte para ir cogiendo de ahí los distintos proyectos.
 
----
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
 
 #### Creación del repositorio en _Bitbucket_ y en local
+<!-- .slide: data-background="#cbe0fc"-->
 
-- Crea en tu cuenta de _Bitbucket_ un repositorio `entregas-servicios-ios`.
+- Crea en tu cuenta de _Bitbucket_ un repositorio `mastermoviles-servicios-ios`.
 - Crea en local un directorio con el mismo nombre.
-- Dentro del directorio crea el fichero `.gitignore` con el siguiente contenido:
-
-```
-# MacOS
-.DS_Store
-
-# Xcode
-#
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-```
-
-- Dentro del directorio ejecuta los siguientes comandos para inicializar el repositorio y subir el fichero `.gitignore` a _Bitbucket_
+- Copia el fichero .gitignore del repositorio de plantillas
+- Abre un terminal, muévete al directorio recién creado y ejecuta los siguientes comandos para inicializar el repositorio y subir el fichero `.gitignore` a _Bitbucket_
 
 ```shell
 git init
-git remote add origin https://<usuario>@bitbucket.org/usuario/entregas-servicios-ios.git
+git remote add origin https://<usuario>@bitbucket.org/usuario/mastermoviles-servicios-ios.git
 git add .gitignore
 git commit -m 'Commit inicial'
 git push -u origin master
 ```
 
-- Una vez creado el repositorio git en el directorio `entregas-servicios-ios` Xcode lo reconocerá en cualquier proyecto que crees dentro de él y podrás hacer _commits_ y _push_ desde la propia herramienta. Para ello, lo único que tienes que hacer es activar el control de código fuente en el proyecto (con _Xcode > Preferences > Source Control > Enable Source Control_).
+- Una vez creado el repositorio git en el directorio `mastermoviles-servicios-ios` Xcode lo reconocerá en cualquier proyecto que crees dentro de él y podrás hacer _commits_ y _push_ desde la propia herramienta. Para ello, lo único que tienes que hacer es activar el control de código fuente en el proyecto (con _Xcode > Preferences > Source Control > Enable Source Control_).
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### Ejercicio: Calculadora
+#### Ejercicio: Calculadora
 <!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/calculadora.png" width="200px"/>
@@ -1033,7 +1011,7 @@ git push -u origin master
 
 
 
-### Tareas a realizar
+#### Tareas a realizar
 <!-- .slide: data-background="#cbe0fc"-->
 
 - Copia el proyecto `Calculadora` del repositorio de plantillas en tu repositorio de entregas. Se trata de una aplicación que muestra un ejemplo sencillo de patrón MVC en Swift. 
@@ -1041,7 +1019,7 @@ git push -u origin master
 
 --- 
 
-#### Notas 
+##### Notas 
 
 - La aplicación está incompleta, contiene el _storyboard_ que define la vista y el fichero `ViewController.swift` incompleto. Le falta el fichero `CalculatorBrain.swift` que define el modelo.
 - Ejecútala en el simulador y comprueba que funciona la entrada de números (escribiendo los dígitos y pulsando ENTER), pero falta el código que realiza los cálculos. 
@@ -1052,7 +1030,7 @@ git push -u origin master
 
 
 
-### `ViewController.swift (1)`
+#### `ViewController.swift (1)`
 <!-- .slide: data-background="#cbe0fc"-->
 
 <img src="images/calculadora-view-controller-1.png" width=600px/>
@@ -1062,7 +1040,7 @@ git push -u origin master
 
 
 
-### `ViewController.swift` (2)
+#### `ViewController.swift` (2)
 <!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-view-controller-2.png" width=900px/>
 
@@ -1071,32 +1049,32 @@ git push -u origin master
 
 
 
-### `CalculatorBrain.swift` (1)
+#### `CalculatorBrain.swift` (1)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-1.png" width=900px/>
+<img src="images/calculadora-modelo-1.png" width=800px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### `CalculatorBrain.swift` (2)
+#### `CalculatorBrain.swift` (2)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-2.png" width=900px/>
+<img src="images/calculadora-modelo-2.png" width=600px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### `CalculatorBrain.swift` (3)
+#### `CalculatorBrain.swift` (3)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-3.png" width=900px/>
+<img src="images/calculadora-modelo-3.png" width=800px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### `CalculatorBrain.swift` (4)
+#### `CalculatorBrain.swift` (4)
 <!-- .slide: data-background="#cbe0fc"-->
 <img src="images/calculadora-modelo-4.png" width=700px/>
 
@@ -1107,7 +1085,7 @@ git push -u origin master
 
 <!-- 
 
-### Algunas ideas sueltas de Xcode
+#### Algunas ideas sueltas de Xcode
 .slide: data-background="#cbe0fc"
 - El panel a la izquierda del _storyboard_ muestra el _outline_ con todos los elementos de la interfaz de usuario.
 - Cuando se hace un click del botón derecho sobre un elemento de la interfaz de usuario aparecen los eventos y las acciones a las que está conectado. Esto nos permite eliminar conexiones y volverlas a realizar. No es posible modificar conexiones, por lo que hay que tener cuidado con editar los elementos generados por el Ctrl+Drag cuando inicializamos una conexión.
