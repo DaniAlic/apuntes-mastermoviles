@@ -1042,7 +1042,7 @@ git push -u origin master
 
 #### `ViewController.swift` (2)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-view-controller-2.png" width=900px/>
+<img src="images/calculadora-view-controller-2.png" width=800px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -1051,7 +1051,7 @@ git push -u origin master
 
 #### `CalculatorBrain.swift` (1)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-1.png" width=800px/>
+<img src="images/calculadora-modelo-1.png" width=600px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -1060,7 +1060,7 @@ git push -u origin master
 
 #### `CalculatorBrain.swift` (2)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-2.png" width=600px/>
+<img src="images/calculadora-modelo-2.png" width=750px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -1076,7 +1076,7 @@ git push -u origin master
 
 #### `CalculatorBrain.swift` (4)
 <!-- .slide: data-background="#cbe0fc"-->
-<img src="images/calculadora-modelo-4.png" width=700px/>
+<img src="images/calculadora-modelo-4.png" width=450px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
