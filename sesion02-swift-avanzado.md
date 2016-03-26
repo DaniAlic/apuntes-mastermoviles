@@ -1,4 +1,4 @@
-# Sesión 1b: <br/> Swift <br/> avanzado
+# Sesión 2: <br/> Swift <br/> avanzado
 
 ### Servicios de las plataformas móviles - iOS
 
@@ -10,7 +10,7 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
-### Protocolos
+#### Protocolos
 
 - El concepto de protocolo en Swift es similar al de Objective-C o al concepto de _interface_ en Java.
 - Un _protocolo_ proporciona una plantilla de métodos, propiedades y otros requisitos que definen una tarea o funcionalidad particular.
@@ -24,7 +24,7 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
-### Declaración de un protocolo
+#### Declaración de un protocolo
 
 - Usamos `protocol` para declarar un protocolo.
 
@@ -41,7 +41,7 @@ protocol ProtocoloEjemplo {
 
 
 
-### Clases que adopta un protocolo
+#### Clases que adopta un protocolo
 
 - Para indicar que una clase, struct o enumeración adopta un protocolo escribimos el nombre del protocolo tras el nombre del tipo, separado por una coma. Se pueden listar múltiples protocolos, todos separadas por comas.
 
@@ -70,7 +70,7 @@ class AlgunaClase: AlgunaSuperclase, PrimerProtocolo, OtroProtocolo {
 
 
 
-### Estructura que adopta un protocolo
+#### Estructura que adopta un protocolo
 
 ```swift
 struct EstructuraSencilla: ProtocoloEjemplo {
@@ -93,7 +93,7 @@ let descripcionB = b.descripcionSencilla
 
 
 
-### Extensiones
+#### Extensiones
 
 - Una `extension` sirve para añadir funcionalidad a un tipo existente, como métodos nuevos y propiedades calculadas. Similares a _categorías_ en Objective-C.
 - Se puede utilizar una extensión para añadir un cumplimiento de un protocolo a un tipo que se declara en otro lugar, o incluso a un tipo que hayas importado de una biblioteca o un *framework*. 
@@ -114,7 +114,7 @@ print(7.descripcionSencilla)
 
 
 
-### Tipos protocolo
+#### Tipos protocolo
 
 - Se puede usar un nombre de un protocolo de la misma forma que cualquier otro tipo con nombre; por ejemplo, para crear una colección de objetos que tienen tipos diferentes pero que cumplen un único protocolo. 
 - Cuando se trabaja con valores cuyo tipo es un tipo de protocolo, no están disponibles los métodos fuera del protocolo.
@@ -132,7 +132,7 @@ print(valorProtocolo.descripcionSencilla)
 
 
 
-### Manejo de errores
+#### Manejo de errores
 
 - Se representa un error  usando cualquier tipo que adopte el protocolo `ErrorType`.
 
@@ -161,7 +161,7 @@ func enviaAImpresora(nombreImpresora: String) throws -> String {
 
 
 
-### Manejo de errores
+#### Manejo de errores
 
 - Hay varias formas de manejar errores. 
 - Una forma es usar `do-catch`. Dentro del bloque `do`, marcamos el código que pueda lanzar un error escribiendo `try` frente a él. Dentro del bloque `catch` se le da al error el nombre `error` a menos que le demos un nombre diferente.
@@ -181,7 +181,7 @@ do {
 
 
 
-### Múltiples bloques `catch`
+#### Múltiples bloques `catch`
 
 - Podemos proporcionar múltiples bloques `catch` que manejen errores específicos. 
 - Se debe escribir un patrón después de `catch` de la misma forma que haces después de un `case` en un switch.
@@ -205,7 +205,7 @@ do {
 
 
 
-### Uso de `try?`
+#### Uso de `try?`
 
 - Otra forma de manejar errores es usar `try?` para convertir el resultado en un opcional. 
 - Si la función lanza un error, el error específico se descarta y el resultado es `nil`. En otro caso, el resultado es un opcional que contiene el valor que la función ha devuelto.
@@ -219,7 +219,7 @@ let falloImpresora = try? enviaAImpresora("Nunca Tiene Toner")
 
 
 
-### Uso de `defer`
+#### Uso de `defer`
 
 - Usamos `defer` para escribir un bloque código que siempre se ejecute antes de que la función termine, independientemente de si se lanza un error. 
 - Podemos usar `defer` incluso cuando no existe manejo de errores, para simplificar funciones que terminan en muchos sitios distintos.
@@ -242,7 +242,7 @@ func rutinaMatutina() throws {
 
 
 
-### Genéricos
+#### Genéricos
 
 - Escribimos un nombre dentro de paréntesis angulares para construir una función o un tipo genérico. 
 
@@ -261,7 +261,7 @@ itemRepetido("knock", numeroDeVeces:4)
 
 
 
-### Cualquier cosa puede ser genérica
+#### Cualquier cosa puede ser genérica
 
 - Podemos hacer formas genéricas de funciones y métodos, así como de clases, enumeraciones y estructuras.
 
@@ -279,7 +279,7 @@ posibleInteger = .Alguno(100)
 
 
 
-### Uso de `where`
+#### Uso de `where`
 
 - Usamos `where` después del nombre para especificar una lista de requisitos; por ejemplo, para requerir que el tipo implemente un protocolo, para requerir que dos tipos sean el mismo, o para requerir que una clase sea de una superclase particular.
 
@@ -306,7 +306,7 @@ tienenElementosComunes([1, 2, 3], [3])
 
 
 
-### El patrón _delegación_ 
+#### El patrón _delegación_ 
 
 - *Delegación* es un patrón de diseño que permite a una clase o estructura pasar (o delegar) alguna de sus responsabilidades a una instancia de otro tipo.
 - Una forma de implementarlo es definiendo un protocolo que encapsula las responsabilidades delegadas y definiendo en la clase un método que actualiza el delegado con una instancia proporcionada por el programador que usa la clase.
@@ -319,7 +319,7 @@ tienenElementosComunes([1, 2, 3], [3])
 
 
 
-### Cómo usar la delegación
+#### Cómo usar la delegación
 
 1. Debemos crear una clase que adopte el protocolo delegado (por ejemplo `UIApplicationDelegate`). La clase puede ser de cualquier tipo y tener las propiedades y métodos añadidos que nos interesen.
 2. Implementamos los métodos del delegado que nos interesen. Esos métodos representan eventos particulares detectados por la clase delegadora (por ejemplo `UIApplication`) en los que va a llamar a nuestro código. En todos esos métodos aparece como parámetro la clase delegadora y otros parámetros adicionales con información del evento. Usaremos estos parámetros en nuestro código para poder acceder a la clase delegadora o a la información del evento.
@@ -330,7 +330,7 @@ tienenElementosComunes([1, 2, 3], [3])
 
 
 
-### Un ejemplo de delegación
+#### Un ejemplo de delegación
 
 - Veamos una implementación del juego _Snake and ladders_ en el que se usa delegación para poder ampliar el comportamiento del juego cuando suceden determinados eventos.
 
@@ -340,7 +340,7 @@ tienenElementosComunes([1, 2, 3], [3])
 
 
 
-### Protocolo `RandomNumberGenerator`
+#### Protocolo `RandomNumberGenerator`
 
 - Definimos un protocolo `RandomNumberGenerator` y una clase que lo implementa
 
@@ -365,7 +365,7 @@ class LinearCongruentialGenerator: RandomNumberGenerator {
 
 
 
-### Clase `Dice` 
+#### Clase `Dice` 
 
 - Veamos un ejemplo sencillo en el que se define un clase `Dice` que representa un dado de _n_ caras que puede usarse en un juego de mesa.
 
@@ -387,14 +387,14 @@ class Dice {
 
 ```
 var d6 = Dice(sides: 6, generator: LinearCongruentialGenerator())
-for _ in 1...5 { println("Random dice roll is \(d6.roll())") }
+for _ in 1...5 { print("Random dice roll is \(d6.roll())") }
 ```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-### El estado del juego: tablero y variables
+#### El estado del juego: tablero y variables
 
 ```swift
 class SnakesAndLadders {
@@ -416,7 +416,7 @@ class SnakesAndLadders {
 
 
 
-### El juego sin delegación
+#### El juego sin delegación
 
 ```swift
     func play() {
@@ -448,7 +448,7 @@ Se tira el dado al comienzo de cada bucle. En lugar de mover al jugador inmediat
 
 
 
-### Definimos el protocolo del juego y su delegado
+#### Definimos el protocolo del juego y su delegado
 
 - Definimos dos protocolos, uno para definir un juego de dados genérico y otro para definir su delegado.
 
@@ -457,7 +457,8 @@ protocol DiceGame {
     var dice: Dice { get }
     func play()
 }
-protocol DiceGameDelegate {
+
+protocol DiceGameDisplayDelegate {
     func gameDidStart(game: DiceGame)
     func game(game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
     func gameDidEnd(game: DiceGame)
@@ -471,7 +472,7 @@ protocol DiceGameDelegate {
 
 
 
-### Juego completo
+#### Juego completo
 
 ```swift
 class SnakesAndLadders: DiceGame {
@@ -479,7 +480,7 @@ class SnakesAndLadders: DiceGame {
     let dice = Dice(sides: 6, generator: LinearCongruentialGenerator())
     var square = 0
     var board: [Int]
-    var delegate: DiceGameDelegate?
+    var displayDelegate: DiceGameDisplayDelegate?
 
     init() {
         // Inicializamos el tablero, mismo código que antes
@@ -494,16 +495,16 @@ class SnakesAndLadders: DiceGame {
 
 
 
-### El bucle de juego con delegación
+#### El bucle de juego con delegación
 
 
 ```swift
 func play() {
     square = 0
-    delegate?.gameDidStart(self)
+    displayDelegate?.gameDidStart(self)
     gameLoop: while square != finalSquare {
         let diceRoll = dice.roll()
-        delegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
+        displayDelegate?.game(self, didStartNewTurnWithDiceRoll: diceRoll)
         switch square + diceRoll {
         case finalSquare:
             break gameLoop
@@ -514,7 +515,7 @@ func play() {
             square += board[square]
         }
     }
-    delegate?.gameDidEnd(self)
+    displayDelegate?.gameDidEnd(self)
 }
 ```
 
@@ -523,23 +524,24 @@ func play() {
 
 
 
-### La clase que adopta el delegado
+#### La clase que adopta el delegado
 
 ```swift
-class DiceGameTracker: DiceGameDelegate {
+class DiceGameDisplayer: DiceGameDisplayDelegate {
     var numberOfTurns = 0
+    
     func gameDidStart(game: DiceGame) {
         numberOfTurns = 0
         if game is SnakesAndLadders {
-            println("Comienza un juego nuevo de Serpientes y Escaleras")
+            print("Comienza un juego nuevo de Serpientes y Escaleras")
         }
-        println("El juego está usando un dado de \(game.dice.sides) caras")
+        // Falta código que tienes que completar
     }
     
     // Falta código que tienes que completar
 
     func gameDidEnd(game: DiceGame) {
-        println("El juego ha durado \(numberOfTurns) movimientos")
+        print("El juego ha durado \(numberOfTurns) movimientos")
     }
 }
 ```
@@ -548,24 +550,24 @@ class DiceGameTracker: DiceGameDelegate {
 
 
 
-### El juego en acción
+#### El juego en acción
 
 ```swift
-let tracker = DiceGameTracker()
+let displayer = DiceGameDisplayer()
 let game = SnakesAndLadders()
-game.delegate = tracker
-println("Comienza el juego")
+game.displayDelegate = displayer
+print("Comienza el juego")
 game.play()
-println("Final del juego")
-// Comienza el juego
-// Comienza un juego nuevo de Serpientes y Escaleras
-// El juego está usando un dado de 6 caras
-// El dado saca un 3
-// El dado saca un 5
-// El dado saca un 4
-// El dado saca un 5
-// El juego ha durado 4 movimientos
-// Final del juego
+print("Final del juego")
+//Comienza el juego
+//Comienza un juego nuevo de Serpientes y Escaleras
+//El juego está usando un dado de 6 caras
+//Estás en la casilla 0 y sacas la tirada 3
+//Estás en la casilla 11 y sacas la tirada 5
+//Estás en la casilla 16 y sacas la tirada 4
+//Estás en la casilla 20 y sacas la tirada 5
+//El juego ha durado 4 movimientos
+//Final del juego
 ```
 
 
@@ -573,7 +575,7 @@ println("Final del juego")
 
 
 
-### Práctica
+#### Práctica
 
 <!-- .slide: data-background="#cbe0fc"-->
 
@@ -582,8 +584,6 @@ println("Final del juego")
 - _Assistant Editor > Show Assistant Editor_ para ver la salida
 - Para probar distintas ejecuciones del juego puedes cambiar el valor inicial de `lastRandom` = 40.0, 41.0, 42.0, ...
 - No olvides subirlo a tu cuenta de Bitbucket y confirmar la entrega en Moodle
-
-<img src="images/playground-snakes.png" width=400px/>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
