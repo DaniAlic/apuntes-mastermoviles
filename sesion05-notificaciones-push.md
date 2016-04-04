@@ -1,4 +1,4 @@
-# Sesión 4: <br/> Notificaciones 
+# Sesión 5: <br/> Notificaciones remotas
 
 #### Servicios de las plataformas móviles - iOS
 
@@ -513,6 +513,406 @@ func application(application: UIApplication,
 
 - Prueba el código anterior para incluir acciones en la notificación que se lanza al arrancar la app.
 - **(Opcional)**: Escribe un ejemplo de código en el que se usen los números en los globos de la app: incialízalo a 1 y ponlo a 0 cuando se pulse la acción de la notificación.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Notificaciones remotas (_push_)
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Arquitectura de las notificaciones remotas
+
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:40px;" src="images/remote-notif-multiple.png" width=400px/>
+
+- Apple Push Notification service (APNs) es la pieza central de las notificaciones remotas. Es un servicio robusto y altamente eficiente para propagar información a dispositivos iOS y OS X.
+- Cada dispositivo establece una conexión acreditada y encriptada con el servicio y recibe notificaciones sobre esta conexión persistente.
+- Si llega una notificación para una app cuando el dispositivo está fuera de cobertura, el APNs guarda la notificación hasta que el dispositivo vuelve a estar disponible.
+- Las notificaciones se originan en servidores (_proveedores_) propios del desarrollador. Los proveedores se conectan con el APNs a través de canales persistentes y seguros al tiempo que monitorizan los datos recibidos de sus apps clientes. Cuando llegan nuevos datos para un app, los proveedores preparan y envían notificaciones a través de los canales al APNs, que se encarga de enviar las notificaciones remotas (_push_) a los dispositivos interesados.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Servidores proveedores
+
+- Podemos poner en marcha nosotros mismos un servidor proveedor, utilizando la [documentación de Apple](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html#//apple_ref/doc/uid/TP40008194-CH101-SW1) o instalando algún paquete _open source_:
+    - [ApnsPHP](https://github.com/duccio/ApnsPHP) para servidores PHP
+    - [Pushy](http://relayrides.github.io/pushy/) para servidores Java
+- La mayoría de servicios PaaS (como RedHat OpenShift, Microsoft Azure o Amazon WS) proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones.
+- Existen plataformas denominadas [_Mobile Backend As a Service_](http://www.infoworld.com/article/2842791/application-development/mbaas-shoot-out-5-cloud-platforms-for-building-mobile-apps.html) (MBaaS) que proporcionan servicios específicos para móviles, entre ellos el envío de notificaciones _push_.
+- Existen bastantes opciones, con distintos enfoques de funcionalidades y precios: Appcelerator, Kinvey, Backendless, etc. Una de las más populares es la que vamos a utilizar en el ejercicio práctico, [Parse](https://www.parse.com).
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Arquitectura de seguridad
+
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left: 30px" src="images/security-service-provider.png" width=400px/>
+
+
+- No queremos que nuestras notificaciones (con datos personales) puedan aparecer en otros dispositivos.
+- El servicio de notificaciones remota de Apple (APNs) define unas condiciones de seguridad bastante estrictas tanto entre dispositivo y servicio como entre proveedor y el servicio.
+- Se basa en el establecimiento de conexiones SSL seguras con el dispositivo y el proveedor y la creación de un _token de dispositivo_ que envía el APNs al dispositivo y que debe estar presente en cada petición del proveedor al APNs.
+- Para establecer estas conexiones seguras es necesario instalar en el proveedor el certificado obtenido en el _member center_ y firmar la app con un App ID que proporcione el permiso de conexión push. Haremos una práctica paso a paso en donde lo probaremos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Secuencia de registro
+
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="images/registration-sequence.png" width=500px/>
+
+1. El dispositivo establece una conexión SSL con el APNs.
+2. El APNs le envía un _token_ único asociado con el dispositivo.
+3. El dispositivo le envía el _token_ al app.
+4. El app envía el _token_ a su servidor (_Provider_) para que lo utilice a partir de ese momento en cada petición de notificación realizada al APNs.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Confianza en el token
+
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="images/token-trust.png" width=450px/>
+
+- Después de que el sistema obtiene un token de dispositivo del APNs, debe proporcionarlo al APNs cada vez que se conecta al servicio. El APNs descifra el token de dispositivo y valida que fue el mismo que fue generado para el dispositivo. Para ello, el APNs se asegura que el identificador de dispositivo contenido en el token coincide con el identificador de dispositivo en el certificado del dispositivo.
+
+- Cada notificación que un proveedor envía al APNs para ser entregada en un dispositivo debe acompañarse del token de dispositivo obtenido por una app en ese dispositivo. El APNs descifra el token usando la clave del token, y asegurándose por tanto que la notificación es válida. Después utiliza el identificador de dispositivo contenido en el token de dispositivo para determinar el dispositivo destino de la notificación.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Contenido de las notificaciones (_payload_)
+
+
+- Limitado a 2 kilobytes.
+- Diccionario con formato JSON que debe contener un diccionario con la clave `aps`, en la que se incluyen las características de la notificación (las mismas vistas en las notificaciones locales). Consultar [este enlace](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1) para examinar el formato.
+- El diccionario `aps` también puede tener la clave `content-available` con un valor de 1. Eso significa que la notificación será una notificación silenciosa que hará que el sistema despierte la app y la ponga en _background_ para que pueda conectarse al servidor o hacer alguna tarea de background. El usuario no recibirá ninguna notificación, pero verá el nuevo contenido la siguiente vez que abra la app.
+- El resto del diccionario contendrá parejas clave-valor con información _custom_.
+- La información JSON se convierte en un diccionario que se pasa como el parámetro `userInfo` en los métodos que reciben la notificación, como 
+`application:didReceiveRemoteNotification:fetchCompletionHandler:`.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Ejemplos (1)
+
+```json
+{
+    "aps" : { "alert" : "Message received from Bob" },
+    "acme2" : [ "bang",  "whiz" ]
+}
+```
+
+
+```json
+{
+    "aps" : {
+        "alert" : {
+            "title" : "Game Request",
+            "body" : "Bob wants to play poker",
+            "action-loc-key" : "PLAY"
+        },
+        "badge" : 5,
+    },
+    "acme1" : "bar",
+    "acme2" : [ "bang",  "whiz" ]
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Ejemplos (2)
+
+```json
+{
+    "aps" : {
+        "alert" : "You got your emails.",
+        "badge" : 9,
+        "sound" : "bingbong.aiff"
+    },
+    "acme1" : "bar",
+    "acme2" : 42
+}
+```
+
+```json
+{
+    "aps" : {
+        "alert" : {
+            "loc-key" : "GAME_PLAY_REQUEST_FORMAT",
+            "loc-args" : [ "Jenna", "Frank"]
+        },
+        "sound" : "chime.aiff"
+    },
+    "acme" : "foo"
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Ejemplos (3)
+
+```json
+{
+   "aps" : {
+      "alert” : {
+         “body” : "Acme message received from Johnny Appleseed”,
+         “action-loc-key” : “VIEW”,
+         "actions" : [
+            {
+               “id" : “delete",
+               "title" : "Delete"
+            },
+            {
+               “id" : “reply-to”,
+               "loc-key" : “REPLYTO”,
+               "loc-args" : [“Jane"]
+            }
+         ]
+      }
+      "badge" : 3,
+      "sound" : “chime.aiff"
+   },
+   "acme-account" : "jane.appleseed@apple.com",
+   "acme-message" : "message123456"
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Práctica: Notificaciones remotas
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Utilizaremos [Parse](https://www.parse.com) como plataforma para enviar notificaciones remotas.
+- Un administrador del equipo de la UA debe crear un certificado SSL (en formato `.p12`).
+- Cada desarrollador creará su propio servicio en Parse (lo llaman también _app_) y podrá enviar sus notificaciones push.
+- Las notificaciones sólo se pueden recibir en un dispositivo real.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Nuevo App ID en el _member center_ (1)
+
+- Un administrador del equipo UA debe crear una App ID con el nombre explícito de la app que se va a poner en producción.
+
+<img src="images/app-id-notificaciones-1.png"/ width=600px>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Nuevo App ID en el _member center_ (2)
+
+- Se debe añadir en el App ID la autorización de notificaciones push.
+
+<img src="images/app-id-notificaciones-2.png" width=600px/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Creación del certificado SSL en el _member center_ (1)
+
+- Debemos obtener un certificado de una autoridad certificadora que después subiremos al _member center_.
+- Abrimos Acceso a Llaveros y seleccionamos _Asistente de Certificados > Solicitar un certificado de una autoridad certificadora_.
+- Salvamos el fichero `CertificateSigningRequest.certSigningRequest`.
+
+<img src="images/certificado-autoridad-certificadora.png"/ width=600px>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Creación del certificado SSL en el _member center_ (2)
+
+<img src="images/app-id-notificaciones-servicios.png" width=600px/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Creación del certificado SSL en el _member center_ (3)
+
+- Para crear el certificado es necesario subir el fichero generado previamente `CertificateSigningRequest.certSigningRequest` 
+
+<img src="images/crear-certificado-ssl.png" width=600px/> 
+
+<img src="images/generar-certificado-ssl.png" width=600px/>
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Generación del fichero `.p12` (1)
+
+<img src="images/exportar-fichero-p12.png" width=800px/>
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Generación del fichero `.p12` (2)
+
+- Una vez creado el certificado en el _Member Center_ lo descargamos y lo instalamos en Acceso a llaveros para generar un fichero `.p12` que enviaremos a Parse.
+
+- Lo salvamos como `ParseDevelopmentPushCertificate.p12` sin crear una contraseña asociada al certificado. Cuando estemos en clase lo podrás descargar [desde este enlace](http://domingogallardo.github.io/apuntes-mastermoviles/ParseDevelopmentPushCertificate.p12).
+
+- Después subiremos a Parse este certificado para que el servicio que crearemos allí pueda establecer una conexión SSL con el APNs. Todos podemos subir a Parse el mismo certificado para cada uno de los servicios que crearemos.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Creación del servicio en Parse (1)
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Date de alta en [Parse](https://www.parse.com)
+- Crea una nueva App en Parse y entra en el menú de _Settings_
+
+<img src="images/parse-app-settings.png" />
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Creación del servicio en Parse (2)
+<!-- .slide: data-background="#cbe0fc"-->
+
+- En el menú de la izquierda selecciona Push y sube el certificado .p12
+
+<img src="images/parse-certificate.png" />
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Actualizar la app Notificaciones
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- En Xcode debemos comprobar que se ha cargado el perfil de aprovisionamiento recién creado que nos permite desarrollar e instalar aplicaciones que usan notificaciones remotas.
+
+<img src="images/perfil-aprovisionamiento-notificaciones.png"/>
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Añadir Frameworks a la app
+
+<!-- .slide: data-background="#cbe0fc" -->
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="images/estructura-proyecto.png"/>
+
+- Para poder trabajar con las notificaciones remotas usando Parse debemos incorporar en nuestro proyecto _frameworks_ de la biblioteca de Parse (descargarlo desde [este enlace](https://www.parse.com/downloads/ios/parse-library/latest)) y del sistema.
+- Añadir las dependencias con Targets > Notificaciones > Build Phases > Link Binary With Libraries 
+
+- Añadir las siguientes clases del sistema:
+    - MobileCoreServices.framework
+    - SystemConfiguration.framework
+    - AudioToolbox.framework
+    - libstdc++.6.dylib
+    - libsqlite3.dylib
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Incluir el código para conectar con Parse y con APNs (1)
+<!-- .slide: data-background="#cbe0fc" -->
+
+- [Documentación Push en Parse](https://www.parse.com/docs/push_guide#top/iOS)
+
+- En el fichero `AppDelegate.swift` añade los siguientes imports:
+
+```swift
+import Bolts
+import Parse
+```
+
+- Al comienzo de la función `application:didFinishLaunchingWithOptions:` añadir las claves de la app de Parse (las puedes encontrar en el apartado _Keys_ del menú de la izquierda ):
+
+```swift
+Parse.setApplicationId("parseAppID", clientKey: "clientKey")
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Incluir el código para conectar con Parse y con APNs (2)
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
+
+```swift
+application.registerForRemoteNotifications()
+```
+
+- Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse
+
+```swift
+func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    let installation = PFInstallation.currentInstallation()
+    installation.setDeviceTokenFromData(deviceToken)
+    installation.saveInBackground()
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Instalar la app en un dispositivo físico
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Las notificaciones remotas no funcionan en el simulador.
+- Hay que instalar la app en un dispositivo real, abrirla y enviar las notificaciones desde Parse
+
+
+<img src="images/send-push-parse.png"/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Práctica opcional
+<!-- .slide: data-background="#cbe0fc" -->
+
+- **Avanzado**: Añadir una etiqueta en la pantalla de la app, que muestre el texto de la notificación remota enviada.
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
