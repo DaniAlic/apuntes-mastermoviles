@@ -1,4 +1,4 @@
-# Sesión 5: <br/> Notificaciones remotas
+# Sesión 5: <br/> Notificaciones remotas (push)
 
 #### Servicios de las plataformas móviles - iOS
 
@@ -18,507 +18,7 @@ Master Programación de Dispositivos Móviles</small>
 
 
 
-#### Notificaciones
-
-<!-- .slide: class="image-right"-->
-
-- En iOS sólo una única aplicación puede estar activa en un momento dado. Sin embargo, en muchas ocasiones las apps operan en un entorno basado en el tiempo o interconectado en el que es necesario avisar al usuario cuando sucede algún evento y la aplicación que no está activa. Las notificaciones locales y remotas permiten a estas apps notificar a sus usuarios cuando ocurre algún suceso de su interés.
-- Las notificaciones locales y remotas tienen orígenes distintos. Una notificación local es planificada y enviada por la propia app, mientras que una notificación remota (también conocida como notificación _push_) tiene su origen fuera del dispositivo, en un servidor remoto denominado _proveedor de la app_ y se _empuja_ al dispositivo mediante el servicio _Apple Push Notification service_ (_APN_).
-
-<img src="images/glances.png" />
-
-- Además de los usos comentados, las notificaciones se utilizan también para la comunicación entre nuestra app y el recién introducido _Apple Watch_. Se puede consultar la [página de recursos](https://developer.apple.com/watchkit/) de Apple sobre el _WatchKit Framework_ para más información.
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Uso de los tipos de notificaciones
-
-- Las notificaciones remotas y locales satisfacen distintas necesidades de diseño.
-- Una **notificación local** se planifica y envía por la propia app, sin que intervenga Internet.
-- Una **notificación remota**, también llamada _notificación push_, llega del exterior del dispositivo. Se origina en un servidor remoto gestionado por el desarrollador de la app (denominado proveedor de la aplicación) y se envía al dispositivo del usuario a través del _Apple Push Notification service_ (APNs).
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Ejemplo de uso: lista to-do
-
-- Un ejemplo del uso de notificaciones puede ser una app que gestiona una lista de tareas por hacer, en la que cada ítem tiene una fecha y hora en el que debe ser completado.
-- El usuario puede pedir a la app que le notifique en un determinado intervalo de tiempo antes de que se cumpla esa fecha.
-- Para implementar esta conducta, la app planifica una notificación local para esa fecha y hora. En lugar de especificar un mensaje de alerta, la app elige usar un globo (1) y un sonido. En el momento planificado, iOS hace sonar el sonido y muestra el número en la esquina del icono de la app.
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Apariencia de las notificaciones
-
-<img src="images/badge.png" width="100px"/> <br/>
-
-Tanto las notificaciones locales como las remotas pueden aparecer como:
-
-- Una alerta o tira (_banner_) en pantalla.
-- Un globo (_badge_) en el icono de la app.
-- Un sonido que acompaña la alerta, _banner_ o _badge_.
-- Desde la perspectiva del usuario ha sucedido algo de interés en la app.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Dónde aparecen las notificaciones
-
-<img src="images/alerta.png" width=300px/> <br/>
-<img style="vertical-align: middle; margin-right: 60px;" src="images/notificacion-centro-notificaciones.png" width=400px/>  <img style="vertical-align: middle; margin-right: 60px;" src="images/notificacion-pantalla-bloqueo.png" width=300px/> 
-
-- Alerta modal, cuando el dispositivo está desbloqueado.
-- Centro de notificaciones.
-- Pantalla bloqueada.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Dónde se originan las notificaciones locales
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:20px" src="images/local-notification.png" width=400px/>
-
-- Las notificaciones locales se originan en la propia aplicación, que las crea y las planifica para una fecha futura.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Dónde se originan las notificaciones remotas
-
-- Las notificaciones remotas se originan en un servidor nuestro (_provider_) que realiza la petición al _Apple Push Notification Service_.
-- El servicio APNs se encargar de enviar la notificación al dispositivo y éste a la app.
-
-<img src="images/remote-notif-simple.png"/>
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Para qué se usan las notificaciones
-
-- Notificaciones locales: alarmas, recordatorios, eventos de una forma sencilla, sin tocar las apps Calendario, Alarmas o Recordatorios (_EventKit Framework_).
-- Notificaciones remotas <!-- .element: class="fragment" data-fragment-index="1" -->
-    - Avisar al usuario de que han sucedido determinados eventos.
-    - Notificar a la app para que descargue contenido nuevo para que esté disponible la próxima vez que el usuario la utilice.  <!-- .element: class="fragment" data-fragment-index="2" -->
-
-<img class="fragment" data-fragment-index="2" src="images/notif-content-available.png" width=600px/>
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Estados de la app
-
-<img src="images/high_level_flow.png" width=450px/>
-
----
-
-<table>
-  <tr>
-    <td><strong><em>Estado</em></strong></td> 
-    <td><strong><em>Descripción</em></strong></td>
-  </tr>
-  <tr>
-  <td><strong>No corriendo</strong></td> 
-    <td>La app no ha sido lanzada o fue terminada por el usuario o por el sistema.</td>
-  </tr>
-  <tr>
-    <td><strong>Inactiva</strong></td> 
-    <td>La app está corriendo en primer plano pero no está recibiendo eventos (puede estar ejecutando código, sin embargo). Una app permanece en este estado brevemente, mientras realiza una transición a otro estado.</td>
-  </tr>
-  <tr>
-    <td><strong>Activa</strong></td> 
-    <td>La app está corriendo en primer plano y recibiendo eventos.</td>
-  </tr>
-  <tr>
-    <td><strong>Background</strong></td> 
-    <td>La app está ejecutando código pero no es visible en pantalla. Cuando el usuario sale de una app, el sistema mueve la app al estado de _background_ antes de suspenderla. En otros momentos, el sistema puede lanzar una aplicación en _background_ (o despertar una app suspendida) y darle tiempo para manejar ciertas tareas específicas. Por ejemplo, el sistema puede despertar una app para que procese descargas en _background_, o responda a notificaciones remotas. Una app en estado _background_ debe hacer el mínimo trabajo posible y devolver rápidamente el control al sistema.</td>
-  </tr>
-  <tr>
-    <td><strong>Suspendida</strong></td> 
-    <td>La app está en memoria pero no ejecuta código. El sistema suspende apps que están en _background_ y no tienen tareas pendientes que completar. El sistema puede eliminar apps suspendidas en cualquier momento sin despertarlas, para hacer sitio para otras apps.</td>
-  </tr>
-</table>
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### _UIApplication_ y _UIApplication Delegate_
-
-- `UIApplication` y `UIApplicationDelegate` son tipos muy importantes que debemos conocer.
-- Contienen los métodos necesarios para gestionar las notificaciones y otros eventos del ciclo de vida de las apps.
-- Xcode proporciona una clase _app delegate_ para cada proyecto. UIKit crea automáticamente una instancia de la clase proporcionada por Xcode y la usa para ejecutar los primeros bits de código _custom_ de la app. Todo lo que tienes que hacer es añadir tu código _custom_ a la clase que proporciona Xcode.
-- La clase `UIApplication` define un _singleton_ al que podemos acceder con el método de clase `sharedApplication()`
-
-```swift
-let application = UIApplication.sharedApplication();
-```
-
-- Referencias: [`UIApplication`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/index.html#//apple_ref/swift/cl/UIApplication) y [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/).
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Métodos relacionados con los cambios de estado en el `UIApplicationDelegate`
-
-- En [`UIApplicationDelegate` - Monitoring App State Change](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/doc/uid/TP40006786-CH3-SW5)
-    - `application(_:willFinishLaunchingWithOptions:)`
-    - `application(_:didFinishLaunchingWithOptions:)`
-    - `applicationDidBecomeActive(_:)`
-    - `applicationWillResignActive(_:)`
-    - `applicationDidEnterBackground(_:)`
-    - `applicationWillEnterForeground(_:)`
-    - `applicationWillTerminate(_:)`
-- Todos reciben el parámetro `application`, el _singleton_ de tipo [`UIApplication`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/index.html) que contiene todos los datos de la app.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Registro de los tipos de notificación
-
-- Las apps que usan notificaciones locales o remotas deben registrar los tipos de notificaciones que intentan enviar al usuario.
-- El usuario debe aceptar el tipo de notificación: globos, alertas o sonidos. Inicialmente le aparecerá una alerta en el que permite aceptar o rechazar todos los tipos. 
-- Después en cualquier momento puede modificar esta aceptación en los ajustes de la aplicación (Ajustes > Notificaciones).
-
-<img src="images/alerta-notificaciones.png" width=400px/>
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Inicialización de las notificaciones
-
-- Podemos inicializar las notificaciones al arrancar la app con el método `aplication(_:didFinishLaunchingWithOptions:)` del [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/swift/intf/UIApplicationDelegate)
-- Llamamos a `registerUserNotificationSettings(_:)` con los tipos de notificación deseados. La app pide permiso para usar las notificaciones y el usuario puede autorizar o no. Después, el sistema llama al método `application(_:didRegisterUserNotificationSettings:)` del delegado para informar de los resultados.
-- Independientemente de que el usuario acepte o no las notificaciones, éstas se van a lanzar y los métodos que las manejan en el app delegado se van a disparar. Lo que el usuario desactiva es la aparición de las notificaciones en pantalla.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Código
-
-```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: 
-                                   [NSObject: AnyObject]?) -> Bool {
-    let notificationSettings = UIUserNotificationSettings(
-        forTypes: [.Badge, .Sound, .Alert], categories: nil)
-    application.registerUserNotificationSettings(notificationSettings)
-
-    // Resto de código para inicializar la app
-    
-    return true
-}
-
-func application(application: UIApplication,
-                 didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-    print(notificationSettings)
-}
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Notificaciones locales
-
-- Un objeto [`UILocalNotification`](https://developer.apple.com/library/ios/documentation/iPhone/Reference/UILocalNotification_Class/) especifica una notificación que una app puede planificar que se envíe en una fecha y hora específica.
-- El sistema operativo es responsable de entregar las notificaciones locales en la fecha y hora planificada, la app no tiene que estar en marcha para que esto suceda.
-- Las notificaciones locales son similares a las remotas en el sentido de que se usan para mostrar alertas, ejecutar sonidos y añadir globos al icono del app.
-- Se usan principalmente en apps con conductas basadas en temporizadores y en apps sencillas de calendarios o de listas de to-do. Una app que está ejecutándose en background también puede planificar una notificación para informar al usuario de que ha llegado un mensaje, un chat o se ha actualizado algún estado.
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Qué contiene una notificación local
-
-- Para crear una notificación local hay que crear una instancia de `UILocalNotification` y definir los siguientes atributos: 
-    - `fireDate: NSDate?` - fecha en la que se lanza la notificación.
-    - `repeatInterval: NSCalendarUnit` - intervalo de repetición.
-    - `alertAction: String?` - título del botón de la alerta de la acción por defecto
-    - `alertBody: String?` - mensaje en la alerta.
-    - `applicationIconBadgetNumber: Int` - número a incluir en el globo cuando llegue la notificación.
-    - `soundName: String?` - nombre del fichero del sonido a reproducir.
-    - `userInfo: [NSObject : AnyObject]?` - un diccionario para pasar información _custom_ a la app notificada. En Swift se declaran todos los `NSDictionary` como diccionarios del tipo `[NSObject: AnyObject]`. Podemos inicializarlo a cualquier tipo de diccionario y después hay que hacer un _downcasting_.
-    - `category: String?` - el nombre de un grupo de acciones a mostrar en la alerta (lo veremos más adelante).
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Planificación de una notificación local
-
-- Para planificar una notificación local hay que invocar el método `scheduleLocalNotification(_:)` o `presentLocalNotificationNow(_:)` de la clase `UIApplication` pasando como parámetro la notificación creada.
-- El primer método usa la fecha `fireDate` como fecha de entrega.
-- El segundo método presenta la notificación inmediatamente, independientemente de la fecha de la notificación.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Ejemplo de código para enviar una notificación local
-
-- Creamos una notificación local que aparece a los 10 segundos
-
-```swift
-let localNotification = UILocalNotification()
-localNotification.alertBody = "¡¡Funciona!!"
-localNotification.alertAction = "Volver a la app"
-localNotification.soundName = UILocalNotificationDefaultSoundName
-localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
-
-// application contiene el singleton UIApplication
-application.scheduleLocalNotification(localNotification)
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Práctica: app `Notificaciones`
-
-<!-- .slide: data-background="#cbe0fc"-->
-
-- Crea un proyecto `Notificaciones`en el directorio en el que has inicializado el control de versiones y tienes conectado con tu cuenta de Bitbucket. 
-- _Bundle Identifier_: `es.ua.mastermoviles.Notificaciones`
-- Escribe el código anterior para lanzar una notificación en el método de `application(_:, didFinishLaunchingWithOptions)` del `AppDelegate`. 
-- Comprueba que se lanza la notificación correctamente.
-- Cuando la termines haz un commit y un push para subirla a Bitbucket.
-- **Avanzado**: Añade un botón en la app, de forma que cuando pulsemos el botón se planificará una nueva notificación. Se puede pulsar el botón tantas veces como queramos y se generarán otras tantas notificaciones.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Métodos del `UIApplicationDelegate` para manejar notificaciones
-
-- Se deben consultar en la referencia de [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/occ/intfm/UIApplicationDelegate/)
-- Dependiendo de si la notificación es local o remota:
--  <!-- .element: class="fragment" data-fragment-index="1" --> Manejo de notificaciones locales:
-    - `application(_:didReceiveLocalNotification:)`
--  <!-- .element: class="fragment" data-fragment-index="2" --> Manejo de notificaciones remotas:
-    - `application(_:didRegisterForRemoteNotificationsWithDeviceToken:)`
-    - `application(_:didFailToRegisterForRemoteNotificationsWithError:)`
-    - `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)`
-    - `application(_:didReceiveRemoteNotification:)`
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Manejo de notificaciones locales cuando la app no está en primer plano
-
-- Cuando la aplicación no está en primer plano, puede mostrar al usuario una alerta, añadir un globo al icono, tocar un sonido y mostrar uno o más botones de acciones.
-- Si el usuario toca la notificación el sistema lanza la app y llama al método `application(_:didReceiveLocalNotification:)` si la notificación es local o `application(_:didReceiveRemoteNotification:fetchCompletitionHandler:)` si es remota.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Manejo de notificaciones locales cuando la app está en primer plano
-
-- Si la app está en primer plano el sistema no muestra al usuario ninguna alerta, pero sí añade la notificación en el centro de notificaciones y también se invoca a los métodos correspondientes del delegado de la app vistos anteriormente.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Código ejemplo que añade datos en la notificación
-
-```swift
-...
-localNotification.userInfo = ["Mensaje":"Hola, mundo"]
-...
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Código ejemplo para manejar una notificación
-
-```swift
-func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-    print("Recibida notificación")
-    let userInfo = notification.userInfo as? Dictionary<String,String>
-    if let s = userInfo?["Mensaje"] {
-        print("Mensaje: \(s)")
-    }
-    else {
-        print("No he encontrado el mensaje\n")
-    }
-}
-```
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Práctica: app `Notificaciones`
-
-<!-- .slide: data-background="#cbe0fc"-->
-
-- Añade el código anterior en la aplicación para probar el paso de datos y el manejo de la notificación.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Acciones en las notificaciones
-
-- En versiones anteriores a 8, las notificaciones sólo podían tener una acción por defecto. 
-- A partir de iOS 8, las notificaciones pueden tener acciones _custom_ adicionales.
-- En la pantalla de bloqueo, en las tiras y en el Centro de Notificaciones se pueden mostrar dos acciones.
-- En las alertas modales, las notificaciones pueden mostrar hasta cuatro acciones cuando el usuario pulsa el botón `Opciones`.
-- Para usar acciones de notificación en tu app, debes crear los posibles conjuntos de acciones de tipo [`UIMutableUserNotificationAction`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIMutableUserNotificationAction_class/index.html#//apple_ref/occ/cl/UIMutableUserNotificationAction), agruparlos en la clase [`UIMutableUserNotificationCategory`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIMutableUserNotificationCategory_class/index.html#//apple_ref/occ/cl/UIMutableUserNotificationCategory), registrarlos al inicializar las notificaciones y seleccionar uno de los conjuntos en la notificación.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Acciones en las notificaciones
-
-<img src="images/notif-actions-lock-screen.png" width=800px/>
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Acciones en las notificaciones
-
-<img src="images/notif-actions-alert.png" width=800px/>
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Registro de acciones de notificación
-
-- En la inicialización de las notificaciones definimos las posibles acciones:
-
-```swift
-let acceptAction = UIMutableUserNotificationAction()
-acceptAction.identifier = "ACEPTAR"
-acceptAction.title = "Aceptar"
-// Indica si la app debe ser activada
-acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
-// Acciones destructivas se muestran en rojo
-acceptAction.destructive = false 
-// Determina si el usuario necesita autenticarse
-acceptAction.authenticationRequired = true
-
-let declineAction = UIMutableUserNotificationAction()
-declineAction.identifier = "DECLINAR"
-declineAction.title = "Declinar"
-declineAction.activationMode = UIUserNotificationActivationMode.Background
-declineAction.destructive = false
-declineAction.authenticationRequired = false
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Agrupación de acciones en categorías
-
-- Las agrupamos en la categoría `INVITACION`:
-
-```swift
-let category = UIMutableUserNotificationCategory()
-category.identifier = "INVITACION"
-category.setActions([acceptAction, declineAction], 
-                    forContext: 
-                        UIUserNotificationActionContext.Default)
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Registro de las categorías y actualización en la notificación
-
-- Y registramos la categoría (puede haber más de una):
-
-```swift
-let notificationSettings = UIUserNotificationSettings(
-     forTypes: [.Badge, .Sound, .Alert], categories: [category])
-
-application.registerUserNotificationSettings(notificationSettings)
-```
-
-- En la notificación ya podemos usar la categoría recién registrada:
-
-```swift
-...
-localNotification.category = "INVITACION"
-...
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Métodos del `UIApplicationDelegate` para manejar acciones en las notificaciones
-
-- En el protocolo [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/occ/intfm/UIApplicationDelegate/)
--  Manejo de notificaciones locales:
-    - `application(_:handleActionWithIdentifier:forLocalNotification:completionHandler:)`
--  Manejo de notificaciones remotas:
-    - `application(_:handleActionWithIdentifier:forRemoteNotification:completionHandler:)`
-- Cuando la app no está en primer plano si el usuario pulsa una acción en una notificación el sistema llama al `application(_:handleActionWithIdentifier:forLocalNotification:)` `completionHandler:` o a su método equivalente de notificación remota. En ambos métodos, obtenemos el identificador de la acción que el usuario ha pulsado, junto con el objeto notificación local o remoto. El _completionHandler_ es una clausura que nos pasa el sistema a la que hay invocar una vez terminado el procesamiento de la notificación. Si no se realiza esa invocación la app muere.
-- Si la app está en primer plano el sistema llama a `application(_:didReceiveRemoteNotification:fetchCompletionHandler:)` 
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Ejemplo de código
-
-```swift
-func application(application: UIApplication, 
-                 handleActionWithIdentifier identifier: String?, 
-                 forLocalNotification notification: UILocalNotification, 
-                 completionHandler: () -> Void) {
-        print(identifier)
-        completionHandler()
-    }
-```
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Práctica: app `Notificaciones`
-
-<!-- .slide: data-background="#cbe0fc"-->
-
-- Prueba el código anterior para incluir acciones en la notificación que se lanza al arrancar la app.
-- **(Opcional)**: Escribe un ejemplo de código en el que se usen los números en los globos de la app: incialízalo a 1 y ponlo a 0 cuando se pulse la acción de la notificación.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Notificaciones remotas (_push_)
+#### Notificaciones remotas (_push_)
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -542,12 +42,13 @@ func application(application: UIApplication,
 
 #### Servidores proveedores
 
-- Podemos poner en marcha nosotros mismos un servidor proveedor, utilizando la [documentación de Apple](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/CommunicatingWIthAPS.html#//apple_ref/doc/uid/TP40008194-CH101-SW1) o instalando algún paquete _open source_:
-    - [ApnsPHP](https://github.com/duccio/ApnsPHP) para servidores PHP
-    - [Pushy](http://relayrides.github.io/pushy/) para servidores Java
-- La mayoría de servicios PaaS (como RedHat OpenShift, Microsoft Azure o Amazon WS) proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones.
-- Existen plataformas denominadas [_Mobile Backend As a Service_](http://www.infoworld.com/article/2842791/application-development/mbaas-shoot-out-5-cloud-platforms-for-building-mobile-apps.html) (MBaaS) que proporcionan servicios específicos para móviles, entre ellos el envío de notificaciones _push_.
-- Existen bastantes opciones, con distintos enfoques de funcionalidades y precios: Appcelerator, Kinvey, Backendless, etc. Una de las más populares es la que vamos a utilizar en el ejercicio práctico, [Parse](https://www.parse.com).
+- Las notificaciones remotas se deben originar en un servidor proveedor nuestro que debe conectarse con el APNs usando la API definida en la  [documentación de Apple](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html#//apple_ref/doc/uid/TP40008194-CH101-SW1). Esta API usa el protocolo HTTP/2 desde diciembre de 2015.
+- La mayoría de servicios PaaS proporcionan conexiones con el APNs y librerías que facilitan el envío de notificaciones:
+    - [Google Cloud Messaging for iOS](https://developers.google.com/cloud-messaging/ios/start?ver=swift)
+    - [Amazon Web Services](http://docs.aws.amazon.com/sns/latest/dg/mobile-push-apns.html)
+    - [Microsoft Azure](https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-ios-get-started/)
+- Otras alternativas, como [Parse](http://parse.com/), que utilizamos el curso pasado, han ido desapareciendo o han ido cambiando de configuración.
+- Una opción sencilla, que usaremos en la práctica, es usar un [script PHP](https://gist.github.com/domingogallardo/b7946d8fe500187b426afb7ac8d8e470) desde el terminal.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -558,7 +59,6 @@ func application(application: UIApplication,
 <!-- .slide: class="image-right"-->
 
 <img style="margin-left: 30px" src="images/security-service-provider.png" width=400px/>
-
 
 - No queremos que nuestras notificaciones (con datos personales) puedan aparecer en otros dispositivos.
 - El servicio de notificaciones remota de Apple (APNs) define unas condiciones de seguridad bastante estrictas tanto entre dispositivo y servicio como entre proveedor y el servicio.
@@ -591,37 +91,17 @@ func application(application: UIApplication,
 <img style="margin-left:20px" src="images/token-trust.png" width=450px/>
 
 - Después de que el sistema obtiene un token de dispositivo del APNs, debe proporcionarlo al APNs cada vez que se conecta al servicio. El APNs descifra el token de dispositivo y valida que fue el mismo que fue generado para el dispositivo. Para ello, el APNs se asegura que el identificador de dispositivo contenido en el token coincide con el identificador de dispositivo en el certificado del dispositivo.
-
 - Cada notificación que un proveedor envía al APNs para ser entregada en un dispositivo debe acompañarse del token de dispositivo obtenido por una app en ese dispositivo. El APNs descifra el token usando la clave del token, y asegurándose por tanto que la notificación es válida. Después utiliza el identificador de dispositivo contenido en el token de dispositivo para determinar el dispositivo destino de la notificación.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Contenido de las notificaciones (_payload_)
+#### Contenido del _payload_
 
-
-- Limitado a 2 kilobytes.
-- Diccionario con formato JSON que debe contener un diccionario con la clave `aps`, en la que se incluyen las características de la notificación (las mismas vistas en las notificaciones locales). Consultar [este enlace](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1) para examinar el formato.
-- El diccionario `aps` también puede tener la clave `content-available` con un valor de 1. Eso significa que la notificación será una notificación silenciosa que hará que el sistema despierte la app y la ponga en _background_ para que pueda conectarse al servidor o hacer alguna tarea de background. El usuario no recibirá ninguna notificación, pero verá el nuevo contenido la siguiente vez que abra la app.
-- El resto del diccionario contendrá parejas clave-valor con información _custom_.
-- La información JSON se convierte en un diccionario que se pasa como el parámetro `userInfo` en los métodos que reciben la notificación, como 
-`application:didReceiveRemoteNotification:fetchCompletionHandler:`.
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Ejemplos (1)
-
-```json
-{
-    "aps" : { "alert" : "Message received from Bob" },
-    "acme2" : [ "bang",  "whiz" ]
-}
-```
-
+- El mensaje enviado al APNs (_payload_) se denomina debe cumplir unas condiciones estrictas definidas en la [documentación de Apple](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/TheNotificationPayload.html#//apple_ref/doc/uid/TP40008194-CH107-SW1)
+- Si se utiliza el API HTTP/2 el tamaño máximo está limitado a 4096 bytes.
+- Debe tener el formato de un objeto JSON diccionario (parejas clave, valor).
 
 ```json
 {
@@ -638,11 +118,26 @@ func application(application: UIApplication,
 }
 ```
 
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Ejemplos (2)
+#### Contenido del _payload_ (2)
+
+- El diccionario debe contener otro diccionario identificado por la clave `aps`. Este diccionario contiene una o más propiedades que especifican los siguientes tipos de notificación:
+    - Mensaje de alerta a mostrar al usuario
+    - Numero a añadir en el globo del icono de la app
+    - Sonido a tocar
+- El diccionario `aps` también puede tener la clave `content-available` con un valor de 1. Eso significa que la notificación será una notificación silenciosa que hará que el sistema despierte la app y la ponga en _background_ para que pueda conectarse al servidor o hacer alguna tarea de background. El usuario no recibirá ninguna notificación, pero verá el nuevo contenido la siguiente vez que abra la app.
+- El resto del diccionario contendrá parejas clave-valor con información _custom_.
+- La información JSON se convierte en un diccionario que se pasa como parámetro `userInfor` en el método [`didReceiveRemoteNotification`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/occ/intfm/UIApplicationDelegate/application:didReceiveRemoteNotification:fetchCompletionHandler:) del delegado del app.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Otros ejemplos de _payload_
 
 ```json
 {
@@ -673,7 +168,7 @@ func application(application: UIApplication,
 
 
 
-#### Ejemplos (3)
+#### Otros ejemplos de _payload_
 
 ```json
 {
@@ -705,12 +200,25 @@ func application(application: UIApplication,
 
 
 
+#### Método `didReceiveRemoteNotification`
+
+- El método [`didReceiveRemoteNotification`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html#//apple_ref/occ/intfm/UIApplicationDelegate/application:didReceiveRemoteNotification:fetchCompletionHandler:) del delegado del app se lanza cuando se recibe la notificación.
+- El sistema llama a este método independientemente de si la app está activa o en background. Si está habilitado el modo de actualización en segundo plano, el sistema lanza la app (o la despierta del estado suspendido) y la pone en estado de background.
+- Cuando la notificación llega, el sistema muestra la notificación al usuario y lanza la app en background, para que se pueda llamar a este método. De esta forma, la app tiene tiempo de procesar la notificación y descargar cualquier dato asociada a ella, para que esté disponible cuando el usuario pulsa en la notificación.
+- En cuanto se termina de procesar la notificación se debe llamar a la clausura que se recibe en el parámetro `handler`. La app tiene hasta 30 segundos para procesar la notificación y llamar al `handler`. Si transcurrido este tiempo no se ha llamado, el sistema finaliza la app. El sistema hace un seguimiento del tiempo, batería y coste de las descargas en background de las apps y aquellas que consumen cantidades significativas pueden ser penalizadas y no activarse rápidamente en notificaciones futuras.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 ## Práctica: Notificaciones remotas
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Utilizaremos [Parse](https://www.parse.com) como plataforma para enviar notificaciones remotas.
-- Un administrador del equipo de la UA debe crear un certificado SSL (en formato `.p12`).
-- Cada desarrollador creará su propio servicio en Parse (lo llaman también _app_) y podrá enviar sus notificaciones push.
+- Basado en el tutorial de _Jack Wu_ en _RayWenderlich_ [Push Notifications Tutorial: Getting Started](https://www.raywenderlich.com/123862/push-notifications-tutorial).
+- Utilizaremos scripts PHP para enviar las notificaciones al APNs.
+- Un administrador del equipo de la UA debe crear un certificado SSL (en formato `.pem`) que cada desarrollador descargará en su equipo.
+- Cada desarrollador creará su propia app y podrá enviar sus notificaciones push desde el terminal.
 - Las notificaciones sólo se pueden recibir en un dispositivo real.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -739,8 +247,8 @@ func application(application: UIApplication,
 
 #### Creación del certificado SSL en el _member center_ (1)
 
-- Debemos obtener un certificado de una autoridad certificadora que después subiremos al _member center_.
-- Abrimos Acceso a Llaveros y seleccionamos _Asistente de Certificados > Solicitar un certificado de una autoridad certificadora_.
+- Debemos obtener un certificado de una autoridad de certificación que después subiremos al _member center_.
+- Abrimos Acceso a Llaveros y seleccionamos _Asistente de Certificados > Solicitar un certificado de una autoridad de certificación_.
 - Salvamos el fichero `CertificateSigningRequest.certSigningRequest`.
 
 <img src="images/certificado-autoridad-certificadora.png"/ width=600px>
@@ -770,124 +278,94 @@ func application(application: UIApplication,
 
 
 
-#### Generación del fichero `.p12` (1)
+#### Creación del perfil de aprovisionamiento 
 
-<img src="images/exportar-fichero-p12.png" width=800px/>
+- Creamos un nuevo perfil de aprovisionamiento que podrán usar todos los miembros del equipo.
+
+<img src="images/perfil-aprovisionamiento-push.png" width=600px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Generación del fichero `.p12` (2)
+#### Generación del fichero `.pem` (1)
 
-- Una vez creado el certificado en el _Member Center_ lo descargamos y lo instalamos en Acceso a llaveros para generar un fichero `.p12` que enviaremos a Parse.
+- Una vez creado el certificado en el _Member Center_ lo descargamos y lo instalamos en Acceso a llaveros, lo exportamos como fichero `.p12` y después lo convertiremos en un fichero `.pem` con el que nuestro servidor establecerá la conexión SSL con el  APNs.
 
-- Lo salvamos como `ParseDevelopmentPushCertificate.p12` sin crear una contraseña asociada al certificado. Cuando estemos en clase lo podrás descargar [desde este enlace](http://domingogallardo.github.io/apuntes-mastermoviles/ParseDevelopmentPushCertificate.p12).
+<img src="images/exportar-fichero-p12.png" width=600px/>
 
-- Después subiremos a Parse este certificado para que el servicio que crearemos allí pueda establecer una conexión SSL con el APNs. Todos podemos subir a Parse el mismo certificado para cada uno de los servicios que crearemos.
+- Se guarda el certificado como `UADevelopmentPushCertificate.p12` con una contraseña (mastermoviles16)
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Creación del servicio en Parse (1)
+#### Generación del fichero `.pem` (2)
+
+- Creamos el fichero `.pem` con el siguiente comando:
+
+```
+$ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
+   -out UADevelopmentPushCertificate.pem -nodes -clcerts
+```
+
+- Nos pedirá la contraseña que hemos introducido antes y se generará el certificado `UADevelopmentPushCertificate.pem`. Cuando estemos en clase lo podrás descargar [desde este enlace](http://domingogallardo.github.io/apuntes-mastermoviles/UADevelopmentPushCertificate.pem).
+
+- Podrás usarlo para enviar la notificación push al APNs con un script PHP.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Descargar el pérfil de aprovisionamiento
+
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Date de alta en [Parse](https://www.parse.com)
-- Crea una nueva App en Parse y entra en el menú de _Settings_
+- Carga en Xcode el perfil de aprovisionamiento que acabamos de crear:
 
-<img src="images/parse-app-settings.png" />
+<img src="images/perfil-aprovisionamiento-push-xcode.png" width=400px/>
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Creación del servicio en Parse (2)
-<!-- .slide: data-background="#cbe0fc"-->
-
-- En el menú de la izquierda selecciona Push y sube el certificado .p12
-
-<img src="images/parse-certificate.png" />
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Actualizar la app Notificaciones
+#### Abrir la app `NotificacionesPush`
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- En Xcode debemos comprobar que se ha cargado el perfil de aprovisionamiento recién creado que nos permite desarrollar e instalar aplicaciones que usan notificaciones remotas.
+- Descarga de Bitbucket el proyecto `NotificacionesPush`. Contiene una app ejemplo y los scripts PHP para enviar las notificaciones al APNs.
+- Abre la aplicación y selecciona `Push Notifications` en la pestaña `Capabilities`:
 
-<img src="images/perfil-aprovisionamiento-notificaciones.png"/>
-
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Añadir Frameworks a la app
-
-<!-- .slide: data-background="#cbe0fc" -->
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left:20px" src="images/estructura-proyecto.png"/>
-
-- Para poder trabajar con las notificaciones remotas usando Parse debemos incorporar en nuestro proyecto _frameworks_ de la biblioteca de Parse (descargarlo desde [este enlace](https://www.parse.com/downloads/ios/parse-library/latest)) y del sistema.
-- Añadir las dependencias con Targets > Notificaciones > Build Phases > Link Binary With Libraries 
-
-- Añadir las siguientes clases del sistema:
-    - MobileCoreServices.framework
-    - SystemConfiguration.framework
-    - AudioToolbox.framework
-    - libstdc++.6.dylib
-    - libsqlite3.dylib
+<img src="images/push-notifications-capabilities-xcode.png" width=900px/>
 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Incluir el código para conectar con Parse y con APNs (1)
+#### Añadir el código de gestión de las notificaciones al app (1)
 <!-- .slide: data-background="#cbe0fc" -->
 
-- [Documentación Push en Parse](https://www.parse.com/docs/push_guide#top/iOS)
-
-- En el fichero `AppDelegate.swift` añade los siguientes imports:
+- En el delegado del app definimos la función `registerForPushNotifications`:
 
 ```swift
-import Bolts
-import Parse
+func registerForPushNotifications(application: UIApplication) {
+  let notificationSettings = UIUserNotificationSettings(
+    forTypes: [.Badge, .Sound, .Alert], categories: nil)
+  application.registerUserNotificationSettings(notificationSettings)
+}
 ```
 
-- Al comienzo de la función `application:didFinishLaunchingWithOptions:` añadir las claves de la app de Parse (las puedes encontrar en el apartado _Keys_ del menú de la izquierda ):
+- Y se hace una llamada a la función anterior en el método `application(_:didFinishLaunchingWithOptions:)`:
 
 ```swift
-Parse.setApplicationId("parseAppID", clientKey: "clientKey")
-```
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### Incluir el código para conectar con Parse y con APNs (2)
-<!-- .slide: data-background="#cbe0fc" -->
-
-- Al final de la función `application:didFinishLaunchingWithOptions:` registrar la app para notificaciones remotas:
-
-```swift
-application.registerForRemoteNotifications()
-```
-
-- Añadir el código que obtiene del APNs el token de dispositivo y se lo envía a Parse
-
-```swift
-func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-    let installation = PFInstallation.currentInstallation()
-    installation.setDeviceTokenFromData(deviceToken)
-    installation.saveInBackground()
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  //...
+  registerForPushNotifications(application)
+  //...
 }
 ```
 
@@ -895,24 +373,148 @@ func application(application: UIApplication, didRegisterForRemoteNotificationsWi
 
 
 
-#### Instalar la app en un dispositivo físico
+#### Añadir el código de gestión de las notificaciones al app (2)
 <!-- .slide: data-background="#cbe0fc" -->
 
-- Las notificaciones remotas no funcionan en el simulador.
-- Hay que instalar la app en un dispositivo real, abrirla y enviar las notificaciones desde Parse
+- El método `registerForRemoteNotifications` es el que se encarga de establecer al conexión con el APNs y solicitar el token de conexión. Se le invoca en el manejador `didRegisterUserNotificationSettings`:
 
-
-<img src="images/send-push-parse.png"/>
+```swift
+func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+  if notificationSettings.types != .None {
+    application.registerForRemoteNotifications()
+  }
+}
+```
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
-#### Práctica opcional
+#### Añadir el código de gestión de las notificaciones al app (3)
 <!-- .slide: data-background="#cbe0fc" -->
 
-- **Avanzado**: Añadir una etiqueta en la pantalla de la app, que muestre el texto de la notificación remota enviada.
+- Cuando la app se registra en el APNs, éste envía un token (cadena hexadecimal) que identifica el dispositivo. Se recibe en el siguiente manejador, que lo imprime por la salida estándar. 
 
+```swift
+func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+  let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+  var tokenString = ""
+ 
+  for i in 0..<deviceToken.length {
+    tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+  }
+ 
+  print("Device Token:", tokenString)
+}
+ 
+func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+  print("Failed to register:", error)
+}
+```
+
+<img src="images/token.png" width=800px/>
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Ejecución de la app en el dispositivo
+<!-- .slide: data-background="#cbe0fc" -->
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="images/notificacion-device.png" width=220px/>
+
+- Hay que ejecutar el app en el dispositivo físico en el que queramos recibir las notificaciones remotas, ya que éstas no funcionan en el simulador.
+- Podemos todos enviar notificaciones al dispositivo del profesor.
+- Copiamos el certificado `UADevelopmentPushCertificate.pem` en el mismo directorio `Scripts` en el que se encuentra el script `apnspush.php`.
+- Edita `apnspush.php` y modifica el `$deviceToken` al que se ha recibido en el dispositivo. Este token identifica el dispositivo al que el APNs enviará la notificación.
+- Ejecutamos el script:
+
+```bash
+$ php apnspush.php 'Hola mundo desde la UA' 'http://www.ua.es'
+Connected to APNS
+Message successfully delivered
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Modificación de la IU cuando se recibe una notificación
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Vamos por último a añadir código a los manejadores para que cuando se reciba la notificación push se modifique la interfaz de la app.
+- Hay que considerar los posibles manejadores que se pueden lanzar:
+    - Si la app no está ejecutándose y el usuario pulsa en la notificación la información sobre la notificación se pasa en el parámetro `launchOptions` del método `application(_:didFinishLaunchingWithOptions:)`.
+    - Si la app está ejecutándose en primer plano la notificación push no se mostrará, pero se llamará al método `application(_:didFinishLaunchingWithOptions:)`
+    - Si la app está suspendida en segundo plano y el usuario pulsa la notificación se llamará al mismo método anterior
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Código en los manejadores (1)
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Añade en el método `application(_:didFinishLaunchingWithOptions:)`, antes del `return`:
+
+```swift
+if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] 
+    as? [String: AnyObject] {
+    let aps = notification["aps"] as! [String: AnyObject]
+    createNewNewsItem(aps)
+    (window?.rootViewController as? UITabBarController)?.selectedIndex = 1
+}
+```
+
+- El código comprueba si existe el valor `UIApplicationLaunchOptionsRemoteNotificationKey` en `launchOptions`. Si existe, será el _payload_ que se envió. Se obtiene a partir de él el diccionario y se pasa a la función `createNewNewsItem(_:)`, que crea un nuevo `NewsItem` a partir del diccionario y refresca la tabla de noticias.
+- La última línea cambia la pestaña seleccionada del _tab controller_ a 1, la sección de noticias.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Código en los manejadores (2)
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Añade el siguiente método, para manejar los otros dos casos:
+
+```swift
+func application(application: UIApplication, 
+      didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+  let aps = userInfo["aps"] as! [String: AnyObject]
+  createNewNewsItem(aps)
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Lanzar desde Xcode una ejecución en segundo plano
+<!-- .slide: data-background="#cbe0fc" -->
+
+- Podemos desplegar la app desde Xcode de forma que permanezca en segundo plano y Xcode se espere a que el ejecutable se lance.
+- Para ello seleccionamos _Product > Scheme > Edit Scheme ..._ y activamos la opción _Wait for executable to be launched_:
+
+<img style="margin-right:100px" src="images/wait-executable-launched.png" width=400px/>
+
+- También podemos desplegarla y probarla sin controlarla desde Xcode
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Probamos
+<!-- .slide: data-background="#cbe0fc" -->
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="images/notificaciones-tab-controller.png" width=300px/>
+
+- Probamos la app en un dispositivo real.
+- Recuerda subirla a tu cuenta de Bitbucket.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 

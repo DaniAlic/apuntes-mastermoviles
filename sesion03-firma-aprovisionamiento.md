@@ -107,7 +107,7 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 - Vamos ahora a inscribirte en el equipo de desarrollo de la universidad.
 - Escribe tu nombre, apellidos y dirección de e-mail en [este fichero Google Docs](https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing) y te añadiré al equipo. En el correo electrónico recibirás una invitación con un enlace. Pincha en el enlace e introduce allí tu Apple ID. 
-- Una vez aceptada la invitación puedes entrar en el _member center_, comprobar que  ya estás en el programa y probar [las distintas opciones disponibles](https://developer.apple.com/programs/ios/university/gettingstarted/):
+- Una vez aceptada la invitación puedes entrar en el [_member center_](https://developer.apple.com/account/), comprobar que  ya estás en el programa y probar [las distintas opciones disponibles](https://developer.apple.com/programs/ios/university/gettingstarted/):
 
 <img src="images/apple-developer-universidad.png" width="550px"/>
 
