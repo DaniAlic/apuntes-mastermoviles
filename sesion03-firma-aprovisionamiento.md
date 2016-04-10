@@ -258,6 +258,16 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase√
 
 
 
+#### Condiciones de lanzamiento de una app en un dispositivo
+
+<img src="images/lanzamiento-perfil-aprovisionamiento.png" width="600px"/>
+
+[Exporting Your App for Testing](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html)
+
+<!-- Tres l√≠neas en blanco para la siguiente transparencia -->
+
+
+
 #### Examinar los perfiles de aprovisionamiento
 
 <img src="images/apple-developer-universidad.png" width="600px"/>
