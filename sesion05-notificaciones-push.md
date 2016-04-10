@@ -336,7 +336,7 @@ $ openssl pkcs12 -in UADevelopmentPushCertificate.p12 \
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Descarga de Bitbucket el proyecto `NotificacionesPush`. Contiene una app ejemplo y los scripts PHP para enviar las notificaciones al APNs.
+- Descarga del repositorio [mastermoviles-servicios-ios](https://bitbucket.org/mastermoviles/mastermoviles-servicios-ios/) el proyecto `NotificacionesPush`. Contiene una app ejemplo y los scripts PHP para enviar las notificaciones al APNs.
 - Abre la aplicación y selecciona `Push Notifications` en la pestaña `Capabilities`:
 
 <img src="images/push-notifications-capabilities-xcode.png" width=900px/>
