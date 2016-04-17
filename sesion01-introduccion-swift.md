@@ -12,11 +12,12 @@ Master Programación de Dispositivos Móviles</small>
 
 #### Recursos
 
-<img style="vertical-align: middle; margin-right: 150px;" src="images/Xcode.png" width="200px"/> <img style="vertical-align: middle; border: 1px solid; " src="images/swift-book-cover.png" width="250px">
+<img style="vertical-align: middle; margin-right: 130px;" src="images/Xcode.png" width="180px"/> <img style="vertical-align: middle; border: 1px solid; " src="images/swift-book-cover.png" width="210px">
 
 - [Xcode 7.3](http://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12) disponible en la Mac App Store.
 - Libro [_The Swift Programming Language_](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/) disponible en el portal de desarrolladores de Apple.
 - Además del libro es recomendable consultar la página de Apple con los [recursos sobre Swift](https://developer.apple.com/swift/resources/).
+- Documentación de la biblioteca estándar de Swift:  [The Swift Standard Library](https://developer.apple.com/library/ios/documentation/General/Reference/SwiftStandardLibraryReference/index.html#//apple_ref/doc/uid/TP40014608)
 
 ---
 <!-- Los comentarios después de los tres guiones no salen en la diapositiva  -->
