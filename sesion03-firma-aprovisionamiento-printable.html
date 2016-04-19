@@ -175,7 +175,8 @@ html,body,#wrapper{font-size:10pt!important;}
 
 <p><small>Domingo Gallardo - domingo.gallardo@ua.es<br/>
 Departamento Ciencia de la Computación e Inteligencia Artificial<br/>
-Master Programación de Dispositivos Móviles</small></p>
+Master Programación de Dispositivos Móviles<br/>
+2015&#8211;16</small></p>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 <h4 id="firmayaprovisionamientodeapps">Firma y aprovisionamiento de apps</h4>
@@ -270,7 +271,7 @@ Referencia:  https://developer.apple.com/library/ios/documentation/IDEs/Conceptu
 <ul>
 <li>Vamos ahora a inscribirte en el equipo de desarrollo de la universidad.</li>
 <li>Escribe tu nombre, apellidos y dirección de e-mail en <a href="https://docs.google.com/document/d/1-fgqgzKNPpo4--PGUvrsnXTe_ABA04gLcpv8rtJd9D0/edit?usp=sharing">este fichero Google Docs</a> y te añadiré al equipo. En el correo electrónico recibirás una invitación con un enlace. Pincha en el enlace e introduce allí tu Apple ID.</li>
-<li>Una vez aceptada la invitación puedes entrar en el <em>member center</em>, comprobar que ya estás en el programa y probar <a href="https://developer.apple.com/programs/ios/university/gettingstarted/">las distintas opciones disponibles</a>:</li>
+<li>Una vez aceptada la invitación puedes entrar en el <a href="https://developer.apple.com/account/"><em>member center</em></a>, comprobar que ya estás en el programa y probar <a href="https://developer.apple.com/programs/ios/university/gettingstarted/">las distintas opciones disponibles</a>:</li>
 </ul>
 
 <p><img src="images/apple-developer-universidad.png" width="550px"/></p>
@@ -402,6 +403,24 @@ Referencia:  https://developer.apple.com/library/ios/documentation/IDEs/Conceptu
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
+<h4 id="appid">App ID</h4>
+
+<ul>
+<li>Un App ID define una lista de capacidades (<em>whitelist</em>) que permitimos usar a una app (<em>explicit App ID</em>) o varias apps (<em>wildcard App ID</em>).</li>
+<li>Para usar un servicio determinado, hay que definir un App ID que lo permita e incluirlo en un perfil de aprovisionamiento.</li>
+<li>En Xcode se define el <em>bundle ID</em> de la app y los servicios concretos que va a usar.</li>
+<li>Xcode busca algún perfil de aprovisionamiento que empareje el <em>bundle ID</em> y que satisfaga estas necesidades. Si no existe ninguno, intenta crear uno.</li>
+<li>Es posible gestionar App IDs y perfiles de aprovisionamiento desde la página de <em>member center</em> si tenemos el rol de administrador de la organización.</li>
+</ul>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h4 id="condicionesdelanzamientodeunaappenundispositivo">Condiciones de lanzamiento de una app en un dispositivo</h4>
+
+<p><img src="images/lanzamiento-perfil-aprovisionamiento.png" width="600px"/></p>
+
+<p><a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/TestingYouriOSApp/TestingYouriOSApp.html">Exporting Your App for Testing</a></p>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
 <h4 id="examinarlosperfilesdeaprovisionamiento">Examinar los perfiles de aprovisionamiento</h4>
 
 <p><img src="images/apple-developer-universidad.png" width="600px"/></p>
@@ -422,17 +441,6 @@ Referencia:  https://developer.apple.com/library/ios/documentation/IDEs/Conceptu
 <li><strong>Certificados</strong>: todos los certificados de los desarrolladores del equipo.</li>
 <li><strong>Identificadores</strong>: todos los App IDs aprobados, con las características aprobadas en cada uno de ellos.</li>
 <li><strong>Dispositivos</strong>: todos los dispositivos aprobados para probar las apps</li>
-</ul>
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-<h4 id="appid">App ID</h4>
-
-<ul>
-<li>Un App ID define una lista de capacidades (<em>whitelist</em>) que permitimos usar a una app (<em>explicit App ID</em>) o varias apps (<em>wildcard App ID</em>).</li>
-<li>Para usar un servicio determinado, hay que definir un App ID que lo permita e incluirlo en un perfil de aprovisionamiento.</li>
-<li>En Xcode se define el <em>bundle ID</em> de la app y los servicios concretos que va a usar.</li>
-<li>Xcode busca algún perfil de aprovisionamiento que empareje el <em>bundle ID</em> y que satisfaga estas necesidades. Si no existe ninguno, intenta crear uno.</li>
-<li>Es posible gestionar App IDs y perfiles de aprovisionamiento desde la página de <em>member center</em> si tenemos el rol de administrador de la organización.</li>
 </ul>
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 

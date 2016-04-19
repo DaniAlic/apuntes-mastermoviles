@@ -4,7 +4,8 @@
 
 <small>Domingo Gallardo - domingo.gallardo@ua.es  
 Departamento Ciencia de la Computación e Inteligencia Artificial  
-Master Programación de Dispositivos Móviles</small>
+Master Programación de Dispositivos Móviles   
+2015-16</small>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -258,6 +259,19 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 
 
+#### App ID
+
+- Un App ID define una lista de capacidades (_whitelist_) que permitimos usar a una app (_explicit App ID_) o varias apps (_wildcard App ID_). 
+- Para usar un servicio determinado, hay que definir un App ID que lo permita e incluirlo en un perfil de aprovisionamiento.
+- En Xcode se define el _bundle ID_ de la app y los servicios concretos que va a usar.
+- Xcode busca algún perfil de aprovisionamiento que empareje el _bundle ID_ y que satisfaga estas necesidades. Si no existe ninguno, intenta crear uno.
+- Es posible gestionar App IDs y perfiles de aprovisionamiento desde la página de _member center_ si tenemos el rol de administrador de la organización.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 #### Condiciones de lanzamiento de una app en un dispositivo
 
 <img src="images/lanzamiento-perfil-aprovisionamiento.png" width="600px"/>
@@ -290,19 +304,6 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 - **Certificados**: todos los certificados de los desarrolladores del equipo.
 - **Identificadores**: todos los App IDs aprobados, con las características aprobadas en cada uno de ellos.
 - **Dispositivos**: todos los dispositivos aprobados para probar las apps
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-#### App ID
-
-- Un App ID define una lista de capacidades (_whitelist_) que permitimos usar a una app (_explicit App ID_) o varias apps (_wildcard App ID_). 
-- Para usar un servicio determinado, hay que definir un App ID que lo permita e incluirlo en un perfil de aprovisionamiento.
-- En Xcode se define el _bundle ID_ de la app y los servicios concretos que va a usar.
-- Xcode busca algún perfil de aprovisionamiento que empareje el _bundle ID_ y que satisfaga estas necesidades. Si no existe ninguno, intenta crear uno.
-- Es posible gestionar App IDs y perfiles de aprovisionamiento desde la página de _member center_ si tenemos el rol de administrador de la organización.
-
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
