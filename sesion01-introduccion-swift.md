@@ -1,4 +1,4 @@
-# Sesión 1: Introducción <br/> a Swift 1
+# Sesión 1: Introducción <br/> a Swift
 
 #### Servicios de las plataformas móviles - iOS
 

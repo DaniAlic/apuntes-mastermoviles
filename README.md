@@ -1,9 +1,8 @@
-# mastermoviles
 
-- Sesión 1: [Introducción a Swift](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01-introduccion-swift.html)
-- Sesión 1b: [Swift avanzado](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01b-swift-avanzado.html)
-- Sesión 2: [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion02-firma-aprovisionamiento.html)
-- Sesión 3: [Notificaciones locales y remotas](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-notificaciones-locales-remotas.html)
-- Sesión 4: [iCloud](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04.html)
-- Sesión 5: [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion05.html)
-- Sesión 6: [iAd](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06.html)
+## Servicios de las plataformas móviles (iOS)
+
+Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos Móviles](http://www.eps.ua.es/es/master-moviles/) de la Universidad de Alicante.
+
+- Sesión 1: [Introducción a Swift](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01-introduccion-swift.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01-introduccion-swift-printable.html))
+- Sesión 2: [Swift avanzado](http://domingogallardo.github.io/apuntes-mastermoviles/sesion02-swift-avanzado.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion02-swift-avanzado-printable.html))
+
