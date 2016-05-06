@@ -520,7 +520,7 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Pista:
+- Pista (Segue):
 
 ```swift
 func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
@@ -533,6 +533,31 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if let vc = segue.destinationViewController as? ImageDetailViewController {
                 vc.imageDetail = pin.fullImage
             }
+        }
+    }
+}
+```
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Práctica: Mapas (opcional)
+
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Pista (ViewController de la vista detalle):
+
+```swift
+class ImageDetailViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    var imageDetail: UIImage? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if imageDetail != nil {
+            imageView.image = imageDetail!
         }
     }
 }
