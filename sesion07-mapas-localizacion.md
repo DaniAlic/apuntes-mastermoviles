@@ -1,10 +1,11 @@
-# Sesión 6: <br/> Mapas y <br/>localización
+# Sesión 7: <br/> Mapas y <br/>localización
 
-### Servicios de las plataformas móviles - iOS
+#### Servicios de las plataformas móviles - iOS
 
 <small>Domingo Gallardo - domingo.gallardo@ua.es  
 Departamento Ciencia de la Computación e Inteligencia Artificial  
-Master Programación de Dispositivos Móviles</small>
+Master Programación de Dispositivos Móviles    
+2015-16</small>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -124,7 +125,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let map = MKMapView(frame: CGRectMake(0, 30, 320, 200))
+        let map = MKMapView(frame: 
+                 CGRectMake(0, 30, self.view.frame.width, 200))
         self.view.addSubview(map)
         map.delegate = self
     }
@@ -228,8 +230,8 @@ enum TipoMapa: Int {
 // En el ViewController
 
 @IBAction func seleccion(sender: UISegmentedControl) {
-    let tipoMapa = TipoMapa(rawValue: sender.selectedSegmentIndex)
-    switch (tipoMapa!) {
+    let tipoMapa = TipoMapa(rawValue: sender.selectedSegmentIndex)!
+    switch (tipoMapa) {
         case .Mapa:
             mapView.mapType = MKMapType.Standard
         case .Satélite:
@@ -570,7 +572,7 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
 <img src="images/autorizacion.png" width=600px/>
 
-- En iOS 8 es necesario añadir también en `Info.plist` una cadena asociada a la clave `NSLocationWhenInUseUsageDescription`. Esa cadena se mostrará como subtítulo en el diálogo en el que se solicita al usuario la autorización.
+- Es necesario añadir también en `Info.plist` una cadena asociada a la clave `NSLocationWhenInUseUsageDescription`. Esa cadena se mostrará como subtítulo en el diálogo en el que se solicita al usuario la autorización.
 
 <img src="images/dialogo-autorizacion.png" width=300px/>
 
