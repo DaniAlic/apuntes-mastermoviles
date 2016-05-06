@@ -520,7 +520,7 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Pista (Segue):
+- Pista 1 (Segue):
 
 ```swift
 func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
@@ -546,7 +546,7 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
 <!-- .slide: data-background="#cbe0fc"-->
 
-- Pista (ViewController de la vista detalle):
+- Pista 2 (`ViewController` de la vista detalle):
 
 ```swift
 class ImageDetailViewController: UIViewController {

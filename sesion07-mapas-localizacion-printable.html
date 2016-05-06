@@ -601,7 +601,7 @@ mapView.addAnnotation(pin)</code></pre>
 <!-- .slide: data-background="#cbe0fc"-->
 
 <ul>
-<li>Pista:</li>
+<li>Pista 1 (Segue):</li>
 </ul>
 <pre><code class="swift">func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
     performSegueWithIdentifier(&quot;DetalleImagen&quot;, sender: view)
@@ -613,6 +613,26 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             if let vc = segue.destinationViewController as? ImageDetailViewController {
                 vc.imageDetail = pin.fullImage
             }
+        }
+    }
+}</code></pre>
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+<h3 id="práctica:mapasopcional">Práctica: Mapas (opcional)</h3>
+<!-- .slide: data-background="#cbe0fc"-->
+
+<ul>
+<li>Pista 2 (<code>ViewController</code> de la vista detalle):</li>
+</ul>
+<pre><code class="swift">class ImageDetailViewController: UIViewController {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    var imageDetail: UIImage? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if imageDetail != nil {
+            imageView.image = imageDetail!
         }
     }
 }</code></pre>
