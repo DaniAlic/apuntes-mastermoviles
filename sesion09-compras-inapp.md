@@ -1,4 +1,4 @@
-# Sesión 8: <br/> Plataforma iAd
+# Sesión 9: <br/> Compras inApp
 
 ### Servicios de las plataformas móviles - iOS
 
@@ -15,8 +15,9 @@ Master Programación de Dispositivos Móviles
 
 - [Recursos sobre iAd](https://developer.apple.com/iad/resources/)
 - [iAd Programming Guide](https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/iAd_Guide/Introduction/Introduction.html)
-- [iAd Framework Reference](https://developer.apple.com/library/ios/documentation/UserExperience/Reference/iAd_ReferenceCollection/index.html#//apple_ref/doc/uid/TP40009705)
-- [App Network Implementation Guide (PDF)](https://developer.apple.com/iad/resources/Implementing-iAd-in-Your-iOS-Apps.PDF)
+- [View Controller iAd Additions](https://developer.apple.com/library/ios/documentation/iAd/Reference/UIViewController_iAd_Additions/index.html)
+- [ADBannerView Reference](https://developer.apple.com/library/ios/documentation/UserExperience/Reference/ADBannerView_Ref/)
+- [Monetizing Your iOS Apps with iAd](https://developer.apple.com/iad/resources/Implementing-iAd-in-Your-iOS-Apps.PDF)
 - [Implementing a Shared iAd Banner](https://developer.apple.com/library/ios/technotes/tn2286/_index.html)
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -27,23 +28,6 @@ Master Programación de Dispositivos Móviles
 
 - Monetizar tus apps: incluir anuncios en tus apps.
 - Promocionar tus apps: crear campañas [Anúnciate con Apple](http://advertising.apple.com/es/).
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-### ¡¡IMPORTANTE!! El servicio se cancela en junio de 2016
-
-<!-- .slide: class="image-right"-->
-
-<img style="margin-left;50px" src="images/iad-discountinued.png" width=400px/>
-
-- En enero Apple anunció que cierra el servicio iAd App Network.
-- Bajo rendimiento de las publicidad en las apps (no solo en iAd, también en otras plataformas), sólo los más grandes obtienen beneficios.
-- Rumores de que se anunciará un cambio radical en WWDC 2016, orientado a mejorar uno de los problemas más importantes en el App Store: la dificultad de promocionar las apps nuevas por la concentración de descargas en unas pocas apps.
-- Todo lo que vamos a ver en este tema es útil:
-    - Previsiblemente las APIs seguirán utilizándose en la nueva plataforma que se anuncie.
-    - Muchos conceptos son similares en otras redes de anuncios ([AdMob](https://developers.google.com/admob/ios/quick-start) y [otras](http://blog.soom.la/2016/01/top-20-mobile-ad-networks.html)).
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -72,7 +56,7 @@ Master Programación de Dispositivos Móviles
 
 ### Gestión sencilla
 
-- Reparto de los pagos de los anunciantes: 70% para el desarrollador - 30% Apple.
+- Reparto de beneficios: 70% para el desarrollador - 30% Apple.
 - Fácil darse de alta en [iTunes Connect](https://itunesconnect.apple.com).
 - Integración rápida en la app.
 - Proceso de aprobación sencillo, incluido en la revisión de la app para distribución en la App Store.
@@ -178,7 +162,7 @@ Master Programación de Dispositivos Móviles
 
 - Dos formas de trabajar con iAd: gestionar las vistas de los anuncios de forma automática o gestionarlas manualmente.
 - Vamos a presentar la primera, aunque en las referencias y en la guía de programación con iAd se explican los detalles de la gestión manual.
-- Se basa en las propiedades y métodos del View Controller para la gestión de [anuncios en banners](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIViewController_Class/#//apple_ref/doc/uid/TP40006926-CH3-SW189).
+- Se basa en la extensión introducida en iOS 7 [UIViewController iAd Additions](https://developer.apple.com/library/ios/documentation/iAd/Reference/UIViewController_iAd_Additions/index.html).
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
