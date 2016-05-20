@@ -11,3 +11,4 @@ Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos
 - Sesión 6: [iCloud y CloudKit](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06-icloud.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06-icloud-printable.html))
 - Sesión 7: [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07-mapas-localizacion.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07-mapas-localizacion-printable.html))
 - Sesión 8: [Plataforma iAd](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08-iad.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08-iad-printable.html))
+- Sesión 9: [Compras In-App](http://domingogallardo.github.io/apuntes-mastermoviles/sesion09-compras-inapp.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08-compras-inapp-printable.html))
