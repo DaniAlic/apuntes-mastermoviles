@@ -5,7 +5,7 @@
 <small>Domingo Gallardo - domingo.gallardo@ua.es  
 Departamento Ciencia de la Computación e Inteligencia Artificial  
 Master Programación de Dispositivos Móviles   
-2015-16</small>
+2016-17</small>
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
