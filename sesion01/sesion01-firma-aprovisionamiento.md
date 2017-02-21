@@ -15,9 +15,19 @@ Master Programación de Dispositivos Móviles
 
 <img src="imagenes/app-distribution.png" height="200px"/>
 
-- Para probar una aplicación en el simulador como hemos estado haciendo hasta ahora sólo es necesario escribir el código en Xcode.
-- Pero para probar la aplicación en un dispositivo real, para usar ciertos servicios como almacenamiento iCloud, mapas, compras In-App o notificaciones push o para [distribuir la app en el _App Store_](https://developer.apple.com/app-store/) no basta con eso. Hay que **firmar digitalmente** y **aprovisionar** la app.
-- Vamos a ir paso a paso, explicando los conceptos según los vayamos necesitando. En esta primera sesión, vamos a explicar cómo firmar digitalmente una app y cómo crear un perfil de aprovisionamiento que nos permita probarla en dispositivos reales. Vamos a usar la app `Calculadora` desarrollada en la sesión anterior.
+- Es posible probar una aplicación iOS escribiendo el código en Xcode
+  y usando el simulador.
+- Pero para probar la aplicación en un dispositivo real, y para usar
+  ciertos servicios como almacenamiento iCloud, mapas, compras In-App
+  o notificaciones push o para distribuir la app a terceros o
+  [en el _App Store_](https://developer.apple.com/app-store/)
+  no basta con eso. Hay que **firmar digitalmente** y **aprovisionar**
+  la app.
+- Vamos a ir paso a paso, explicando los conceptos según los vayamos
+  necesitando. En esta primera sesión, vamos a explicar cómo firmar
+  digitalmente una app y cómo crear un perfil de aprovisionamiento que
+  nos permita probarla en un dispositivo real. Vamos a usar para las
+  pruebas una app sencilla llamada `ToDoList`.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -32,19 +42,63 @@ Master Programación de Dispositivos Móviles
 
 
 
+#### Distintos programas de desarrollo
+
+- Apple define varios tipos de programas de desarrollo:
+    - Programa gratuito 
+    - Programa universidad - gratuito
+    - Desarrollador individual - $99 al año
+    - Programa desarrollo de organización - $99 al año
+    - Programa desarrollo de empresa - $299 al año
+- Cada programa proporciona distintas capacidades. Probaremos las
+  posibilidades del programa gratuito y del programa de universidad, y
+  explicaremos las posibilidades del resto de programas.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+#### Distintos programas de desarrollo
+
+<img src="imagenes/programas-developer.png" height="630px"/>
+
+***
+
+[https://developer.apple.com/support/compare-memberships/](https://developer.apple.com/support/compare-memberships/)
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 #### Código firmado 
 
-<!--
-Referencia:  https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html#//apple_ref/doc/uid/TP40012582-CH31-SW1 -->
 
-- Para poder distribuir la app en el _App Store_ y ejecutarla en dispositivos físicos es necesario firmar su código digitalmente.
-- La **firma digital del código** (_code signing_) permite al sistema operativo identificar quién ha firmado la app y verificar que no se ha modificado desde el momento de su firma. El código ejecutable está protegido por la firma y ésta se invalida si el código cambia. Los recursos de la app como ficheros nib o imágenes no están firmados.
-- En combinación con el **App ID**, el **perfil de aprovisionamiento** (_provisioning profile_) y los **permisos** (_entitlements_) se usa para asegurar que:
-    - La app ha sido compilada y firmada por ti o por un miembro de confianza del equipo.
-    - Las apps firmadas por ti o por tu equipo se ejecutan sólo en dispositivos de desarrollo escogidos.
-    - Las apps se ejecutan únicamente en los dispositivos de prueba que especifiques.
+- Para poder distribuir la app en el _App Store_ y ejecutarla en
+  dispositivos físicos es necesario firmar su código digitalmente.
+- La **firma digital del código** (_code signing_) permite al sistema
+  operativo identificar quién ha firmado la app y verificar que no se
+  ha modificado desde el momento de su firma. El código ejecutable
+  está protegido por la firma y ésta se invalida si el código
+  cambia. Los recursos de la app como ficheros nib o imágenes no están
+  firmados.
+- En combinación con el **App ID**, el **perfil de aprovisionamiento**
+  (_provisioning profile_) y los **permisos** (_entitlements_) se usa
+  para asegurar que:
+    - La app ha sido compilada y firmada por ti o por un miembro de
+      confianza del equipo.
+    - Las apps firmadas por ti o por tu equipo se ejecutan sólo en
+      dispositivos de desarrollo escogidos.
+    - Las apps se ejecutan únicamente en los dispositivos de prueba
+      que especifiques.
     - Tu app no está usando servicios que no has añadido al app.
     - Sólo tú puedes enviar revisiones del app al _store_.
+
+***
+
+Más información sobre identidades y certificados en el apartado
+[maintaining Your Signing Identities and Certificates](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html#//apple_ref/doc/uid/TP40012582-CH31-SW1)
+dentro de la guía [App Distribution Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582).
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -56,13 +110,26 @@ Referencia:  https://developer.apple.com/library/ios/documentation/IDEs/Conceptu
 
 <img style="margin-left:20px" src="imagenes/certificados.png" width="500px"/>
 
-- Una **identidad de firma** (_signing identity_) consiste en una pareja de clave pública y clave privada que proporciona Apple.
-- La clave privada se almacena en el llavero (_keychain_) y se usa para generar la firma. La clave pública se guarda en un certificado que te identifica como el propietario de la clave privada. El certificado se almacena en el llavero y en tu cuenta de desarrollador de Apple.
-- Se necesita también un certificado intermedio proporcionado por Apple. Cuando instalas Xcode este certificado intermedio se guarda en el llavero.
+- Una **identidad de firma** (_signing identity_) consiste en una
+  pareja de clave pública y clave privada que proporciona Apple.
+- La clave privada se almacena en el llavero (_keychain_) y se usa
+  para generar la firma. La clave pública se guarda en un certificado
+  que te identifica como el propietario de la clave privada. El
+  certificado se almacena en el llavero y en tu cuenta de
+  desarrollador de Apple.
+- Se necesita también un certificado intermedio proporcionado por
+  Apple. Cuando instalas Xcode este certificado intermedio se guarda
+  en el llavero.
 
----
+***
 
-Es muy importante conservar segura la clave privada, como si fuera una contraseña de una cuenta. Debes mantener una contraseña segura de tu pareja clave pública-privada. Si se pierde la clave privada, tendrás que crear una identidad completamente nueva para firmar el código. O peor aún, si alguien se hace con tu clave privada puede hacerse pasar por ti e intentar distribuir una app con código malicioso. Esto podría hacer que Apple revocara tus credenciales de desarrollador.
+Es muy importante conservar segura la clave privada, como si fuera una
+contraseña de una cuenta. Debes mantener una contraseña segura de tu
+pareja clave pública-privada. Si se pierde la clave privada, tendrás
+que crear una identidad completamente nueva para firmar el código. O
+peor aún, si alguien se hace con tu clave privada puede hacerse pasar
+por ti e intentar distribuir una app con código malicioso. Esto podría
+hacer que Apple revocara tus credenciales de desarrollador.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -70,10 +137,20 @@ Es muy importante conservar segura la clave privada, como si fuera una contrase�
 
 #### Certificados
 
-- Dos tipos de certificados: de desarrollo y de distribución. El primero permite ejecutar aplicaciones en dispositivos y el segundo para enviarla al _app store_.
-- Los certificados de desarrollo identifican a una persona del equipo. Los certificados de distribución identifican al equipo y pueden ser compartidos por los miembros del equipo que tienen permiso para enviar apps al _store_.
-- Para comprobar el tipo de certificado podemos consultar el _member center_, _Xcode_ o _Acceso a llaveros_.
-- Para una lista completa de los tipos de certificados puedes consultar [Your Signing Certificates in Depth](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html#//apple_ref/doc/uid/TP40012582-CH31-SW41).
+- Varios tipos de certificados: de desarrollo, de distribución, para
+  el servidor de notificaciones push, etc. El certificado de
+  desarrollador permite ejecutar aplicaciones en un dispositivo. El de
+  distribución permite enviarla al _app store_.
+- Los certificados de desarrollo identifican a una persona del
+  equipo. Los certificados de distribución identifican al equipo y
+  pueden ser compartidos por los miembros del equipo que tienen
+  permiso para enviar apps al _store_.
+- Todos los certificados son proporcionados por Apple.
+- Para comprobar el tipo de certificado podemos consultar el _member
+  center_, _Xcode_ o _Acceso a llaveros_ (lo veremos más adelante).
+- Para una lista completa de los tipos de certificados puedes
+  consultar
+  [Your Signing Certificates in Depth](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html#//apple_ref/doc/uid/TP40012582-CH31-SW41).
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
