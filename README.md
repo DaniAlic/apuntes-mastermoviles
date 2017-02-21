@@ -3,8 +3,8 @@
 
 Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos Móviles](http://www.eps.ua.es/es/master-moviles/) de la Universidad de Alicante.
 
-- Sesión 1: 
-- Sesión 2: 
+- Sesión 1: Firma y aprovisionamiento de apps
+- Sesión 2: Distribución y prueba
 - Sesión 3: [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-firma-aprovisionamiento.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-firma-aprovisionamiento-printable.html))
 - Sesión 4: [Notificaciones](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04-notificaciones.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04-notificaciones-printable.html))
 - Sesión 5: [Notificaciones Push](http://domingogallardo.github.io/apuntes-mastermoviles/sesion05-notificaciones-push.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion05-notificaciones-push-printable.html))
