@@ -3,7 +3,10 @@
 
 Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos Móviles](http://www.eps.ua.es/es/master-moviles/) de la Universidad de Alicante.
 
-- Sesión 1: Firma y aprovisionamiento de apps
+- Sesión 1: [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01-firma-aprovisionamiento.html)([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion01/sesion01-firma-aprovisionamiento.md))
+
+
+<!--
 - Sesión 2: Distribución y prueba
 - Sesión 3: [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-firma-aprovisionamiento.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion03-firma-aprovisionamiento-printable.html))
 - Sesión 4: [Notificaciones](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04-notificaciones.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04-notificaciones-printable.html))
@@ -12,3 +15,4 @@ Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos
 - Sesión 7: [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07-mapas-localizacion.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07-mapas-localizacion-printable.html))
 - Sesión 8: [Plataforma iAd](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08-iad.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08-iad-printable.html))
 - Sesión 9: [Compras In-App](http://domingogallardo.github.io/apuntes-mastermoviles/sesion09-compras-inapp.html) ([HTML imprimible](http://domingogallardo.github.io/apuntes-mastermoviles/sesion09-compras-inapp-printable.html))
+-->
