@@ -275,8 +275,9 @@ hacer que Apple revocara tus credenciales de desarrollador.
 
 <img style="margin-left:60px" src="imagenes/app-todo-list-simulador.png" width="300px"/>
 
-- Descarga la app de esta dirección y prueba a ejecutarla en el
-  simulador.
+- Descarga la app de
+  [esta dirección](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/ToDoList.zip)
+  y prueba a ejecutarla en el simulador.
 - Para poder probarla en un móvil real es necesario:
     - Firmar el código compilado de la app con el certificado de
     desarrollador que acabamos de obtener.
