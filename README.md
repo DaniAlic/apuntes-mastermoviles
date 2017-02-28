@@ -3,7 +3,9 @@
 
 Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos Móviles](http://www.eps.ua.es/es/master-moviles/) de la Universidad de Alicante.
 
-- Sesión 1: [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01-firma-aprovisionamiento.html)([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion01/sesion01-firma-aprovisionamiento.md))
+- Sesión 1:
+  [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01/sesion01-firma-aprovisionamiento.html)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion01/sesion01-firma-aprovisionamiento.md))
 
 
 <!--
