@@ -236,16 +236,194 @@ Master Programación de Dispositivos Móviles
 
 ##  Distribución de betas sin TestFlight
 
+- Es posible distribuir betas sin utilizar TestFlight usando AdHoc o
+  Development Deployment.
+- El UUID del dispositivo debe estar en el perfil de aprovisionamiento
+  con el que firmamos la app.
+- Es necesario instalar la app con iTunes
+- Existen programas de terceros que permiten facilitar la
+  distribución. 
+- Vamos a ver **Fabric**, una plataforma y API que permite una gran
+  cantidad de funcionalidades: distribución, recopilación de datos de
+  crashes, recopilación de estadísticas de uso, etc.
+- Se trata de una plataforma creada por Twitter y recién comprada por
+  Google. Se puede acceder desde [esta URL](https://get.fabric.io).
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
 
+## Alta y descarga de Fabric
+<!-- .slide: data-background="#cbe0fc"-->
 
-## Falta
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-confirmacion.png" width="250px"/>
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-download.png" width="200px"/>
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-registro-app.png" width="250px"/>
 
-- Herramientas de terceros: Fabric
-- Distribución de apps in House
+- [Regístrate](https://fabric.io/kits?show_signup=true) en Fabric y
+  descarga e instala la aplicación para Mac, moviéndola a la carpeta
+  de Aplicaciones.
+- Lanza la aplicación y regístrate en ella con la misma cuenta y
+  contraseña que en la web.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución de nuestra app con Fabric (1)
+<!-- .slide: data-background="#cbe0fc"-->
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="imagenes/fabric-install-libreria.png" width="250px"/>
+
+- Para la instalación de Fabric es necesario importar unas librerías
+  en nuestra app y añadir un **Run Script Build Phase**.
+- La aplicación Fabric te guía paso a paso:
+    - Debes seleccionar el proyecto XCode
+    - Elige el Kit a instalar. Vamos a elegir **Crashlytics** que nos
+      permite, además de distribuir la app beta, obtener información
+      de los crashes de nuestra app en los dispositivos de prueba.
+    - Sigue las indicaciones que aparece en la aplicación Fabric.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución de nuestra app con Fabric (2)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-1.png" width="300px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-xcode-new-script.png" width="550px"/> 
+
+- Selecciona en Xcode **Build Phases** y en el símbolo **+**
+  selecciona **New Run Script Build Phase**.
+- En la opción **Run Script** pega el código que aparece en la
+  aplicación.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución de nuestra app con Fabric (3)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-2.png" width="300px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/xcode-librerias-fabric.png" width="400px"/> 
+
+- Instala el SDK Kit en el proyecto, arrastrando desde la
+  aplicación al proyecto.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución de nuestra app con Fabric (4)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img src="imagenes/fabric-app-3.png" width="220px"/> 
+<img src="imagenes/fabric-app-4.png" width="220px"/>
+<img src="imagenes/todo-list-nombre.png" width="220px"/>
+
+- Copia el código que aparece en Fabric en el fichero **AppDelegate.swift**.
+- Modifica el código de la app ToDoList para que en cada ítem añadido
+aparezca tu nombre. 
+- Asegúrate que la ToDoList está firmada con el perfil de
+  aprovisionamiento del equipo de la Universidad y ejecuta la app
+  ToDoList en el simulador para que Fabric compruebe que todo está
+  funcionando correctamente.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución de nuestra app con Fabric (4)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-5.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-6.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-7.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-app-8.png" width="210px"/> 
+
+- En la aplicación Fabric aparecerá la app ToDoList y podremos activar
+  la distribución, añadiendo los correos electrónicos de las personas
+  a las que se les enviará.
+- Si el UUID del dispositivo del probador está incluido en el perfil
+  de aprovisionamiento podrá ejecutar la app sin problemas. Si no,
+  Fabric obtendrá el UUID y nos lo proporcionará para que actualicemos
+  el perfil de aprovisionamiento.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Ejecución de la app por el probador (1)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-1.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-2.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-3.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-4.png" width="210px"/> 
+
+- El probador recibe un e-mail que le dirige a una página web desde la
+  que debe instalar un perfil (que será el que permitirá leer el UUID
+  del dispositivo y comprobar si está incluido en el perfil de
+  aprovisionamiento instalado en la app que se distribuye).
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Ejecución de la app por el probador (2)
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-5.png" width="210px"/> 
+<img style="vertical-align: middle; margin-right: 20px;" src="imagenes/fabric-tester-6.png" width="300px"/> 
+
+- Si el dispositivo puede ejecutar la app aparecerá un botón para
+  instalarla. La forma de instalarla será tan sencilla como pulsar ese
+  botón (no hay necesidad de usar iTunes ni Xcode).
+- Si el dispositivo no puede ejecutar la app, aparecerá un mensaje
+  indicándolo y nos informará del UUID.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Dashboard de Fabric
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img src="imagenes/fabric-dashboard.png" width="800px"/>
+
+- En el dashboard podemos acceder a estadísticas de descargas e
+  instalaciones, información sobre los crashes de nuestra apps, etc.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Ejercicio adicional
+<!-- .slide: data-background="#cbe0fc"-->
+
+<img src="imagenes/fabric-notificacion-build.png" width="400px"/>
+
+- El plugin de Fabric hace que cada vez que generes un nuevo build de
+  la app (con **Product > Archive**) aparezca una notificación preguntando
+  si se quiere distribuir a los testers.
+- Compila una nueva versión de la app en la que provoques algún error
+  que haga que se rompa.
+    - Crea un botón en el `NumItemsViewController` y conéctalo con la
+      acción:
+      
+```swift
+    @IBAction func crashButtonTapped(_ sender: UIButton) {
+        Crashlytics.sharedInstance().crash()
+    }
+```
+
+- Pruébala en el simulador y provoca el crash. Después vuelve a lanzar
+  la app en el simulador para que se suban las estadísticas a Fabric.
+- Distribúyela y comprueba la información que aparece del crash.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
