@@ -6,7 +6,9 @@ Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos
 - Sesión 1:
   [Firma y aprovisionamiento de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion01/sesion01-firma-aprovisionamiento.html)
   ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion01/sesion01-firma-aprovisionamiento.md))
-
+- Sesión 2:
+  [Prueba y distribución de apps](http://domingogallardo.github.io/apuntes-mastermoviles/sesion02/sesion02-distribucion-prueba.html)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion02/sesion02-distribucion-prueba.md)
 
 <!--
 - Sesión 2: Distribución y prueba
