@@ -33,15 +33,6 @@ Master Programación de Dispositivos Móviles
 
 
 
-## Recursos
-
-- [App Distribution Quick Start](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839)
-- [App Distribution Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582)
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
 ## Distintos programas de desarrollo
 
 - Apple define varios tipos de programas de desarrollo:
@@ -913,6 +904,15 @@ security cms -D -i <perfil>.mobileprovision
 - Entrega el binario `ToDoList.ipa` en la actividad de Moodle de esta
   semana.
   
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Recursos
+
+- [App Distribution Quick Start](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839)
+- [App Distribution Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582)
+
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 

@@ -19,15 +19,6 @@ Master Programación de Dispositivos Móviles
 
 
 
-## Recursos
-
-- [App Distribution Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582)
-- [iTunes Connect Guide](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/About.html#//apple_ref/doc/uid/TP40011225-CH1-SW1)
-  
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
 ## iTunes Connect
 
 <!-- .slide: class="image-right"-->
@@ -424,6 +415,17 @@ aparezca tu nombre.
 - Pruébala en el simulador y provoca el crash. Después vuelve a lanzar
   la app en el simulador para que se suban las estadísticas a Fabric.
 - Distribúyela y comprueba la información que aparece del crash.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Recursos
+
+- [App Distribution Guide](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582)
+- [iTunes Connect Guide](https://developer.apple.com/library/content/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/About.html#//apple_ref/doc/uid/TP40011225-CH1-SW1)
+- [Documentación de Fabric](https://docs.fabric.io/apple/fabric/overview.html)
+  
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
