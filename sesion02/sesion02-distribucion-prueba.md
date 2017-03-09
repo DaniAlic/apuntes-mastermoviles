@@ -92,7 +92,7 @@ Master Programación de Dispositivos Móviles
 
 - La forma más sencilla de subir una app a iTunes Connect es
   utilizando Xcode.
-- Debes crear un archivo ipa con la opción Product > Archive y
+- Debes crear un archivo ipa con la opción **_Product > Archive_** y
   seleccionar la opción _Upload to App Store_.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
@@ -415,6 +415,32 @@ aparezca tu nombre.
 - Pruébala en el simulador y provoca el crash. Después vuelve a lanzar
   la app en el simulador para que se suban las estadísticas a Fabric.
 - Distribúyela y comprueba la información que aparece del crash.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Distribución en empresas
+<!-- .slide: class="image-right"-->
+
+<img style="margin-left:20px" src="imagenes/apps-enterprise-ready.png" width="550px"/>
+
+- Tal y como vimos en la sesión 1, una empresa puede subscribirse por
+  $299 al año al programa de desarrollo de empresa.
+- El programa permite añadir usuarios con distintos roles
+  (desarrolladores, administradores, etc.), tal y como
+  hemos visto en _iTunes Connect_, junto herramientas adicionales para
+  gestionar el equipo de desarrollo.
+- La ventaja fundamental de este programa es que permite la
+  **distribución _in-house_ de apps**: las apps se suben al portal interno de la
+  empresa (denominado en la nomenclatura empresarial un _Mobile Device
+  Management (MDM) system_) y desde ahí pueden descargarse en
+  cualquier dispositivo de la empresa.
+- Puedes encontrar más información sobre la distribución de apps
+  _in-house_ y sobre otros aspectos de apps para empresas en la página
+  de Apple
+  [_Make your apps enterprise ready_](https://developer.apple.com/enterprise/integrate/). 
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
