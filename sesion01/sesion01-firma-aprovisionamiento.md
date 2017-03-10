@@ -805,6 +805,17 @@ security cms -D -i <perfil>.mobileprovision
 
 
 
+## Nombre en el número de build
+<!-- .slide: data-background="#cbe0fc"-->
+
+- Para poder diferenciar las distintas prácticas entregadas, preceded
+  el número de build con vuestro nombre y primer apellido.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
 ## Activación del permiso de _Game Center_
 <!-- .slide: data-background="#cbe0fc"-->
 
