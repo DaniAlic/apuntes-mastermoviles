@@ -305,7 +305,7 @@ Master Programación de Dispositivos Móviles
   la que podremos comprobar cómo se envían y reciben notificaciones
   remotas.
 - Ejecutaremos una app que va a recibir las notificaciones
-  ([NotificacionesPush]()) en un dispositivo real.
+  ([NotificacionesPush](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/NotificacionesPush.zip)) en un dispositivo real.
 - Cada estudiante podrá enviar notificaciones a este dispositivo real
   utilizando un script en PHP.
 - Para configurar el script PHP necesitamos:
@@ -514,7 +514,7 @@ func application(_ application: UIApplication,
 <!-- .slide: data-background="#cbe0fc"-->
 
 - Descarga el proyecto NotificacionesPush desde
-  [este enlace](). Contiene la app y los scripts PHP para enviar las
+  [este enlace](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/apps/NotificacionesPush.zip). Contiene la app y los scripts PHP para enviar las
   notificaciones al APNs.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
