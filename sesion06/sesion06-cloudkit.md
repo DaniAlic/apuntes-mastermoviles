@@ -196,11 +196,6 @@ Master Programación de Dispositivos Móviles
 <img src="imagenes/configuracion-firma.png" width="470px"/> <img
 src="imagenes/capabilities.png" width="470px"/>
 
-- Copia la carpeta `ToDoList clave-valor` y renómbrala a `ToDoList CloudKit`.
-- Cambia el _bundle ID_ a `ua.mastermoviles.ToDoListCloudKit`
-- Modifica las _Capabilities_ de tu app ToDoList para activar el
-  almacenamiento CloudKit en iCloud.
-
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
 
@@ -611,9 +606,8 @@ func deleteTarea(_ nombre: String) {
 
 - Configuración de la app:
     - Trabajamos con el proyecto `ToDoList CloudKit` y el _bundle ID_
-      `ua.mastermoviles.ToDoListCloudKit`.
-    - Descarga el perfil de aprovisionamiento `UA ToDoListCloudKit
-      Profile` y firma la app con él.
+      `ua.mastermoviles.ToDoListCloudKit` y el perfil de
+      aprovisionamiento `UA ToDoListCloudKit Profile`.
     - Arregla el _storyboard_ de la app (hay una vista de navegación de más).
 - Desarrollo de la práctica:
     - Añade el código necesario para que las tareas pendientes

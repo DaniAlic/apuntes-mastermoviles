@@ -336,14 +336,14 @@ width=200px/>
 <img style="margin-left:20px" src="imagenes/to-do-list.png"
 width=200px/>
 
-- Estamos trabajando en el proyecto `ToDoList clave-valor`.
+- Copia la carpeta `ToDoList` y renómbrala a `ToDoList  CloudKit`.
 - Elimina las referencias a `Fabric` y `Crashlytics`
 - Modifica la aplicación para que se guarden en el almacén clave-valor
   de iCloud del usuario:
     - Número de tareas terminadas
     - Última tarea terminada
-- Debes usar el perfil de aprovisionamiento `UA Master Moviles ToDoList
-  iCloud` y el _bundle name_ `ua.mastermoviles.ToDoList`
+- Debes usar el perfil de aprovisionamiento `UA ToDoListCloudKit Profile`
+  iCloud` y el _bundle name_ `ua.mastermoviles.ToDoListCloudKit`
 - Debes usar la app en el simulador habiéndote logeado en iCloud en el
   propio simulador.
 - Prueba a ejecutar distintas veces la app desde el simulador, incluso
