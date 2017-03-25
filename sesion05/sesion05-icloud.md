@@ -109,21 +109,10 @@ Master Programación de Dispositivos Móviles
   administrador (o tienes una cuenta de pago en la que tienes todos
   los permisos de tu equipo), se puede hacer todo automaticamente
   desde XCode.
-
-<!-- Tres líneas en blanco para la siguiente transparencia -->
-
-
-
-## Actualización de capacidades de la app ToDoList
-<!-- .slide: data-background="#cbe0fc"-->
-
-<img src="imagenes/configuracion-firma.png" width="470px"/> <img
-src="imagenes/capabilities.png" width="470px"/>
-
-- Vamos a empezar trabajando en esta primera sesión con **iCloud clave-valor**.
-- Copia la carpeta del proyecto `ToDoList` y renómbrala `ToDoList clave-valor`.
-- Modifica las _Capabilities_ de tu app ToDoList para activar el
-  almacenamiento clave-valor en iCloud.
+- Puedes utilizar el perfil de aprovisionamiento `UA ToDoListCloudKit
+  Profile` creado en el _member center_ del equipo de la
+  universidad. El _bundle ID_ de la app debe ser
+  `ua.mastermoviles.ToDoListCloudKit`. 
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -180,7 +169,6 @@ func synchronize() -> Bool
 
 
 ## Ejemplo de uso de `synchronize` al lanzar la app
-<!-- .slide: data-background="#cbe0fc"-->
 
 ```swift
 func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -220,7 +208,6 @@ store.set(Int64(100), forKey: "puntuacion")
 
 
 ## Ejemplo de uso en la práctica
-<!-- .slide: data-background="#cbe0fc"-->
 
 ```swift
 let store = NSUbiquitousKeyValueStore.default()
@@ -261,7 +248,7 @@ func longlong(forKey: String) -> Int64
 
 
 ## Ejemplo de uso en la práctica
-<!-- .slide: data-background="#cbe0fc"-->
+
 
 ```swift
 let store = NSUbiquitousKeyValueStore.default()
@@ -324,34 +311,55 @@ func application(application: UIApplication,
 
 
 
-## Práctica: ToDoList con iCloud clave-valor
+## Práctica: ToDoList con iCloud clave-valor (1)
 
 <!-- .slide: data-background="#cbe0fc"-->
 <!-- .slide: class="image-right"-->
 
 
 <img style="margin-left:20px" src="imagenes/to-do-list-alerta.png"
-width=200px/> 
+width=180px/> 
 
 <img style="margin-left:20px" src="imagenes/to-do-list.png"
-width=200px/>
+width=180px/>
 
-- Copia la carpeta `ToDoList` y renómbrala a `ToDoList  CloudKit`.
-- Elimina las referencias a `Fabric` y `Crashlytics`
-- Modifica la aplicación para que se guarden en el almacén clave-valor
+- Preparación previa
+    - Copia la carpeta `ToDoList` y renómbrala a `ToDoList  CloudKit`
+      (utilizaremos el proyecto también para la práctica siguiente).
+    - Elimina las referencias a `Fabric` y `Crashlytics`
+    - El _bundle ID_ de la app debe ser
+      `ua.mastermoviles.ToDoListCloudKit` y utilizar el
+      perfil de aprovisionamiento `UA ToDoListCloudKit Profile`.
+    - Activa la _capability_ de iCloud clave-valor.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+## Práctica: ToDoList con iCloud clave-valor (2)
+
+<!-- .slide: data-background="#cbe0fc"-->
+<!-- .slide: class="image-right"-->
+
+
+<img style="margin-left:20px" src="imagenes/to-do-list-alerta.png"
+width=180px/> 
+
+<img style="margin-left:20px" src="imagenes/to-do-list.png"
+width=180px/>
+
+- Debes modificar la aplicación para que se guarden en el almacén clave-valor
   de iCloud del usuario:
     - Número de tareas terminadas
     - Última tarea terminada
-- Debes usar el perfil de aprovisionamiento `UA ToDoListCloudKit Profile`
-  iCloud` y el _bundle name_ `ua.mastermoviles.ToDoListCloudKit`
-- Debes usar la app en el simulador habiéndote logeado en iCloud en el
-  propio simulador.
-- Prueba a ejecutar distintas veces la app desde el simulador, incluso
-  a eliminar la aplicación y volver a instalarla. Debería conservarse
-  el número de tareas terminadas y el nombre de la última. Se borrarán
-  las tareas pendientes (las guardaremos en CloudKit en la sesión
-  siguiente).
-- Muestra los datos guardados con una
+    - Debes usar la app en el simulador habiéndote logeado en iCloud en el
+    propio simulador.
+    - Prueba a ejecutar distintas veces la app desde el simulador,
+  incluso a eliminar la aplicación y volver a instalarla. Debería
+  conservarse el número de tareas terminadas y el nombre de la
+  última. Se borrarán las tareas pendientes (las guardaremos en
+  CloudKit en la sesión siguiente).
+    - Muestra los datos guardados con una
   [alerta](https://developer.apple.com/reference/uikit/uialertcontroller)
   al arrancar la app.
 
