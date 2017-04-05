@@ -22,8 +22,17 @@ Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos
   [iCloud](http://domingogallardo.github.io/apuntes-mastermoviles/sesion04/sesion04-notificaciones-push.html)
   ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion05/sesion05-icloud.md))
 - Sesión 6:
-  [CloudKit](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06/sesion06-cloudkit.html#/)
+  [CloudKit](http://domingogallardo.github.io/apuntes-mastermoviles/sesion06/sesion06-cloudkit.html)
   ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion06/sesion06-cloudkit.md))
+- Sesión 7:
+  [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07/sesion07-mapas-localizacion.html)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion07/sesion07-mapas-localizacion.md)
+- Sesión 8:
+  [Extensiones](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08/sesion08-extensiones.html)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion08/sesion08-extensiones.md))
+- Sesión 9:
+  [Compras inApp](http://domingogallardo.github.io/apuntes-mastermoviles/sesion09/sesion09-compras-inapp.html)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion09/sesion09-compras-inapp.md))
   
 
 
