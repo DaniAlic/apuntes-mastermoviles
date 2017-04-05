@@ -14,13 +14,20 @@ Master Programación de Dispositivos Móviles
 ### Introducción
 
 - Las _app extensions_ representan **pequeñas apps** o pequeños hilos
-  de ejecución que se instalan en puntos de extensión del sistema y de
+  de ejecución que se instalan en **puntos de extensión** del sistema y de
   otras apps.
-- Se distribuyen e instalan junto con apps normales, no de forma
-  independiente (con la excepción de los teclados configurables).
+- Se distribuyen e instalan junto con apps normales (la **app
+  contenedora** de la extensión), no de forma independiente (con la
+  excepción de los teclados configurables). Por ejemplo, **Pocket**
+  distribuye una extensión para guardar contenido en la app cuando el
+  usuario pulsa el botón de compartir estando en una página web.
 - Pueden llegar a ser importantes para el usuario final,
   proporcionando integración entre apps y aumentando la experiencia de
   usuario.
+- En nuestras apps podemos también declarar **puntos de extensión** a
+  los que se conectarán extensiones de terceros (compartir, por
+  ejemplo).
+  
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -69,6 +76,79 @@ Master Programación de Dispositivos Móviles
     - Audio
     - Finder Sync
 
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Puntos de extensión
+
+- Cada uno de los tipos de extensiones anteriores se conectan con
+  puntos de extensión del sistema.
+- Cada punto de extensión define una política de uso y proporciona
+  APIs que se usan en las extensiones de ese tipo.
+- Cada punto de extensión permite una funcionalidad distinta. Cuando
+  diseñemos una extensión hay que identificar qué funcionalidad
+  queremos ofrecer y qué punto de extensión debemos usar.
+- Se puede consultar la lista completa de puntos de extensión en la
+  [documentación de Apple](https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/#//apple_ref/doc/uid/TP40014214-CH20-SW1).
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Algunos puntos de extensión
+
+- **Action**:
+   - Manipular o ver contenido que se origina en una app anfitriona.
+- **Document Provider**:
+   - Proporcionar acceso a y manejar un repositorio de ficheros.
+- **Intents**:
+   - Manejar tareas relacionadas con la integración con Siri.
+- **Photo Editing**:
+   - Editar una foto o vídeo dentro de la app Fotos.
+- **Share**:
+   - Enviar a una website o compartir contenido con otros.
+- **WatchKit App**:
+   - Proporcionar una app o una notificación UI para el Apple Watch.
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Ciclo de vida de una app extension
+
+<img src="imagenes/ciclo-vida-app-extension.png" width="500px"/>
+
+- Las app extensión tienen un ciclo de vida muy corto. 
+- Se inicia cuando el usuario la elige de la IU de la app anfitriona.
+- La app anfitriona define el contexto proporcionado a la extensión y
+  comienza el ciclo de vida de la extensión, lanzándole una petición
+  en respuesta a una acción del usuario.
+- La extensión termina tan pronto como completa la petición que ha
+  recibido de la app anfitriona.
+- Ejemplo: el usuario escribe un texto, lo selecciona y pulsa el botón
+  compartir para enviarlo a una red social.
+
+
+<!-- Tres líneas en blanco para la siguiente transparencia -->
+
+
+
+### Comunicación de la app extension
+
+<img src="imagenes/comunicacion-app-extension.png" width="500px"/>
+
+- Una app extension se comunica principalmente con su app anfitriona.
+- No hay comunicación directa entre la extensión y la app
+  contenedora. La app contenedora ni siquiera estará ejecutándose
+  cuando la extensión esté corriendo.
+- El sistema abre la app extension en respuesta a la app anfitriona y
+  la extensión toma sus datos de un contexto proporcionado por esta app.
+- Una extensión de tipo `Today` (y ninguna otra) puede pedir al
+  sistema que abra la app contenedora.
+- La extensión y su app contenedora pueden comunicarse a través de
+  datos compartidos en un contenedor compartido.
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
@@ -279,6 +359,9 @@ width="300px"/>
 ### Referencias
 
 - [Página de principal de Apple: App Extensions](https://developer.apple.com/app-extensions/)
+- [App Extensions Programming Guide](https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/)
+- [Tutorial Raywenderlich sobre extensiones Today (Crypticker)](https://www.raywenderlich.com/150953/today-extension-tutorial-getting-started)
+
 
 <!-- Tres líneas en blanco para la siguiente transparencia -->
 
