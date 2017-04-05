@@ -158,6 +158,8 @@ Master Programación de Dispositivos Móviles
 
 - Las extensiones se crean en Xcode seleccionando el proyecto y la
   opción **Editor > Add Target...**
+- Hay plantillas para todos los tipos de extensiones que proporcionan
+  un punto de partida a partir del que desarrollar nuestra extensión.
 
 <img src="imagenes/xcode-extensiones.png" width="800px"/>
 
