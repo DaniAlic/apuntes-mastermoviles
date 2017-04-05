@@ -26,7 +26,7 @@ Asignatura del [Master Universitario en Desarrollo de Software Para Dispositivos
   ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion06/sesion06-cloudkit.md))
 - Sesión 7:
   [Mapas y localización](http://domingogallardo.github.io/apuntes-mastermoviles/sesion07/sesion07-mapas-localizacion.html)
-  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion07/sesion07-mapas-localizacion.md)
+  ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion07/sesion07-mapas-localizacion.md))
 - Sesión 8:
   [Extensiones](http://domingogallardo.github.io/apuntes-mastermoviles/sesion08/sesion08-extensiones.html)
   ([HTML imprimible](https://github.com/domingogallardo/apuntes-mastermoviles/blob/gh-pages/sesion08/sesion08-extensiones.md))
